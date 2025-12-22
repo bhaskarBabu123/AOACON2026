@@ -7,7 +7,7 @@ import { USER_ROLES } from '../../utils/constants';
 import LoadingSpinner from '../../components/common/LoadingSpinner';
 import Header from '../../components/common/Header';
 import MobileNav from '../../components/common/MobileNav';
-
+import logo from '../../images/main-logo.jpg'
 const RegisterPage = () => {
   const [step, setStep] = useState(1);
   const [selectedRole, setSelectedRole] = useState('');
@@ -117,7 +117,7 @@ const RegisterPage = () => {
      <div className="flex items-center justify-center px-4 py-8 mb-20">
       <div className="w-full max-w-lg">
           <div className="flex justify-center mb-5">
-          <img src="./logo.png" alt="" width="200" />
+          <img src={logo} alt="" width="200" />
       </div>
         <h1 className="text-center text-lg font-semibold text-slate-900 mb-1">
           AOACON 2026 Register

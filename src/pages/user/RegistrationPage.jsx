@@ -11,7 +11,8 @@ import {
   FileText,
   Hotel,
   Users,
-  Calendar
+  Calendar,
+  XCircle,
 } from 'lucide-react';
 import { useAuth } from '../../contexts/AuthContext';
 import { useApp } from '../../contexts/AppContext';
@@ -30,22 +31,28 @@ const RegistrationPage = () => {
   const [error, setError] = useState('');
   const [collegeLetter, setCollegeLetter] = useState(null);
 
-  const { user } = useAuth();
+  const { user, loading: authLoading } = useAuth();
   const { setRegistration } = useApp();
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetchPricing();
-  }, []);
+    if (!authLoading && user) {
+      fetchPricing();
+    }
+  }, [authLoading, user]);
 
   const fetchPricing = async () => {
+    setLoading(true);
+    setError('');
     try {
       const response = await registrationAPI.getPricing();
       setPricing(response.data);
     } catch (err) {
-      console.log(err);
-      
-      // setError('Failed to load pricing information. Please try again.');
+      console.error('Pricing fetch error:', err);
+      setError(
+        err.response?.data?.message ||
+        'Failed to load pricing. Please try again later.'
+      );
     } finally {
       setLoading(false);
     }
@@ -76,7 +83,13 @@ const RegistrationPage = () => {
     }
 
     if (user.role === 'PGS' && !collegeLetter) {
-      setError('College letter is required for PGS & Fellows registration');
+      setError('College letter is required for PGS & Fellows');
+      return;
+    }
+
+    // Check if selected package has price > 0
+    if (pricing?.pricing?.[formData.registrationType]?.totalAmount <= 0) {
+      setError('This package is not available in the current booking phase');
       return;
     }
 
@@ -137,12 +150,17 @@ const RegistrationPage = () => {
     return display[type] || type;
   };
 
-  if (loading) {
+  if (authLoading || loading) {
     return (
       <div className="min-h-screen bg-white flex items-center justify-center">
         <LoadingSpinner size="sm" text="Loading registration..." />
       </div>
     );
+  }
+
+  if (!user) {
+    navigate('/login');
+    return null;
   }
 
   return (
@@ -168,6 +186,14 @@ const RegistrationPage = () => {
           </div>
         )}
 
+        {/* Error Message */}
+        {error && (
+          <div className="p-4 border border-red-200 text-red-700 text-[12px] rounded-xl bg-red-50 flex items-center gap-2">
+            <XCircle className="w-4 h-4" />
+            {error}
+          </div>
+        )}
+
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 lg:gap-6">
           {/* Main Form */}
           <section className="lg:col-span-2 space-y-4">
@@ -185,7 +211,6 @@ const RegistrationPage = () => {
                     <p className="text-sm font-medium text-slate-900">{user?.name || 'N/A'}</p>
                   </div>
                 </div>
-                
                 <div className="flex items-center gap-3 p-3 border border-slate-200 rounded-lg bg-white">
                   <Mail className="w-4 h-4 text-slate-500 flex-shrink-0" />
                   <div>
@@ -193,7 +218,6 @@ const RegistrationPage = () => {
                     <p className="text-sm font-medium text-slate-900 truncate">{user?.email || 'N/A'}</p>
                   </div>
                 </div>
-                
                 <div className="flex items-center gap-3 p-3 border border-slate-200 rounded-lg bg-white">
                   <Award className="w-4 h-4 text-[#005aa9] flex-shrink-0" />
                   <div>
@@ -201,7 +225,6 @@ const RegistrationPage = () => {
                     <p className="text-sm font-medium text-slate-900">{getRoleText(user?.role)}</p>
                   </div>
                 </div>
-                
                 {user?.membershipId && (
                   <div className="flex items-center gap-3 p-3 border border-slate-200 rounded-lg bg-white">
                     <CreditCard className="w-4 h-4 text-[#009688] flex-shrink-0" />
@@ -231,7 +254,6 @@ const RegistrationPage = () => {
                     Choose PDF File
                     <input
                       id="college-letter"
-                      name="college-letter"
                       type="file"
                       accept=".pdf"
                       onChange={handleFileChange}
@@ -251,62 +273,98 @@ const RegistrationPage = () => {
               </div>
             )}
 
-            {/* Error */}
-            {error && (
-              <div className="p-4 border border-red-200 text-red-700 text-[12px] rounded-xl bg-red-50">
-                {error}
-              </div>
-            )}
-
             {/* Package Selection */}
             <form onSubmit={handleSubmit} className="space-y-4">
               <div className="space-y-3">
-                {pricing &&
-                  Object.entries(pricing.pricing).map(([type, priceData]) => (
-                    <label
-                      key={type}
-                      className={`block p-5 lg:p-6 border rounded-xl cursor-pointer transition-colors hover:border-[#005aa9]/40 ${
-                        formData.registrationType === type
-                          ? 'border-[#005aa9] bg-[#005aa9]/5' 
-                          : 'border-slate-200 hover:border-slate-300'
-                      }`}
-                    >
-                      <div className="flex items-start lg:items-center justify-between gap-4">
-                        <div className="flex items-center flex-1">
-                          <input
-                            type="radio"
-                            name="registrationType"
-                            value={type}
-                            checked={formData.registrationType === type}
-                            onChange={(e) =>
-                              setFormData({ ...formData, registrationType: e.target.value })
-                            }
-                            className="h-5 w-5 text-[#005aa9] focus:ring-[#005aa9] border-slate-300 mt-0.5 flex-shrink-0"
-                          />
-                          <div className="ml-3">
-                            <h4 className="text-sm font-medium text-slate-900">
-                              {getRegistrationTypeDisplay(type)}
-                            </h4>
-                            <p className="text-[12px] text-slate-600 mt-1 leading-tight">
-                              {type === 'CONFERENCE_ONLY' && 'All conference sessions + materials + certificate'}
-                              {type === 'WORKSHOP_CONFERENCE' && 'Workshops + all conference sessions + lunch'}
-                              {type === 'COMBO' && 'Conference + workshops + lifetime AOA membership'}
-                            </p>
+                {pricing ? (
+                  Object.entries(pricing.pricing).map(([type, priceData]) => {
+                    const isAvailable = priceData.totalAmount > 0;
+                    const isSelected = formData.registrationType === type;
+
+                    return (
+                      <label
+                        key={type}
+                        className={`block p-5 lg:p-6 border rounded-xl transition-colors ${
+                          isAvailable
+                            ? isSelected
+                              ? 'border-[#005aa9] bg-[#005aa9]/5 cursor-pointer'
+                              : 'border-slate-200 hover:border-[#005aa9]/40 cursor-pointer'
+                            : 'border-slate-300 bg-slate-100 opacity-60 cursor-not-allowed'
+                        }`}
+                        onClick={() => {
+                          if (isAvailable) {
+                            setFormData({ ...formData, registrationType: type });
+                            setError('');
+                          }
+                        }}
+                      >
+                        <div className="flex items-start lg:items-center justify-between gap-4">
+                          <div className="flex items-center flex-1">
+                            <input
+                              type="radio"
+                              name="registrationType"
+                              value={type}
+                              checked={isSelected}
+                              disabled={!isAvailable}
+                              onChange={(e) => {
+                                if (isAvailable) {
+                                  setFormData({ ...formData, registrationType: e.target.value });
+                                  setError('');
+                                }
+                              }}
+                              className="h-5 w-5 text-[#005aa9] focus:ring-[#005aa9] border-slate-300 mt-0.5 flex-shrink-0 disabled:opacity-50"
+                            />
+                            <div className="ml-3">
+                              <h4 className="text-sm font-medium text-slate-900">
+                                {getRegistrationTypeDisplay(type)}
+                              </h4>
+                              <p className="text-[12px] text-slate-600 mt-1 leading-tight">
+                                {type === 'CONFERENCE_ONLY' && 'All conference sessions + materials + certificate'}
+                                {type === 'WORKSHOP_CONFERENCE' && 'Workshops + all conference sessions + lunch'}
+                                {type === 'COMBO' && 'Conference + workshops + lifetime AOA membership'}
+                              </p>
+                              {!isAvailable && (
+                                <p className="text-[11px] text-red-600 mt-1 font-medium flex items-center gap-1">
+                                  <XCircle className="w-3.5 h-3.5" />
+                                  Not Available in {getBookingPhaseText(pricing.bookingPhase)}
+                                </p>
+                              )}
+                            </div>
+                          </div>
+                          <div className="text-right flex-shrink-0">
+                            {isAvailable ? (
+                              <>
+                                <p className="text-xl font-medium text-slate-900">
+                                  ₹{priceData.totalAmount.toLocaleString()}
+                                </p>
+                                <p className="text-[11px] text-slate-500">
+                                  +18% GST included
+                                </p>
+                                {priceData.comboDiscount > 0 && (
+                                  <p className="text-[12px] text-[#005aa9] mt-1 font-medium">
+                                    Save ₹{priceData.comboDiscount.toLocaleString()}
+                                  </p>
+                                )}
+                              </>
+                            ) : (
+                              <p className="text-[12px] text-slate-500">N/A</p>
+                            )}
                           </div>
                         </div>
-                        <div className="text-right flex-shrink-0">
-                          <p className="text-xl font-medium text-slate-900">
-                            ₹{priceData.totalAmount.toLocaleString()}
-                          </p>
-                          {priceData.comboDiscount > 0 && (
-                            <p className="text-[12px] text-[#005aa9] mt-1 font-medium">
-                              Save ₹{priceData.comboDiscount.toLocaleString()}
-                            </p>
-                          )}
-                        </div>
-                      </div>
-                    </label>
-                  ))}
+                      </label>
+                    );
+                  })
+                ) : (
+                  <div className="text-center py-10 text-slate-600">
+                    <p>No pricing information available right now.</p>
+                    <button
+                      onClick={fetchPricing}
+                      className="mt-4 px-4 py-2 bg-[#005aa9] text-white rounded-lg text-sm"
+                    >
+                      Retry Loading Pricing
+                    </button>
+                  </div>
+                )}
               </div>
 
               <button
@@ -326,124 +384,76 @@ const RegistrationPage = () => {
             </form>
           </section>
 
-          {/* Summary Sidebar */}
-          <section className="lg:col-span-1 space-y-4">
-            {/* Summary Card */}
-            <div className="border border-slate-200 rounded-xl p-5 lg:p-6 bg-slate-50/50 sticky top-4">
-              <h3 className="text-sm font-medium text-slate-900 mb-4 flex items-center">
-                <CreditCard className="w-4 h-4 mr-2 text-[#005aa9]" />
-                Order Summary
-              </h3>
+          {/* Summary Sidebar - FIXED */}
+         {/* Summary Card */}
+<div className="border border-slate-200 rounded-xl p-5 lg:p-6 bg-slate-50/50 sticky top-4">
+  <h3 className="text-sm font-medium text-slate-900 mb-4 flex items-center">
+    <CreditCard className="w-4 h-4 mr-2 text-[#005aa9]" />
+    Order Summary
+  </h3>
 
-              {formData.registrationType && pricing?.pricing[formData.registrationType] ? (
-                <div className="space-y-3 text-[12px]">
-                  <div className="p-3 bg-white border border-slate-200 rounded-lg mb-4">
-                    <p className="text-[11px] text-slate-500 uppercase tracking-wide mb-1">
-                      {getRegistrationTypeDisplay(formData.registrationType)}
-                    </p>
-                  </div>
+  {formData.registrationType && pricing?.pricing?.[formData.registrationType] ? (
+    <div className="space-y-3 text-[12px]">
+      <div className="p-3 bg-white border border-slate-200 rounded-lg mb-4">
+        <p className="text-[11px] text-slate-500 uppercase tracking-wide mb-1">
+          {getRegistrationTypeDisplay(formData.registrationType)}
+        </p>
+      </div>
 
-                  <div className="space-y-2">
-                    <div className="flex justify-between text-[12px]">
-                      <span className="text-slate-600">Base Price</span>
-                      <span>₹{pricing.pricing[formData.registrationType].basePrice.toLocaleString()}</span>
-                    </div>
+      <div className="space-y-2">
+        {/* Package Price (excl. GST) */}
+        <div className="flex justify-between text-[12px] font-medium">
+          <span className="text-slate-600">Package Price (excl. GST)</span>
+          <span>₹{pricing.pricing[formData.registrationType].totalWithoutGST.toLocaleString()}</span>
+        </div>
 
-                    {pricing.pricing[formData.registrationType].workshopPrice > 0 && (
-                      <div className="flex justify-between text-[12px]">
-                        <span className="text-slate-600">Workshop Fee</span>
-                        <span>₹{pricing.pricing[formData.registrationType].workshopPrice.toLocaleString()}</span>
-                      </div>
-                    )}
+        {/* Breakdown (if applicable) */}
+        {pricing.pricing[formData.registrationType].basePrice > 0 && (
+          <div className="flex justify-between text-[11px] text-slate-600">
+            <span className="text-slate-600">Base Price</span>
+            <span>₹{pricing.pricing[formData.registrationType].basePrice.toLocaleString()}</span>
+          </div>
+        )}
 
-                    {pricing.pricing[formData.registrationType].comboDiscount > 0 && (
-                      <div className="flex justify-between text-[#005aa9] text-[12px] font-medium">
-                        <span>Combo Discount</span>
-                        <span>-₹{pricing.pricing[formData.registrationType].comboDiscount.toLocaleString()}</span>
-                      </div>
-                    )}
+        {pricing.pricing[formData.registrationType].workshopPrice > 0 && (
+          <div className="flex justify-between text-[11px] text-slate-600">
+            <span className="text-slate-600">Workshop Fee</span>
+            <span>₹{pricing.pricing[formData.registrationType].workshopPrice.toLocaleString()}</span>
+          </div>
+        )}
 
-                    <div className="flex justify-between text-[12px]">
-                      <span className="text-slate-600">GST (18%)</span>
-                      <span>₹{pricing.pricing[formData.registrationType].gst.toLocaleString()}</span>
-                    </div>
-                  </div>
+        {pricing.pricing[formData.registrationType].comboDiscount > 0 && (
+          <div className="flex justify-between text-[#005aa9] text-[11px] font-medium">
+            <span>Combo Discount</span>
+            <span>-₹{pricing.pricing[formData.registrationType].comboDiscount.toLocaleString()}</span>
+          </div>
+        )}
 
-                  <div className="pt-3 border-t border-slate-200 mt-4">
-                    <div className="flex justify-between text-sm font-medium">
-                      <span className="text-slate-900">Total Amount</span>
-                      <span className="text-lg font-semibold text-[#005aa9]">
-                        ₹{pricing.pricing[formData.registrationType].totalAmount.toLocaleString()}
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              ) : (
-                <div className="text-center py-10">
-                  <CreditCard className="w-12 h-12 text-slate-300 mx-auto mb-3" />
-                  <p className="text-[13px] text-slate-600 mb-2">Select registration package</p>
-                  <p className="text-[11px] text-slate-500">Choose from 3 packages above</p>
-                </div>
-              )}
-            </div>
+        {/* GST */}
+        <div className="flex justify-between text-[12px]">
+          <span className="text-slate-600">GST (18%)</span>
+          <span>₹{pricing.pricing[formData.registrationType].gst.toLocaleString()}</span>
+        </div>
+      </div>
 
-            {/* Benefits */}
-            <div className="border border-slate-200 rounded-xl p-5 lg:p-6 bg-slate-50/50">
-              <h4 className="text-sm font-medium text-slate-900 mb-4 flex items-center">
-                <CheckCircle className="w-4 h-4 mr-2 text-[#005aa9]" />
-                What's Included
-              </h4>
-              <ul className="space-y-2 text-[11px] text-slate-600">
-                <li className="flex items-center">
-                  <CheckCircle className="w-3.5 h-3.5 text-[#005aa9] mr-2 flex-shrink-0" />
-                  All conference sessions (3 days)
-                </li>
-                <li className="flex items-center">
-                  <CheckCircle className="w-3.5 h-3.5 text-[#005aa9] mr-2 flex-shrink-0" />
-                  Conference kit & materials
-                </li>
-                <li className="flex items-center">
-                  <CheckCircle className="w-3.5 h-3.5 text-[#005aa9] mr-2 flex-shrink-0" />
-                  Certificate of participation
-                </li>
-                <li className="flex items-center">
-                  <CheckCircle className="w-3.5 h-3.5 text-[#005aa9] mr-2 flex-shrink-0" />
-                  Lunch & tea breaks
-                </li>
-                {formData.registrationType === 'COMBO' && (
-                  <>
-                    <li className="flex items-center">
-                      <CheckCircle className="w-3.5 h-3.5 text-[#005aa9] mr-2 flex-shrink-0" />
-                      Lifetime AOA membership
-                    </li>
-                    <li className="flex items-center">
-                      <CheckCircle className="w-3.5 h-3.5 text-[#005aa9] mr-2 flex-shrink-0" />
-                      Workshop access (all sessions)
-                    </li>
-                  </>
-                )}
-              </ul>
-            </div>
-
-            {/* Conference Info */}
-            <div className="border border-slate-200 rounded-xl p-5 lg:p-6 bg-slate-50/30">
-              <h4 className="text-sm font-medium text-slate-900 mb-4">Event Details</h4>
-              <div className="space-y-3 text-[11px] text-slate-600">
-                <div className="flex items-center">
-                  <Calendar className="w-3.5 h-3.5 mr-2 text-[#005aa9]" />
-                  Oct 30 - Nov 1, 2026
-                </div>
-                <div className="flex items-center">
-                  <Hotel className="w-3.5 h-3.5 mr-2 text-[#009688]" />
-                  Hotel Royal Orchid, Shivamogga
-                </div>
-                <div className="flex items-center">
-                  <Users className="w-3.5 h-3.5 mr-2 text-[#005aa9]" />
-                  5000+ Delegates Expected
-                </div>
-              </div>
-            </div>
-          </section>
+      {/* Total Amount */}
+      <div className="pt-3 border-t border-slate-200 mt-4">
+        <div className="flex justify-between text-sm font-medium">
+          <span className="text-slate-900">Total Amount (incl. GST)</span>
+          <span className="text-lg font-semibold text-[#005aa9]">
+            ₹{pricing.pricing[formData.registrationType].totalAmount.toLocaleString()}
+          </span>
+        </div>
+      </div>
+    </div>
+  ) : (
+    <div className="text-center py-10">
+      <CreditCard className="w-12 h-12 text-slate-300 mx-auto mb-3" />
+      <p className="text-[13px] text-slate-600 mb-2">Select a registration package</p>
+      <p className="text-[11px] text-slate-500">Choose from available options above</p>
+    </div>
+  )}
+</div>
         </div>
       </div>
 

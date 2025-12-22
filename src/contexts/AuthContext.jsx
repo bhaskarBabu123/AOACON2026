@@ -18,9 +18,9 @@ const authReducer = (state, action) => {
       return {
         ...state,
         isAuthenticated: true,
-        user: action.payload.user,
-        admin: action.payload.admin,
-        isAdmin: !!action.payload.admin,
+        user: action.payload.user || null,
+        admin: action.payload.admin || null,
+        isAdmin: !!action.payload.admin, // Crucial: Set isAdmin correctly
         token: action.payload.token,
         loading: false
       };
@@ -47,7 +47,7 @@ const authReducer = (state, action) => {
 export const AuthProvider = ({ children }) => {
   const [state, dispatch] = useReducer(authReducer, initialState);
 
-  // Setup axios interceptor
+  // Axios interceptor for token
   useEffect(() => {
     if (state.token) {
       axios.defaults.headers.common['Authorization'] = `Bearer ${state.token}`;
@@ -56,7 +56,7 @@ export const AuthProvider = ({ children }) => {
     }
   }, [state.token]);
 
-  // Check if user is authenticated on app load
+  // Check auth on app load
   useEffect(() => {
     const token = localStorage.getItem('token');
     const userData = localStorage.getItem('user');
@@ -110,11 +110,7 @@ export const AuthProvider = ({ children }) => {
     logout
   };
 
-  return (
-    <AuthContext.Provider value={value}>
-      {children}
-    </AuthContext.Provider>
-  );
+  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };
 
 export const useAuth = () => {

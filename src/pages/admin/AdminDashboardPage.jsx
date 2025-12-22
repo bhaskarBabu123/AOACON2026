@@ -17,6 +17,7 @@ import {
 import { adminAPI } from '../../utils/api';
 import Sidebar from '../../components/admin/Sidebar';
 import LoadingSpinner from '../../components/common/LoadingSpinner';
+import logo from '../../images/logo.png'
 
 const AdminDashboardPage = () => {
   const [dashboardData, setDashboardData] = useState(null);

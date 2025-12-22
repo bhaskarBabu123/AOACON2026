@@ -11,7 +11,7 @@ import {
 } from 'lucide-react';
 import Header from '../../components/common/Header';
 import MobileNav from '../../components/common/MobileNav';
-
+import logo from '../../images/main-logo.jpg'
 const targetDate = new Date('2026-10-30T09:00:00+05:30'); // 30 Oct 2026, 9 AM IST
 
 const HomePage = () => {
@@ -135,9 +135,9 @@ const HomePage = () => {
               {/* Side photo card */}
               <div className="hidden sm:block rounded-2xl overflow-hidden border border-sky-200/70 bg-slate-900/60">
                 <img
-                  src="https://images.pexels.com/photos/5452201/pexels-photo-5452201.jpeg?auto=compress&cs=tinysrgb&w=1200"
+                  src={logo}
                   alt="Conference auditorium"
-                  className="w-full h-36 lg:h-40 object-cover"
+                  className="w-full h-56 lg:h-50 object-cover"
                 />
               </div>
             </div>

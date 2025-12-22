@@ -6,7 +6,7 @@ import { authAPI } from '../../utils/api';
 import LoadingSpinner from '../../components/common/LoadingSpinner';
 import Header from '../../components/common/Header';
 import MobileNav from '../../components/common/MobileNav';
-
+import logo from '../../images/main-logo.jpg'
 const LoginPage = () => {
   const [formData, setFormData] = useState({
     email: '',
@@ -46,13 +46,13 @@ const LoginPage = () => {
   };
 
   return (
-   <div className="min-h-screen bg-white">
+   <div className="min-h-screen bg-white py-20">
     <Header/>
      <div className=" flex items-center justify-center px-4 py-5">
       <div className="w-full max-w-sm">
         {/* Tiny, simple heading */}
       <div className="flex justify-center mb-5">
-          <img src="./logo.png" alt="" width="200" />
+          <img src={logo} alt="" width="200px" />
       </div>
         <h1 className="text-center text-base font-semibold text-slate-900">
           AOACON 2026 Login

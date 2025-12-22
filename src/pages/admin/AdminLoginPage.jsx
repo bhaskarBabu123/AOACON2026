@@ -27,19 +27,16 @@ const AdminLoginPage = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setLoading(true);
-    setError('');
-
     try {
-      const response = await authAPI.adminLogin(formData);
+      const response = await authAPI.adminLogin(formData); // Use admin login endpoint
       const { token, admin } = response.data;
-
-      login(token, null, admin);
+      
+      // Pass admin object to login
+      login(token, null, admin); // user = null, admin = admin data
+      
       navigate('/admin/dashboard');
-    } catch (error) {
-      setError(error.response?.data?.message || 'Admin login failed');
-    } finally {
-      setLoading(false);
+    } catch (err) {
+      setError('Invalid credentials');
     }
   };
 

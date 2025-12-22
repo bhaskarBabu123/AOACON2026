@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import logo from '../../images/logo.png'
+import mainLogo from '../../images/main-logo.jpg'
 import { 
   LogOut, 
   Menu, 
@@ -44,8 +45,8 @@ const Header = () => {
         // { label: 'Faculty', path: '/faculty', icon: Users },
         // { label: 'National Faculty', path: '/faculty/national', icon: User },
         // { label: 'International Faculty', path: '/faculty/international', icon: User },
-        { label: 'Program', path: '/program', icon: Calendar },
-        { label: 'Workshops', path: '/program/workshops', icon: Calendar },
+        // { label: 'Program', path: '/program', icon: Calendar },
+        // { label: 'Workshops', path: '/program/workshops', icon: Calendar },
         { label: 'Program Schedule', path: '/conference-days', icon: Calendar }
       ]
     },
@@ -89,16 +90,17 @@ const Header = () => {
   };
 
   return (
-    <header className="bg-[#005aa9] py-3 border-b border-slate-200 shadow-sm sticky top-0 z-50">
+   <div className="bg-white">
+    <center className='flex items-center justify-between p-2'>
+        <img src={logo} alt=""  width="150px" />
+        <img src={mainLogo} alt=""  width="150px"  />
+        <img src="https://aoacon2025.com/images/logo3.jpg" alt="" width="150px" />
+    </center>
+     <header className="bg-[#005aa9]  border-b border-slate-200 shadow-sm sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="flex justify-between items-center h-14 lg:h-16">
           {/* Logo */}
-          <div 
-            className="flex items-center p-1.5 hover:bg-slate-50 rounded-lg transition-colors cursor-pointer -m-1.5"
-            onClick={() => navigate('/')}
-          >
-           <img src={logo}  width="100px"/>
-          </div>
+          
 
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center gap-0.5">
@@ -285,6 +287,7 @@ const Header = () => {
         )}
       </div>
     </header>
+   </div>
   );
 };
 

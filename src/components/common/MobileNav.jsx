@@ -15,7 +15,7 @@ import {
 } from 'lucide-react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
-import logo from '../../images/logo.png'
+import logo from '../../images/main-logo.jpg'
 
 const MobileNav = () => {
   const [showDrawer, setShowDrawer] = useState(false);
@@ -113,7 +113,7 @@ const MobileNav = () => {
             <div className="pl-4 pr-4 sm:px-5 py-4 border-b border-slate-200 bg-gradient-to-r from-white via-slate-50 to-slate-100/80">
               <div className="flex items-center justify-between gap-3">
                 <div className="flex items-center gap-3">
-                  <img src={logo} alt="AOACON 2026" className="h-10 w-auto" />
+                  <img src={logo} alt="AOACON 2026" className="h-20 w-auto" />
                 </div>
                 <button
                   onClick={closeDrawer}

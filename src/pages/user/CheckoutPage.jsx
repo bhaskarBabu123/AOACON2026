@@ -12,7 +12,7 @@ import {
   Hotel,
   Users,
   Calendar,
-  FileText
+  FileText,
 } from 'lucide-react';
 import { useAuth } from '../../contexts/AuthContext';
 import { useApp } from '../../contexts/AppContext';
@@ -39,6 +39,7 @@ const CheckoutPage = () => {
     try {
       const response = await registrationAPI.getMyRegistration();
       setRegistration(response.data);
+      console.log(response.data);
       setAppRegistration(response.data);
     } catch (error) {
       setError('Registration not found. Please complete registration first.');
@@ -194,13 +195,6 @@ const CheckoutPage = () => {
                   <User className="w-4 h-4 mr-2 text-slate-500" />
                   Personal Information
                 </h2>
-                {/* <button
-                  onClick={() => navigate('/registration')}
-                  className="text-[12px] text-[#005aa9] hover:text-[#009688] flex items-center transition-colors"
-                >
-                  <Edit className="w-3.5 h-3.5 mr-1" />
-                  Edit Details
-                </button> */}
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-[12px]">
                 <div className="flex items-center gap-3 p-3 border border-slate-200 rounded-lg bg-white">
@@ -338,26 +332,38 @@ const CheckoutPage = () => {
 
               {/* Breakdown */}
               <div className="space-y-2 text-[12px] mb-5">
-                <div className="flex justify-between py-1">
-                  <span className="text-slate-600">Base Registration</span>
-                  <span>₹{registration.basePrice?.toLocaleString()}</span>
-                </div>
-                
+                {/* Package Price (excl. GST) */}
+               <div className="flex justify-between py-1">
+  <span className="text-slate-600">Package Price (excl. GST)</span>
+  <span>
+    ₹{(registration.totalAmount - registration.gst)?.toLocaleString() || 'N/A'}
+  </span>
+</div>
+
+                {/* Show base price only if > 0 */}
+                {registration.basePrice > 0 && (
+                  <div className="flex justify-between py-1 text-[11px] text-slate-600">
+                    <span>Base Price</span>
+                    <span>₹{registration.basePrice.toLocaleString()}</span>
+                  </div>
+                )}
+
                 {registration.workshopPrice > 0 && (
-                  <div className="flex justify-between py-1">
-                    <span className="text-slate-600">Workshop Fee</span>
+                  <div className="flex justify-between py-1 text-[11px] text-slate-600">
+                    <span>Workshop Fee</span>
                     <span>₹{registration.workshopPrice.toLocaleString()}</span>
                   </div>
                 )}
-                
+
                 {registration.comboDiscount > 0 && (
                   <div className="flex justify-between text-[#005aa9] py-1 font-medium">
                     <span>Combo Discount</span>
                     <span>-₹{registration.comboDiscount.toLocaleString()}</span>
                   </div>
                 )}
-                
-                <div className="flex justify-between pt-2 border-t border-slate-200">
+
+                {/* GST */}
+                <div className="flex justify-between py-1">
                   <span className="text-slate-600 font-medium">GST (18%)</span>
                   <span className="font-medium">₹{registration.gst?.toLocaleString()}</span>
                 </div>

@@ -34,6 +34,7 @@ import PaymentsManagementPage from './pages/admin/PaymentsManagementPage';
 import AbstractReviewPage from './pages/admin/AbstractReviewPage';
 import FeedbackViewerPage from './pages/admin/FeedbackViewerPage';
 import { useEffect } from 'react';
+import LoadingSpinner from './components/common/LoadingSpinner';
 
 // Protected Route Components
 const ProtectedRoute = ({ children }) => {
@@ -52,16 +53,24 @@ const ProtectedRoute = ({ children }) => {
 
 const AdminRoute = ({ children }) => {
   const { isAuthenticated, isAdmin, loading } = useAuth();
-  
+
   if (loading) {
     return (
-      <div className="min-h-screen bg-slate-50 flex items-center justify-center">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#005aa9]"></div>
+      <div className="min-h-screen flex items-center justify-center">
+        <LoadingSpinner size="sm" />
       </div>
     );
   }
-  
-  return isAuthenticated && isAdmin ? children : <Navigate to="/admin/login" replace />;
+
+  if (!isAuthenticated) {
+    return <Navigate to="/admin/login" replace />;
+  }
+
+  if (!isAdmin) {
+    return <Navigate to="/dashboard" replace />; // Redirect regular users
+  }
+
+  return children;
 };
 
 const PublicRoute = ({ children }) => {
