@@ -329,7 +329,7 @@ const RegistrationFeesPage = () => {
         </section>
         <center>
           <Link
-          to="/register"
+          to="/registration"
              className="w-full px-6 py-3.5 rounded-xl border border-slate-200 bg-[#005aa9] text-white text-sm font-medium hover:from-[#00695c] hover:to-[#005aa9] disabled:opacity-50 disabled:cursor-not-allowed transition-colors flex items-center justify-center gap-2"
           >
             Register now
