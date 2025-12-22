@@ -36,7 +36,7 @@ const RegistrationPage = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!authLoading && user) {
+    if (user) {
       fetchPricing();
     }
   }, [authLoading, user]);
