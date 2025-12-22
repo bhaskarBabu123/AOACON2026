@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
+import logo from '../../images/logo.png'
 import {
   Home,
   Users,
@@ -69,17 +70,15 @@ const Sidebar = () => {
         {/* Header */}
         <div className="flex items-center justify-between px-4 py-4 border-b border-slate-800">
           <div className="flex items-center gap-3">
-            <div className="flex items-center justify-center w-9 h-9 rounded-2xl bg-gradient-to-br from-[#005aa9] to-sky-500 shadow-md">
-              <Home className="w-5 h-5 text-white" />
-            </div>
-            {!isCollapsed && (
+           <img src={logo} width={100} alt="" />
+            {/* {!isCollapsed && (
               <div className="leading-tight">
                 <p className="text-sm font-semibold tracking-tight">AOACON Admin</p>
                 <p className="text-[11px] text-slate-400 uppercase tracking-[0.16em]">
                   Control Panel
                 </p>
               </div>
-            )}
+            )} */}
           </div>
 
           {/* Desktop collapse toggle */}

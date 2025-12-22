@@ -34,8 +34,8 @@ const ContactPage = () => {
                       Contact, Secretariat & Professional Conference Organizer
                     </h1>
                     <p className="mt-2 text-sm sm:text-[15px] text-slate-100/90">
-                      Reach out to the Conference Secretariat at AIIMS Bhubaneswar and the
-                      Professional Conference Organizer in Gurugram for all queries on the
+                      Reach out to the Conference Secretariat at SIMS, SHIVAMOGGA  and the
+                      Professional Conference Organizer in Shivamogga for all queries on the
                       scientific program, registration and accommodation.
                     </p>
                   </div>
@@ -44,8 +44,8 @@ const ContactPage = () => {
                 {/* Small highlight card */}
                 <div className="shrink-0 rounded-2xl bg-white/10 border border-white/30 px-4 py-3 text-xs sm:text-sm text-slate-100 shadow-md">
                   <p className="font-semibold mb-1">Quick Links</p>
-                  <p>Secretariat: AIIMS Bhubaneswar, Odisha</p>
-                  <p>PCO Office: Millennium Plaza, Gurugram</p>
+                  <p>Secretariat: SIMS, SHIVAMOGGA , Karnataka</p>
+                  <p>PCO Office: Karnataka</p>
                   <p className="mt-1 text-[11px] text-slate-100/80">
                     Phone & email contacts listed below for direct coordination.
                   </p>
@@ -65,7 +65,7 @@ const ContactPage = () => {
                 Conference Secretariat
               </h2>
               <span className="px-2.5 py-1 rounded-full text-[11px] bg-white/80 text-emerald-800 border border-emerald-200">
-                AIIMS Bhubaneswar
+                SIMS, SHIVAMOGGA 
               </span>
             </div>
 
@@ -77,7 +77,7 @@ const ContactPage = () => {
                 <br />
                 All India Institute of Medical Sciences (AIIMS),
                 <br />
-                Bhubaneswar, Odisha, India.
+                Bhubaneswar, Karnataka, India.
               </p>
             </div>
 
@@ -165,7 +165,7 @@ const ContactPage = () => {
               <p>
                 Unit No. 604, Millennium Plaza, Tower B,
                 <br />
-                Sector 27, Gurugram, Haryana – 122002, India.
+                Sector 27, Shivamogga, Haryana – 122002, India.
               </p>
             </div>
 
@@ -219,53 +219,29 @@ const ContactPage = () => {
         </section>
 
         {/* MAPS ROW */}
-        <section className="grid grid-cols-1 lg:grid-cols-2 gap-5">
-          {/* AIIMS Bhubaneswar map card */}
-          <div className="rounded-2xl border border-sky-200 bg-sky-50/80 px-4 sm:px-5 py-5 shadow-sm">
-            <h3 className="text-sm font-semibold text-slate-900 mb-2 flex items-center gap-2">
-              <Navigation2 className="w-4 h-4 text-sky-700" />
-              AIIMS Bhubaneswar – Location
-            </h3>
-            <div className="rounded-xl overflow-hidden border border-sky-200 bg-white h-64">
-              <iframe
-                title="AIIMS Bhubaneswar Map"
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3673.587844140697!2d85.819!3d20.2961!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a19a7c5e0fd3c3b%3A0x3b9af70906f25a5!2sAll%20India%20Institute%20of%20Medical%20Sciences%20Bhubaneswar!5e0!3m2!1sen!2sin!4v1700000000000"
-                width="100%"
-                height="100%"
-                style={{ border: 0 }}
-                allowFullScreen
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-              ></iframe>
-            </div>
-            <p className="mt-2 text-[11px] text-slate-600">
-              Academic block and Room No. 426 (Conference Secretariat) are located within the main
-              AIIMS Bhubaneswar campus.
-            </p>
-          </div>
+        <section className="grid grid-cols-1 lg:grid-cols-1 gap-5">
+          {/* SIMS, SHIVAMOGGA  map card */}
+        
 
           {/* Millennium Plaza map card */}
           <div className="rounded-2xl border border-indigo-200 bg-indigo-50/80 px-4 sm:px-5 py-5 shadow-sm">
             <h3 className="text-sm font-semibold text-slate-900 mb-2 flex items-center gap-2">
               <Navigation2 className="w-4 h-4 text-indigo-700" />
-              Millennium Plaza, Tower B – Gurugram
+              SHIVAMOGGA INSTITUTE OF MEDICAL SCIENCES
             </h3>
             <div className="rounded-xl overflow-hidden border border-indigo-200 bg-white h-64">
-              <iframe
-                title="Millennium Plaza Gurugram Map"
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3511.720310007526!2d77.0736!3d28.4724!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d1942c5b1b6c7%3A0x9d6a3e5af0642ab0!2sMillennium%20Plaza%20Tower%20B!5e0!3m2!1sen!2sin!4v1700000000002"
+             <iframe
+                title="SIMS Shivamogga Map"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3872.4355478976645!2d75.56427190859682!3d13.932652586421902!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bbba8d0bb6c8adf%3A0xc7be084ea62ac67d!2sSHIVAMOGGA%20INSTITUTE%20OF%20MEDICAL%20SCIENCES!5e0!3m2!1sen!2sin!4v1766322471387!5m2!1sen!2sin"
                 width="100%"
-                height="100%"
+                height="220"
                 style={{ border: 0 }}
                 allowFullScreen
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
               ></iframe>
             </div>
-            <p className="mt-2 text-[11px] text-slate-600">
-              Meetings n More office at Unit 604, Tower B, Millennium Plaza, Sector 27, Gurugram –
-              handling registration and accommodation logistics.
-            </p>
+          
           </div>
         </section>
       </div>
