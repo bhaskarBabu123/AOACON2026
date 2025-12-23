@@ -195,7 +195,7 @@ const AccommodationManagementPage = () => {
       
       <div className="flex-1 overflow-auto">
         <div className="p-4 sm:p-6">
-          {/* Header */}
+          {}
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-5">
             <div>
               <h1 className="text-base sm:text-lg text-slate-900">Accommodations</h1>
@@ -214,7 +214,7 @@ const AccommodationManagementPage = () => {
             </button>
           </div>
 
-          {/* Stats */}
+          {}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 mb-5">
             <div className="flex items-center gap-2.5 p-3 bg-white border border-slate-200 rounded-xl">
               <div className="w-9 h-9 bg-sky-50 rounded-xl flex items-center justify-center">
@@ -261,7 +261,7 @@ const AccommodationManagementPage = () => {
             </div>
           </div>
 
-          {/* Accommodations Grid */}
+          {}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
             {accommodations.map((accommodation) => (
               <div key={accommodation._id} className="bg-white border border-slate-200 rounded-2xl p-4 hover:border-slate-300 transition-colors">
@@ -335,7 +335,7 @@ const AccommodationManagementPage = () => {
         </div>
       </div>
 
-      {/* Full Featured Create/Edit Modal */}
+      {}
       {showCreateModal && (
         <div className="fixed inset-0 bg-slate-900/50 backdrop-blur-sm flex items-center justify-center z-50 p-2">
           <div className="bg-white rounded-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto border border-slate-200">
@@ -357,7 +357,7 @@ const AccommodationManagementPage = () => {
               </div>
 
               <form onSubmit={handleSubmit} className="space-y-4 text-sm">
-                {/* Basic Info */}
+                {}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                   <div>
                     <label className="block text-slate-700 mb-1.5 font-medium">Hotel Name *</label>
@@ -383,7 +383,7 @@ const AccommodationManagementPage = () => {
                   </div>
                 </div>
 
-                {/* Description & Status */}
+                {}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                   <div className="md:col-span-2">
                     <label className="block text-slate-700 mb-1.5 font-medium">Description</label>
@@ -409,7 +409,7 @@ const AccommodationManagementPage = () => {
                   </div>
                 </div>
 
-                {/* Pricing & Rooms */}
+                {}
                 <div className="grid grid-cols-2 gap-3">
                   <div>
                     <label className="block text-slate-700 mb-1.5 font-medium text-[13px]">Price/Night *</label>
@@ -462,7 +462,7 @@ const AccommodationManagementPage = () => {
                   </div>
                 </div>
 
-                {/* Times */}
+                {}
                 <div className="grid grid-cols-2 gap-3">
                   <div>
                     <label className="flex items-center gap-2 text-slate-700 mb-1.5 font-medium">
@@ -492,7 +492,7 @@ const AccommodationManagementPage = () => {
                   </div>
                 </div>
 
-                {/* Images - Multiple with Add/Remove */}
+                {}
                 <div>
                   <label className="flex items-center gap-2 text-slate-700 mb-2 font-medium">
                     <Image className="w-4 h-4" />
@@ -530,7 +530,7 @@ const AccommodationManagementPage = () => {
                   </button>
                 </div>
 
-                {/* Amenities, Inclusions, Exclusions */}
+                {}
                 {[['amenities', 'Amenities', List], ['inclusions', 'Inclusions', List], ['exclusions', 'Exclusions', List]].map(([field, label, Icon]) => (
                   <div key={field}>
                     <label className="flex items-center gap-2 text-slate-700 mb-2 font-medium">
@@ -570,7 +570,7 @@ const AccommodationManagementPage = () => {
                   </div>
                 ))}
 
-                {/* FAQs */}
+                {}
                 <div>
                   <label className="flex items-center gap-2 text-slate-700 mb-2 font-medium">
                     <HelpCircle className="w-4 h-4" />

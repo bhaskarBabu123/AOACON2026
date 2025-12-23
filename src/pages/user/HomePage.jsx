@@ -12,7 +12,7 @@ import {
 import Header from '../../components/common/Header';
 import MobileNav from '../../components/common/MobileNav';
 import logo from '../../images/main-logo.jpg'
-const targetDate = new Date('2026-10-30T09:00:00+05:30'); // 30 Oct 2026, 9 AM IST
+const targetDate = new Date('2026-10-30T09:00:00+05:30');
 
 const HomePage = () => {
   const [countdown, setCountdown] = useState({
@@ -54,9 +54,9 @@ const HomePage = () => {
     <div className="min-h-screen bg-slate-50 text-slate-900">
       <Header />
 
-      {/* HERO – SIMS BANNER + COUNTDOWN */}
+      {}
       <section className="relative border-b border-slate-200 bg-slate-900 text-white">
-        {/* SIMS GIF background */}
+        {}
         <div
           className="absolute inset-0 opacity-70"
           style={{
@@ -66,12 +66,12 @@ const HomePage = () => {
             backgroundPosition: 'center',
           }}
         />
-        {/* Color overlay */}
+        {}
         <div className="absolute inset-0 bg-gradient-to-r from-slate-900/95 via-sky-800/90 to-[#00796b]/90" />
 
         <div className="relative max-w-6xl mx-auto px-4 lg:px-6 py-10 lg:py-14">
           <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-8">
-            {/* Left hero text */}
+            {}
             <div className="max-w-xl space-y-4">
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 border border-white/30 text-xs font-medium">
                 <Users className="w-4 h-4" />
@@ -102,9 +102,9 @@ const HomePage = () => {
               </div>
             </div>
 
-            {/* Countdown + side card */}
+            {}
             <div className="flex flex-col gap-4 w-full lg:w-auto">
-              {/* Countdown */}
+              {}
               <div className="rounded-2xl bg-slate-950/40 border border-sky-200/60 px-4 py-4 shadow-xl backdrop-blur text-slate-50">
                 <div className="flex items-center gap-2 mb-3 text-xs text-sky-50">
                   <Clock className="w-4 h-4 text-emerald-200" />
@@ -132,7 +132,7 @@ const HomePage = () => {
                 </div>
               </div>
 
-              {/* Side photo card */}
+              {}
               <div className="hidden sm:block rounded-2xl overflow-hidden border border-sky-200/70 bg-slate-900/60">
                 <img
                   src={logo}
@@ -145,7 +145,7 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* VENUE STRIP UNDER HERO */}
+      {}
       <section className="border-b border-slate-200 bg-slate-100/80">
         <div className="max-w-6xl mx-auto px-4 lg:px-6 py-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
           <div className="flex items-center gap-3">
@@ -168,7 +168,7 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* WELCOME + THEME */}
+      {}
       <section className="border-b border-slate-200 bg-slate-50">
         <div className="max-w-6xl mx-auto px-4 lg:px-6 py-8 lg:py-10 grid grid-cols-1 lg:grid-cols-3 gap-8">
           <div className="lg:col-span-2 space-y-4">
@@ -234,7 +234,7 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* TRACKS + IMAGE STRIP */}
+      {}
       <section className="border-b border-teal-100 bg-teal-50/70">
         <div className="max-w-6xl mx-auto px-4 lg:px-6 py-8 lg:py-10 grid grid-cols-1 lg:grid-cols-1 gap-8">
           <div className="lg:col-span-2">
@@ -284,7 +284,7 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* CITY & VENUE */}
+      {}
       <section className="border-b border-indigo-100 bg-indigo-50/70">
         <div className="max-w-6xl mx-auto px-4 lg:px-6 py-8 lg:py-10 grid grid-cols-1 lg:grid-cols-2 gap-8">
           <div className="space-y-3">
@@ -344,7 +344,7 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* ORGANISING TEAM */}
+      {}
       <section className="bg-slate-100 border-t border-slate-200">
         <div className="max-w-6xl mx-auto px-4 lg:px-6 py-8 lg:py-10">
           <div className="flex items-center gap-2 mb-4">

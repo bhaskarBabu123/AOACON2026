@@ -147,7 +147,7 @@ const FeedbackViewerPage = () => {
       
       <div className="flex-1 overflow-auto">
         <div className="p-4 sm:p-6">
-          {/* Header */}
+          {}
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-5">
             <div>
               <h1 className="text-base sm:text-lg text-slate-900">Feedback</h1>
@@ -162,7 +162,7 @@ const FeedbackViewerPage = () => {
             </button>
           </div>
 
-          {/* Analytics Overview */}
+          {}
           {analytics && (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 mb-5">
               <div className="flex items-center gap-2.5 p-3 bg-white border border-slate-200 rounded-xl">
@@ -207,7 +207,7 @@ const FeedbackViewerPage = () => {
             </div>
           )}
 
-          {/* Detailed Analytics */}
+          {}
           {analytics && (
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-5">
               <div className="bg-white border border-slate-200 rounded-2xl p-4 lg:p-6">
@@ -285,7 +285,7 @@ const FeedbackViewerPage = () => {
             </div>
           )}
 
-          {/* Filters */}
+          {}
           <div className="bg-white border border-slate-200 rounded-2xl p-4 mb-4">
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
               <div className="relative">
@@ -322,10 +322,10 @@ const FeedbackViewerPage = () => {
             </div>
           </div>
 
-          {/* Table - Cards on mobile */}
+          {}
           <div className="bg-white border border-slate-200 rounded-2xl overflow-hidden">
             <div className="overflow-x-auto">
-              {/* Mobile Cards */}
+              {}
               <div className="sm:hidden space-y-2 p-3">
                 {filteredFeedbacks.map((feedback) => (
                   <div key={feedback._id} className="p-3 border border-slate-100 rounded-xl bg-slate-50/50 hover:bg-slate-50">
@@ -356,7 +356,7 @@ const FeedbackViewerPage = () => {
                 ))}
               </div>
 
-              {/* Desktop Table */}
+              {}
               <div className="hidden sm:block">
                 <table className="min-w-full divide-y divide-slate-100">
                   <thead className="bg-slate-50">
@@ -437,7 +437,7 @@ const FeedbackViewerPage = () => {
         </div>
       </div>
 
-      {/* Compact Feedback Modal */}
+      {}
       {showModal && selectedFeedback && (
         <div className="fixed inset-0 bg-slate-900/50 backdrop-blur-sm flex items-center justify-center z-50 p-2">
           <div className="bg-white rounded-2xl w-full max-w-lg max-h-[85vh] overflow-y-auto border border-slate-200">
@@ -453,7 +453,7 @@ const FeedbackViewerPage = () => {
               </div>
 
               <div className="space-y-4 text-xs lg:text-sm">
-                {/* Participant */}
+                {}
                 <div className="p-4 bg-slate-50 rounded-xl border border-slate-200">
                   <h4 className="font-medium text-slate-900 mb-3 flex items-center gap-2">
                     <Users className="w-3.5 h-3.5 lg:w-4 lg:h-4" />
@@ -479,7 +479,7 @@ const FeedbackViewerPage = () => {
                   </div>
                 </div>
 
-                {/* Ratings */}
+                {}
                 <div className="p-4 bg-slate-50 rounded-xl border border-slate-200">
                   <h4 className="font-medium text-slate-900 mb-3 flex items-center gap-2">
                     <Star className="w-3.5 h-3.5 lg:w-4 lg:h-4" />
@@ -524,7 +524,7 @@ const FeedbackViewerPage = () => {
                   </div>
                 </div>
 
-                {/* Recommendation */}
+                {}
                 <div className="p-3 lg:p-4 bg-slate-50 rounded-xl border border-slate-200 text-center">
                   <div className="flex items-center justify-center gap-2 mb-2">
                     <div className={`w-2 h-2 rounded-full ${
@@ -536,7 +536,7 @@ const FeedbackViewerPage = () => {
                   </div>
                 </div>
 
-                {/* Comments & Suggestions */}
+                {}
                 {selectedFeedback.comments && (
                   <div className="p-4 bg-gradient-to-r from-sky-50 to-slate-50 rounded-xl border border-sky-200">
                     <h4 className="font-medium text-slate-900 mb-2 text-[13px]">Comments</h4>

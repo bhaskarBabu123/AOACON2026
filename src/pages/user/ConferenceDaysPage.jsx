@@ -135,7 +135,7 @@ const ConferenceDaysPage = () => {
       <Header />
       
       <div className="max-w-6xl mx-auto px-3 sm:px-4 lg:px-6 py-4 sm:py-6 space-y-6 pb-20">
-        {/* Header */}
+        {}
         <div className="border border-slate-200 rounded-xl p-6 bg-slate-50/50">
           <div className="flex items-center mb-4">
             <Calendar className="w-5 h-5 text-[#005aa9] mr-3" />
@@ -148,7 +148,7 @@ const ConferenceDaysPage = () => {
           </div>
         </div>
 
-        {/* Registration Status */}
+        {}
         <div className="border border-slate-200 rounded-xl p-6">
           {registration && registration.paymentStatus === 'PAID' ? (
             <div className="flex items-start gap-4 p-4 bg-[#005aa9]/5 border border-[#005aa9]/20 rounded-xl">
@@ -169,7 +169,7 @@ const ConferenceDaysPage = () => {
           )}
         </div>
 
-        {/* Day 1 */}
+        {}
         <div className="border border-slate-200 rounded-xl p-6">
           <div className="flex items-center justify-between mb-6 p-4 bg-slate-50 rounded-xl">
             <div>
@@ -208,7 +208,7 @@ const ConferenceDaysPage = () => {
           </div>
         </div>
 
-        {/* Day 2 */}
+        {}
         <div className="border border-slate-200 rounded-xl p-6">
           <div className="flex items-center justify-between mb-6 p-4 bg-slate-50 rounded-xl">
             <div>
@@ -247,7 +247,7 @@ const ConferenceDaysPage = () => {
           </div>
         </div>
 
-        {/* Day 3 */}
+        {}
         <div className="border border-slate-200 rounded-xl p-6">
           <div className="flex items-center justify-between mb-6 p-4 bg-slate-50 rounded-xl">
             <div>
@@ -286,7 +286,7 @@ const ConferenceDaysPage = () => {
           </div>
         </div>
 
-        {/* Venue & Notes */}
+        {}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           <div className="border border-slate-200 rounded-xl p-6">
             <h3 className="text-sm font-semibold text-slate-900 mb-4 flex items-center">

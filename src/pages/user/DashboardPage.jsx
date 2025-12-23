@@ -140,7 +140,7 @@ const DashboardPage = () => {
       <Header />
       
       <div className="max-w-6xl mx-auto px-3 sm:px-4 lg:px-6 py-4 sm:py-6 space-y-4 pb-20">
-        {/* Profile Header */}
+        {}
         <div className="flex items-center gap-3 mb-6 p-4 border border-slate-200 rounded-xl bg-slate-50/50">
           <div className="w-12 h-12 bg-[#005aa9] rounded-full flex items-center justify-center flex-shrink-0">
             <User className="w-6 h-6 text-white" />
@@ -155,7 +155,7 @@ const DashboardPage = () => {
           </div>
         </div>
 
-        {/* Progress */}
+        {}
         <div className="border border-slate-200 rounded-xl p-4 bg-slate-50/30 mb-6">
           <div className="flex items-center gap-2 mb-3">
             <Clock className="w-4 h-4 text-slate-500" />
@@ -180,7 +180,7 @@ const DashboardPage = () => {
           </div>
         </div>
 
-        {/* Quick Actions - Mobile */}
+        {}
         <div className="grid grid-cols-2 sm:hidden gap-3 mb-6">
           {!stats.registration && (
             <button
@@ -226,9 +226,9 @@ const DashboardPage = () => {
           </button>
         </div>
 
-        {/* Main Content */}
+        {}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 lg:gap-6">
-          {/* Registration Card */}
+          {}
           <section className="lg:col-span-2 space-y-4">
             <div className="border border-slate-200 rounded-xl p-4 lg:p-6">
               <div className="flex items-center justify-between mb-4 lg:mb-6">
@@ -294,7 +294,7 @@ const DashboardPage = () => {
               )}
             </div>
 
-            {/* Accommodation */}
+            {}
             <div className="border border-slate-200 rounded-xl p-4 lg:p-6">
               <div className="flex items-center justify-between mb-4 lg:mb-6">
                 <h2 className="text-sm font-medium text-slate-900 flex items-center">
@@ -348,7 +348,7 @@ const DashboardPage = () => {
               )}
             </div>
 
-            {/* Recent Activity */}
+            {}
             <div className="border border-slate-200 rounded-xl p-4 lg:p-6 bg-slate-50/30">
               <h3 className="text-sm font-medium text-slate-900 mb-4 flex items-center">
                 Recent Activity
@@ -385,9 +385,9 @@ const DashboardPage = () => {
             </div>
           </section>
 
-          {/* Sidebar */}
+          {}
           <section className="lg:col-span-1 space-y-4">
-            {/* Abstract */}
+            {}
             <div className="border border-slate-200 rounded-xl p-4">
               <h3 className="text-sm font-medium text-slate-900 mb-3 flex items-center">
                 <FileText className="w-4 h-4 mr-1.5 text-slate-500" />
@@ -423,7 +423,7 @@ const DashboardPage = () => {
               )}
             </div>
 
-            {/* Feedback */}
+            {}
             <div className="border border-slate-200 rounded-xl p-4">
               <h3 className="text-sm font-medium text-slate-900 mb-3 flex items-center">
                 <MessageSquare className="w-4 h-4 mr-1.5 text-slate-500" />
@@ -450,7 +450,7 @@ const DashboardPage = () => {
               )}
             </div>
 
-            {/* Conference Info */}
+            {}
             <div className="border border-slate-200 rounded-xl p-4 bg-slate-50/30">
               <h3 className="text-sm font-medium text-slate-900 mb-3">Conference Details</h3>
               <div className="space-y-3 text-[11px] text-slate-600">
@@ -475,7 +475,7 @@ const DashboardPage = () => {
               </div>
             </div>
 
-            {/* Quick Stats */}
+            {}
             <div className="border border-slate-200 rounded-xl p-4 grid grid-cols-2 gap-3 text-center">
               <div>
                 <div className="text-2xl font-semibold text-slate-900">{stats.registration ? 1 : 0}</div>

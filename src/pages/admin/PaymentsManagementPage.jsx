@@ -167,7 +167,7 @@ const PaymentsManagementPage = () => {
       
       <div className="flex-1 overflow-auto">
         <div className="p-4 sm:p-6">
-          {/* Header */}
+          {}
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-5">
             <div>
               <h1 className="text-base sm:text-lg text-slate-900">Payments</h1>
@@ -182,7 +182,7 @@ const PaymentsManagementPage = () => {
             </button>
           </div>
 
-          {/* Stats - Mobile stacked */}
+          {}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 mb-5">
             <div className="flex items-center gap-2.5 p-3 bg-white border border-slate-200 rounded-xl">
               <div className="w-9 h-9 bg-emerald-50 rounded-xl flex items-center justify-center">
@@ -225,7 +225,7 @@ const PaymentsManagementPage = () => {
             </div>
           </div>
 
-          {/* Filters - Mobile stacked */}
+          {}
           <div className="bg-white border border-slate-200 rounded-2xl p-4 mb-4">
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2.5">
               <div className="relative">
@@ -260,10 +260,10 @@ const PaymentsManagementPage = () => {
             </div>
           </div>
 
-          {/* Table - Cards on mobile */}
+          {}
           <div className="bg-white border border-slate-200 rounded-2xl overflow-hidden">
             <div className="overflow-x-auto">
-              {/* Mobile: Card layout */}
+              {}
               <div className="sm:hidden space-y-2 p-3">
                 {filteredPayments.map((payment) => (
                   <div key={payment._id} className="p-3 border border-slate-100 rounded-xl bg-slate-50/50 hover:bg-slate-50">
@@ -301,7 +301,7 @@ const PaymentsManagementPage = () => {
                 ))}
               </div>
 
-              {/* Desktop: Table */}
+              {}
               <div className="hidden sm:block">
                 <table className="min-w-full divide-y divide-slate-100">
                   <thead className="bg-slate-50">
@@ -365,7 +365,7 @@ const PaymentsManagementPage = () => {
         </div>
       </div>
 
-      {/* Modal - Compact mobile-friendly */}
+      {}
       {showModal && selectedPayment && (
         <div className="fixed inset-0 bg-slate-900/50 backdrop-blur-sm flex items-center justify-center z-50 p-2">
           <div className="bg-white rounded-2xl w-full max-w-sm max-h-[85vh] overflow-y-auto border border-slate-200">
@@ -381,7 +381,7 @@ const PaymentsManagementPage = () => {
               </div>
 
               <div className="space-y-3 text-xs">
-                {/* User */}
+                {}
                 <div>
                   <h4 className="font-medium text-slate-900 mb-1.5">User</h4>
                   <div className="space-y-1">
@@ -397,7 +397,7 @@ const PaymentsManagementPage = () => {
                   </div>
                 </div>
 
-                {/* Payment Summary */}
+                {}
                 <div>
                   <h4 className="font-medium text-slate-900 mb-1.5">Payment</h4>
                   <div className="space-y-1.5">
@@ -416,7 +416,7 @@ const PaymentsManagementPage = () => {
                   </div>
                 </div>
 
-                {/* Razorpay IDs */}
+                {}
                 <div>
                   <h4 className="font-medium text-slate-900 mb-1.5">Razorpay</h4>
                   <div className="space-y-1 text-[10px]">
@@ -433,7 +433,7 @@ const PaymentsManagementPage = () => {
                   </div>
                 </div>
 
-                {/* Date */}
+                {}
                 <div className="p-2.5 bg-slate-50 rounded-lg">
                   <div className="flex justify-between items-center text-[10px]">
                     <span className="text-slate-500">Date:</span>

@@ -317,7 +317,7 @@ const FeedbackPage = () => {
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
           <section className="lg:col-span-2 space-y-4">
-            {/* User Info */}
+            {}
             <div className="border border-slate-200 rounded-xl px-4 py-3 bg-slate-50/50">
               <h2 className="text-sm font-medium text-slate-900 mb-3 flex items-center">
                 <User className="w-4 h-4 mr-1.5 text-slate-500" />
@@ -339,7 +339,7 @@ const FeedbackPage = () => {
               </div>
             </div>
 
-            {/* Ratings */}
+            {}
             <div className="border border-slate-200 rounded-xl px-4 py-3">
               <h2 className="text-sm font-medium text-slate-900 mb-4 flex items-center">
                 <Star className="w-4 h-4 mr-1.5 text-amber-500" />
@@ -354,7 +354,7 @@ const FeedbackPage = () => {
               </div>
             </div>
 
-            {/* Recommendation */}
+            {}
             <div className="border border-slate-200 rounded-xl px-4 py-3">
               <h2 className="text-sm font-medium text-slate-900 mb-3">Recommendation</h2>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -386,7 +386,7 @@ const FeedbackPage = () => {
               {errors.wouldRecommend && <p className="text-red-600 text-[12px] mt-2">{errors.wouldRecommend}</p>}
             </div>
 
-            {/* Textareas */}
+            {}
             <div className="space-y-4">
               <div className="border border-slate-200 rounded-xl p-4">
                 <label className="block text-xs font-medium text-slate-700 mb-2 uppercase tracking-wide">Comments</label>

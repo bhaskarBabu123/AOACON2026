@@ -8,7 +8,7 @@ const BrochurePage = () => {
       <Header />
 
       <main className="max-w-6xl mx-auto px-3 sm:px-4 lg:px-6 pb-20">
-        {/* Banner */}
+        {}
         <section className="mt-4 mb-6 overflow-hidden rounded-3xl bg-gradient-to-r from-sky-700 via-[#00796b] to-sky-800 text-white shadow-lg">
           <div
             className="relative"
@@ -46,7 +46,7 @@ const BrochurePage = () => {
                   </div>
                 </div>
 
-                {/* Download CTA in banner */}
+                {}
                 <div className="shrink-0">
                   <a
                     href="/assets/AOACON2026-Brochure.pdf"
@@ -65,7 +65,7 @@ const BrochurePage = () => {
           </div>
         </section>
 
-        {/* Welcome content */}
+        {}
         <section className="mb-6 rounded-2xl bg-white border border-slate-200 px-4 sm:px-6 py-5 shadow-sm">
           <div className="flex items-center gap-2 mb-3">
             <FileText className="w-5 h-5 text-[#00796b]" />
@@ -110,7 +110,7 @@ const BrochurePage = () => {
           </div>
         </section>
 
-        {/* Brochure download card */}
+        {}
         <section className="rounded-2xl bg-gradient-to-r from-slate-50 via-sky-50 to-emerald-50 border border-sky-100 px-4 sm:px-6 py-5 shadow-sm">
           <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
             <div className="flex items-start gap-3">

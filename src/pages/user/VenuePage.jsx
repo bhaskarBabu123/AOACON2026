@@ -8,10 +8,10 @@ const VenuePage = () => {
       <Header />
 
       <div className="max-w-6xl mx-auto px-3 sm:px-4 lg:px-6 pb-20">
-        {/* SECTION 1 – TOP BANNER */}
+        {}
       <section className="mt-4 mb-4 rounded-2xl overflow-hidden border border-slate-200 bg-slate-900 text-white">
   <div className="relative">
-    {/* Background image + overlay */}
+    {}
     <div
       className="absolute inset-0 opacity-70"
       style={{
@@ -23,7 +23,7 @@ const VenuePage = () => {
     />
     <div className="absolute inset-0 bg-gradient-to-r from-slate-900/90 via-slate-900/80 to-slate-800/85" />
 
-    {/* Content */}
+    {}
     <div className="relative px-4 sm:px-6 py-6 sm:py-7">
       <div className="flex flex-wrap items-center gap-3 mb-3">
         <h1 className="text-xl sm:text-2xl font-semibold">
@@ -50,7 +50,7 @@ const VenuePage = () => {
 </section>
 
 
-        {/* SECTION 2 – VENUE DESCRIPTION */}
+        {}
         <section className="mb-4 rounded-2xl bg-slate-50 border border-slate-200 px-4 sm:px-6 py-5">
           <h2 className="text-base sm:text-lg font-semibold text-slate-900 mb-3 flex items-center gap-2">
             <Building2 className="w-5 h-5 text-[#005aa9]" />
@@ -69,7 +69,7 @@ const VenuePage = () => {
           </p>
         </section>
 
-        {/* SECTION 3 – CONFERENCE SECRETARIAT */}
+        {}
         <section className="mb-4 rounded-2xl bg-[#e5f1ff] border border-[#c4dcff] px-4 sm:px-6 py-5">
           <h2 className="text-base sm:text-lg font-semibold text-slate-900 mb-3">
             Conference Secretariat
@@ -89,7 +89,7 @@ const VenuePage = () => {
           </p>
         </section>
 
-        {/* SECTION 4 – CAMPUS HIGHLIGHTS */}
+        {}
         <section className="mb-4 rounded-2xl bg-[#f3ecff] border border-[#dcc8ff] px-4 sm:px-6 py-5">
           <h2 className="text-base sm:text-lg font-semibold text-slate-900 mb-3">
             Campus & Facility Highlights
@@ -122,7 +122,7 @@ const VenuePage = () => {
           </div>
         </section>
 
-        {/* SECTION 5 – IMAGE STRIP */}
+        {}
         <section className="mb-4 rounded-2xl bg-[#fff4e5] border border-[#ffd7a8] px-4 sm:px-6 py-5">
           <h2 className="text-base sm:text-lg font-semibold text-slate-900 mb-3">
             Campus
@@ -150,7 +150,7 @@ const VenuePage = () => {
          
         </section>
 
-        {/* SECTION 6 – MAP */}
+        {}
         <section className="rounded-2xl bg-[#e7f7ef] border border-[#b9e4cf] px-4 sm:px-6 py-5">
           <h2 className="text-base sm:text-lg font-semibold text-slate-900 mb-3 flex items-center gap-2">
             <Navigation2 className="w-5 h-5 text-[#005aa9]" />

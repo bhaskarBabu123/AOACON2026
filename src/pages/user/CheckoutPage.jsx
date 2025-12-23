@@ -165,7 +165,7 @@ const CheckoutPage = () => {
       <Header />
 
       <div className="max-w-6xl mx-auto px-3 sm:px-4 lg:px-6 py-4 sm:py-6 space-y-4 pb-20">
-        {/* Header */}
+        {}
         <div className="flex items-center mb-6 p-4 border border-slate-200 rounded-xl bg-slate-50/50">
           <button
             onClick={() => navigate('/registration')}
@@ -186,9 +186,9 @@ const CheckoutPage = () => {
         )}
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 lg:gap-6">
-          {/* Registration Details */}
+          {}
           <section className="lg:col-span-2 space-y-4">
-            {/* User Info */}
+            {}
             <div className="border border-slate-200 rounded-xl p-4 lg:p-6 bg-slate-50/50">
               <div className="flex items-center justify-between mb-4">
                 <h2 className="text-sm font-medium text-slate-900 flex items-center">
@@ -232,7 +232,7 @@ const CheckoutPage = () => {
               </div>
             </div>
 
-            {/* Registration Summary */}
+            {}
             <div className="border border-slate-200 rounded-xl p-4 lg:p-6">
               <h2 className="text-sm font-medium text-slate-900 mb-4 flex items-center">
                 <CreditCard className="w-4 h-4 mr-2 text-[#005aa9]" />
@@ -256,7 +256,7 @@ const CheckoutPage = () => {
               )}
             </div>
 
-            {/* Benefits */}
+            {}
             <div className="border border-slate-200 rounded-xl p-4 lg:p-6 bg-slate-50/50">
               <h3 className="text-sm font-medium text-slate-900 mb-4 flex items-center">
                 <CheckCircle className="w-4 h-4 mr-2 text-[#005aa9]" />
@@ -294,7 +294,7 @@ const CheckoutPage = () => {
               </ul>
             </div>
 
-            {/* Event Info */}
+            {}
             <div className="border border-slate-200 rounded-xl p-4 lg:p-6 bg-slate-50/30">
               <h3 className="text-sm font-medium text-slate-900 mb-4">Event Details</h3>
               <div className="space-y-3 text-[11px] text-slate-600">
@@ -314,7 +314,7 @@ const CheckoutPage = () => {
             </div>
           </section>
 
-          {/* Payment Summary */}
+          {}
           <section className="lg:col-span-1 space-y-4 lg:sticky lg:top-4">
             <div className="border border-slate-200 rounded-xl p-5 lg:p-6 bg-slate-50/50">
               <h3 className="text-sm font-medium text-slate-900 mb-4 flex items-center">
@@ -322,7 +322,7 @@ const CheckoutPage = () => {
                 Payment Summary
               </h3>
 
-              {/* Amount Display */}
+              {}
               <div className="text-center mb-6 p-4 bg-gradient-to-r from-[#005aa9]/5 to-[#009688]/5 border border-[#005aa9]/20 rounded-xl">
                 <p className="text-3xl font-semibold text-[#005aa9]">
                   ₹{registration.totalAmount?.toLocaleString()}
@@ -330,9 +330,9 @@ const CheckoutPage = () => {
                 <p className="text-[11px] text-slate-600 mt-1">Total Amount (Incl. GST)</p>
               </div>
 
-              {/* Breakdown */}
+              {}
               <div className="space-y-2 text-[12px] mb-5">
-                {/* Package Price (excl. GST) */}
+                {}
                <div className="flex justify-between py-1">
   <span className="text-slate-600">Package Price (excl. GST)</span>
   <span>
@@ -340,7 +340,7 @@ const CheckoutPage = () => {
   </span>
 </div>
 
-                {/* Show base price only if > 0 */}
+                {}
                 {registration.basePrice > 0 && (
                   <div className="flex justify-between py-1 text-[11px] text-slate-600">
                     <span>Base Price</span>
@@ -362,14 +362,14 @@ const CheckoutPage = () => {
                   </div>
                 )}
 
-                {/* GST */}
+                {}
                 <div className="flex justify-between py-1">
                   <span className="text-slate-600 font-medium">GST (18%)</span>
                   <span className="font-medium">₹{registration.gst?.toLocaleString()}</span>
                 </div>
               </div>
 
-              {/* Status */}
+              {}
               <div className="flex items-center justify-between mb-6 p-3 bg-slate-50 rounded-xl text-[12px]">
                 <span className="text-slate-600 font-medium">Payment Status</span>
                 <span className={`inline-flex items-center px-2.5 py-1 rounded-full text-[11px] font-medium ${
@@ -386,7 +386,7 @@ const CheckoutPage = () => {
                 </span>
               </div>
 
-              {/* Payment Button */}
+              {}
               <button
                 onClick={handlePayment}
                 disabled={processing || registration.paymentStatus === 'PAID'}
@@ -416,7 +416,7 @@ const CheckoutPage = () => {
                 </button>
               )}
 
-              {/* Security & Methods */}
+              {}
               <div className="space-y-3 pt-4 border-t border-slate-200 mt-6">
                 <div className="flex items-center justify-center text-[11px] text-[#005aa9]">
                   <CheckCircle className="w-4 h-4 mr-2" />

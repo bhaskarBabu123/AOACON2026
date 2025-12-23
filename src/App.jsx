@@ -1,12 +1,8 @@
 import { BrowserRouter as Router, Routes, Route, Navigate, Outlet, useLocation } from 'react-router-dom';
 import { AuthProvider, useAuth } from './contexts/AuthContext';
 import { AppProvider } from './contexts/AppContext';
-
-// Public Pages
 import LoginPage from './pages/auth/LoginPage';
 import RegisterPage from './pages/auth/RegisterPage';
-
-// User Pages
 import DashboardPage from './pages/user/DashboardPage';
 import RegistrationPage from './pages/user/RegistrationPage';
 import CheckoutPage from './pages/user/CheckoutPage';
@@ -24,8 +20,6 @@ import VenuePage from './pages/user/VenuePage';
 import ContactPage from './pages/user/ContactPage';
 import HomePage from './pages/user/HomePage';
 import BrochurePage from './pages/user/BrochurePage';
-
-
 import AdminLoginPage from './pages/admin/AdminLoginPage';
 import AdminDashboardPage from './pages/admin/AdminDashboardPage';
 import RegistrationsManagementPage from './pages/admin/RegistrationsManagementPage';
@@ -36,7 +30,6 @@ import FeedbackViewerPage from './pages/admin/FeedbackViewerPage';
 import { useEffect } from 'react';
 import LoadingSpinner from './components/common/LoadingSpinner';
 
-// Protected Route Components
 const ProtectedRoute = ({ children }) => {
   const { isAuthenticated, loading } = useAuth();
   
@@ -67,7 +60,7 @@ const AdminRoute = ({ children }) => {
   }
 
   if (!isAdmin) {
-    return <Navigate to="/dashboard" replace />; // Redirect regular users
+    return <Navigate to="/dashboard" replace />; 
   }
 
   return children;
@@ -111,7 +104,7 @@ function App() {
           <ScrollToTop/>
           <div className="App">
             <Routes>
-              {/* Public Routes - Redirect authenticated users to dashboard */}
+              {}
               <Route path="/" element={
                   <HomePage />
               } />
@@ -140,11 +133,11 @@ function App() {
                   <RegisterPage />
               } />
 
-              {/* Login Pages - Always accessible */}
+              {}
               <Route path="/login" element={<LoginPage />} />
               <Route path="/admin/login" element={<AdminLoginPage />} />
 
-              {/* User Protected Routes */}
+              {}
               <Route path="/dashboard" element={
                 <ProtectedRoute>
                   <DashboardPage />
@@ -201,7 +194,7 @@ function App() {
                 </ProtectedRoute>
               } />
 
-              {/* Admin Routes */}
+              {}
               <Route path="/admin/dashboard" element={
                 <AdminRoute>
                   <AdminDashboardPage />
@@ -233,10 +226,10 @@ function App() {
                 </AdminRoute>
               } />
 
-              {/* Default Redirects */}
+              {}
               <Route path="/admin" element={<Navigate to="/admin/login" replace />} />
               
-              {/* 404 Route */}
+              {}
               <Route path="*" element={
                 <div className="min-h-screen bg-slate-50 flex items-center justify-center px-4">
                   <div className="text-center max-w-md">

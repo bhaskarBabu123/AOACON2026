@@ -46,7 +46,7 @@ const AbstractUploadPage = () => {
       setExistingAbstract(response.data);
       setAbstract(response.data);
     } catch (error) {
-      // No existing abstract found
+      
     } finally {
       setLoading(false);
     }
@@ -178,14 +178,14 @@ const AbstractUploadPage = () => {
     );
   }
 
-  // Show existing abstract if already submitted
+  
   if (existingAbstract) {
     return (
       <div className="min-h-screen bg-white">
         <Header />
         
         <div className="max-w-6xl mx-auto px-3 sm:px-4 lg:px-6 py-4 sm:py-6 space-y-4 pb-20">
-          {/* Header */}
+          {}
           <div className="flex items-center mb-6 p-4 border border-slate-200 rounded-xl bg-slate-50/50">
             <button
               onClick={() => navigate('/abstract/rules')}
@@ -200,7 +200,7 @@ const AbstractUploadPage = () => {
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 lg:gap-6">
-            {/* Abstract Details */}
+            {}
             <section className="lg:col-span-2 space-y-4">
               <div className="border border-slate-200 rounded-xl p-6">
                 <div className="flex items-center justify-between mb-6">
@@ -265,7 +265,7 @@ const AbstractUploadPage = () => {
               )}
             </section>
 
-            {/* Status Info */}
+            {}
             <section className="lg:col-span-1 lg:sticky lg:top-4 space-y-4">
               <div className="border border-slate-200 rounded-xl p-6 bg-slate-50/50">
                 <h3 className="text-sm font-semibold text-slate-900 mb-6 flex items-center">
@@ -318,7 +318,7 @@ const AbstractUploadPage = () => {
       <Header />
       
       <div className="max-w-6xl mx-auto px-3 sm:px-4 lg:px-6 py-4 sm:py-6 space-y-4 pb-20">
-        {/* Header */}
+        {}
         <div className="flex items-center mb-6 p-4 border border-slate-200 rounded-xl bg-slate-50/50">
           <button
             onClick={() => navigate('/abstract/rules')}
@@ -339,9 +339,9 @@ const AbstractUploadPage = () => {
         )}
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 lg:gap-6">
-          {/* Main Form */}
+          {}
           <section className="lg:col-span-2 space-y-4">
-            {/* Author Info */}
+            {}
             <div className="border border-slate-200 rounded-xl p-6 bg-slate-50/50">
               <h2 className="text-sm font-semibold text-slate-900 mb-4 flex items-center">
                 <Users className="w-4 h-4 mr-2 text-[#005aa9]" />
@@ -365,7 +365,7 @@ const AbstractUploadPage = () => {
               </div>
             </div>
 
-            {/* Form Fields */}
+            {}
             <div className="border border-slate-200 rounded-xl p-6 space-y-4">
               <h2 className="text-sm font-semibold text-slate-900 mb-4 flex items-center">
                 <FileText className="w-4 h-4 mr-2 text-[#005aa9]" />
@@ -373,7 +373,7 @@ const AbstractUploadPage = () => {
               </h2>
               
               <div className="space-y-4">
-                {/* Title */}
+                {}
                 <div>
                   <label className="block text-[12px] font-medium text-slate-700 mb-2">
                     Abstract Title *
@@ -392,7 +392,7 @@ const AbstractUploadPage = () => {
                   </p>
                 </div>
 
-                {/* Authors */}
+                {}
                 <div>
                   <label className="block text-[12px] font-medium text-slate-700 mb-2">
                     All Authors *
@@ -408,7 +408,7 @@ const AbstractUploadPage = () => {
                   {errors.authors && <p className="text-red-600 text-[11px] mt-1">{errors.authors}</p>}
                 </div>
 
-                {/* Category */}
+                {}
                 <div>
                   <label className="block text-[12px] font-medium text-slate-700 mb-2">
                     Category *
@@ -431,7 +431,7 @@ const AbstractUploadPage = () => {
               </div>
             </div>
 
-            {/* File Upload */}
+            {}
             <div className="border border-slate-200 rounded-xl p-6">
               <h2 className="text-sm font-semibold text-slate-900 mb-4 flex items-center">
                 <Upload className="w-4 h-4 mr-2 text-[#005aa9]" />
@@ -491,9 +491,9 @@ const AbstractUploadPage = () => {
             </div>
           </section>
 
-          {/* Sidebar */}
+          {}
           <section className="lg:col-span-1 lg:sticky lg:top-4 space-y-4">
-            {/* Checklist */}
+            {}
             <div className="border border-slate-200 rounded-xl p-6 bg-slate-50/50">
               <h3 className="text-sm font-semibold text-slate-900 mb-4 flex items-center">
                 <CheckCircle className="w-4 h-4 mr-2 text-[#005aa9]" />
@@ -519,7 +519,7 @@ const AbstractUploadPage = () => {
               </ul>
             </div>
 
-            {/* Submit Button */}
+            {}
             <div className="border border-slate-200 rounded-xl p-6">
               <button
                 type="button"
@@ -538,7 +538,7 @@ const AbstractUploadPage = () => {
               </button>
             </div>
 
-            {/* Important Notes */}
+            {}
             <div className="border border-slate-200 rounded-xl p-6">
               <h3 className="text-sm font-semibold text-slate-900 mb-4 flex items-center">
                 <AlertCircle className="w-4 h-4 mr-2 text-amber-500" />

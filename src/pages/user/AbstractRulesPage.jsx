@@ -27,7 +27,7 @@ const AbstractRulesPage = () => {
       <Header />
       
       <div className="max-w-6xl mx-auto px-3 sm:px-4 lg:px-6 py-4 sm:py-6 space-y-6 pb-20">
-        {/* Header */}
+        {}
         <div className="flex items-center mb-6 p-4 border border-slate-200 rounded-xl bg-slate-50/50">
           <div className="ml-3">
             <h1 className="text-lg font-medium text-slate-900">Submission Guidelines</h1>
@@ -35,9 +35,9 @@ const AbstractRulesPage = () => {
           </div>
         </div>
 
-        {/* Submission Guidelines */}
+        {}
         <div className="space-y-6">
-          {/* Abstract Format */}
+          {}
           <div className="border border-slate-200 rounded-xl p-6">
             <h2 className="text-sm font-semibold text-slate-900 mb-4 flex items-center">
               <FileText className="w-4 h-4 mr-2 text-[#005aa9]" />
@@ -53,7 +53,7 @@ const AbstractRulesPage = () => {
             </div>
           </div>
 
-          {/* File Requirements */}
+          {}
           <div className="border border-slate-200 rounded-xl p-6">
             <h2 className="text-sm font-semibold text-slate-900 mb-4 flex items-center">
               <FileText className="w-4 h-4 mr-2 text-[#005aa9]" />
@@ -67,41 +67,13 @@ const AbstractRulesPage = () => {
             </div>
           </div>
 
-          {/* Review Process */}
-          {/* <div className="border border-slate-200 rounded-xl p-6">
-            <h2 className="text-sm font-semibold text-slate-900 mb-4 flex items-center">
-              <Clock className="w-4 h-4 mr-2 text-[#005aa9]" />
-              3. Review Process
-            </h2>
-            <div className="space-y-3 text-[12px] text-slate-700">
-              <div>• Double-blind peer review by expert panel</div>
-              <div>• Criteria: Originality (30%), Methodology (30%), Clinical relevance (20%), Clarity (20%)</div>
-              <div>• Results notification via email and dashboard</div>
-              <div>• Review results by October 28, 2025</div>
-            </div>
-          </div> */}
+          {}
+          {}
 
-          {/* Categories */}
-          {/* <div className="border border-slate-200 rounded-xl p-6">
-            <h2 className="text-sm font-semibold text-slate-900 mb-4 flex items-center">
-              <Users className="w-4 h-4 mr-2 text-[#005aa9]" />
-              4. Abstract Categories
-            </h2>
-            <div className="columns-2 gap-4 text-[12px] text-slate-700">
-              <div>• Clinical Research</div>
-              <div>• Case Study</div>
-              <div>• Review Article</div>
-              <div>• Original Research</div>
-              <div>• Epidemiological Study</div>
-              <div>• Surgical Technique</div>
-              <div>• Drug Trial</div>
-              <div>• Diagnostic Method</div>
-              <div>• Preventive Care</div>
-              <div>• Healthcare Policy</div>
-            </div>
-          </div> */}
+          {}
+          {}
 
-          {/* Important Dates */}
+          {}
           <div className="border border-slate-200 rounded-xl p-6 bg-slate-50/50">
             <h2 className="text-sm font-semibold text-slate-900 mb-4 flex items-center">
               <Clock className="w-4 h-4 mr-2 text-[#005aa9]" />
@@ -123,7 +95,7 @@ const AbstractRulesPage = () => {
             </div>
           </div>
 
-          {/* Rules & Regulations */}
+          {}
           <div className="border border-slate-200 rounded-xl p-6">
             <h2 className="text-sm font-semibold text-slate-900 mb-4 flex items-center">
               <AlertCircle className="w-4 h-4 mr-2 text-amber-500" />
@@ -147,7 +119,7 @@ const AbstractRulesPage = () => {
           </div>
         </div>
 
-        {/* Terms & Conditions + Accept Button */}
+        {}
         <div className="border border-slate-200 rounded-xl p-6">
           <h2 className="text-sm font-semibold text-slate-900 mb-6 flex items-center">
             <FileText className="w-4 h-4 mr-2 text-[#005aa9]" />
@@ -165,7 +137,7 @@ const AbstractRulesPage = () => {
             </ol>
           </div>
 
-          {/* Accept Checkbox */}
+          {}
           <label className="flex items-start gap-4 p-5 border border-[#005aa9]/20 rounded-xl bg-[#005aa9]/5 hover:border-[#005aa9]/40 transition-all cursor-pointer mb-6">
             <input
               type="checkbox"
@@ -178,7 +150,7 @@ const AbstractRulesPage = () => {
             </span>
           </label>
 
-          {/* Proceed Button */}
+          {}
           <button
             onClick={handleProceed}
             disabled={!acceptedRules}

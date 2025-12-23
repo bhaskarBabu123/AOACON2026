@@ -59,7 +59,7 @@ const MobileNav = () => {
 
   return (
     <>
-      {/* Bottom Navigation */}
+      {}
       <div className="md:hidden fixed bottom-0 left-0 right-0 bg-white/95 backdrop-blur-sm border-t border-slate-200/60 shadow-[0_-4px_16px_rgba(15,23,42,0.12)] z-40">
         <div className="flex justify-around py-2.5 px-2">
           {bottomNavItems.map((item) => {
@@ -95,21 +95,21 @@ const MobileNav = () => {
         </div>
       </div>
 
-      {/* Side Drawer */}
+      {}
       {showDrawer && (
         <>
-          {/* Backdrop */}
+          {}
           <div
             className="md:hidden fixed inset-0 bg-slate-900/25 backdrop-blur-sm z-50"
             onClick={closeDrawer}
           />
 
-          {/* Drawer */}
+          {}
           <div className="md:hidden fixed left-0 top-0 bottom-0 w-80 max-w-[85vw] bg-white shadow-2xl z-50 flex flex-col border-r border-slate-200">
-            {/* Accent strip */}
+            {}
             <div className="absolute inset-y-0 left-0 w-1 bg-gradient-to-b from-[#005aa9] via-[#009688] to-sky-400" />
 
-            {/* Header */}
+            {}
             <div className="pl-4 pr-4 sm:px-5 py-4 border-b border-slate-200 bg-gradient-to-r from-white via-slate-50 to-slate-100/80">
               <div className="flex items-center justify-between gap-3">
                 <div className="flex items-center gap-3">
@@ -123,12 +123,10 @@ const MobileNav = () => {
                 </button>
               </div>
 
-              {/* <div className="mt-3 ml-1 text-[11px] font-medium text-slate-500 tracking-[0.18em] uppercase">
-                Navigation
-              </div> */}
+              {}
             </div>
 
-            {/* Content */}
+            {}
             <div className="flex-1 overflow-hidden">
               <div className="h-full overflow-y-auto py-4 px-4 space-y-1.5 scrollbar-thin scrollbar-thumb-slate-300/60 scrollbar-track-slate-100/60">
                 {drawerItems.map((item) => {
@@ -163,7 +161,7 @@ const MobileNav = () => {
               </div>
             </div>
 
-            {/* Footer */}
+            {}
             <div className="px-4 pb-4 pt-3 border-t border-slate-200 bg-white/95 backdrop-blur-sm">
               {isAuthenticated ? (
                 <button

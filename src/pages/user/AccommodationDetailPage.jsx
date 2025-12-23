@@ -153,7 +153,7 @@ const AccommodationDetailPage = () => {
       <Header />
       
       <div className="max-w-7xl mx-auto px-3 sm:px-4 lg:px-6 py-4 sm:py-6 space-y-4 lg:space-y-6 pb-20 sm:pb-8">
-        {/* Mobile Header */}
+        {}
         <div className="lg:hidden flex items-center mb-6">
           <button
             onClick={() => navigate('/accommodation')}
@@ -177,9 +177,9 @@ const AccommodationDetailPage = () => {
         )}
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 lg:gap-8">
-          {/* Main Content */}
+          {}
           <section className="lg:col-span-2 space-y-4 lg:space-y-6">
-            {/* Image Gallery */}
+            {}
             <div className="border border-slate-200 rounded-xl overflow-hidden bg-white">
               <div className="relative h-64 lg:h-80">
                 <img
@@ -242,7 +242,7 @@ const AccommodationDetailPage = () => {
               )}
             </div>
 
-            {/* Description & Check-in/out */}
+            {}
             <div className="border border-slate-200 rounded-xl p-4 lg:p-6 bg-white space-y-4 lg:space-y-6">
               <p className="text-[13px] lg:text-sm text-slate-700 leading-relaxed">{accommodation.description}</p>
               
@@ -264,7 +264,7 @@ const AccommodationDetailPage = () => {
               </div>
             </div>
 
-            {/* Amenities */}
+            {}
             <div className="border border-slate-200 rounded-xl p-4 lg:p-6 bg-white">
               <div className="flex items-center justify-between mb-4 lg:mb-6">
                 <h2 className="text-sm lg:text-lg font-semibold text-slate-900 flex items-center">
@@ -295,7 +295,7 @@ const AccommodationDetailPage = () => {
               </div>
             </div>
 
-            {/* Inclusions & Exclusions */}
+            {}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-6">
               <div className="border border-slate-200 rounded-xl p-4 lg:p-6 bg-white">
                 <h3 className="text-sm lg:text-lg font-semibold text-slate-900 mb-4 lg:mb-6 flex items-center">
@@ -328,7 +328,7 @@ const AccommodationDetailPage = () => {
               </div>
             </div>
 
-            {/* FAQs */}
+            {}
             {accommodation.faqs?.length > 0 && (
               <div className="border border-slate-200 rounded-xl p-4 lg:p-6 bg-white">
                 <h3 className="text-sm lg:text-lg font-semibold text-slate-900 mb-4 lg:mb-6">FAQs</h3>
@@ -358,7 +358,7 @@ const AccommodationDetailPage = () => {
             )}
           </section>
 
-          {/* STICKY Booking Card */}
+          {}
           <aside className="lg:col-span-1">
             <div className="border border-slate-200 rounded-xl p-4 lg:p-6 bg-white shadow-sm lg:sticky lg:top-6 lg:max-h-screen lg:overflow-y-auto">
               <div className="mb-6">

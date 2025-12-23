@@ -131,7 +131,7 @@ const RegisterPage = () => {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              {/* AOA Member Card */}
+              {}
               <div 
                 className={`p-6 border-2 rounded-xl cursor-pointer transition-all hover:scale-105 ${
                   selectedRole === USER_ROLES.AOA 
@@ -150,7 +150,7 @@ const RegisterPage = () => {
                 )}
               </div>
 
-              {/* Non-AOA Member Card */}
+              {}
               <div 
                 className={`p-6 border-2 rounded-xl cursor-pointer transition-all hover:scale-105 ${
                   selectedRole === USER_ROLES.NON_AOA 
@@ -169,7 +169,7 @@ const RegisterPage = () => {
                 )}
               </div>
 
-              {/* PGS & Fellows Card */}
+              {}
               <div 
                 className={`p-6 border-2 rounded-xl cursor-pointer transition-all hover:scale-105 ${
                   selectedRole === USER_ROLES.PGS 

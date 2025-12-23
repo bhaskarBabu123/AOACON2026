@@ -180,7 +180,7 @@ const RegistrationsManagementPage = () => {
       
       <div className="flex-1 overflow-auto">
         <div className="p-4 sm:p-6">
-          {/* Header */}
+          {}
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-5">
             <div>
               <h1 className="text-base sm:text-lg text-slate-900">Registrations</h1>
@@ -195,7 +195,7 @@ const RegistrationsManagementPage = () => {
             </button>
           </div>
 
-          {/* Stats - Mobile stacked */}
+          {}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 mb-5">
             <div className="flex items-center gap-2.5 p-3 bg-white border border-slate-200 rounded-xl">
               <div className="w-9 h-9 bg-sky-50 rounded-xl flex items-center justify-center">
@@ -244,7 +244,7 @@ const RegistrationsManagementPage = () => {
             </div>
           </div>
 
-          {/* Filters - Mobile stacked */}
+          {}
           <div className="bg-white border border-slate-200 rounded-2xl p-4 mb-4">
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2.5">
               <div className="relative">
@@ -290,10 +290,10 @@ const RegistrationsManagementPage = () => {
             </div>
           </div>
 
-          {/* Table - Cards on mobile */}
+          {}
           <div className="bg-white border border-slate-200 rounded-2xl overflow-hidden">
             <div className="overflow-x-auto">
-              {/* Mobile: Card layout */}
+              {}
               <div className="sm:hidden space-y-2 p-3">
                 {filteredRegistrations.map((registration) => (
                   <div key={registration._id} className="p-3 border border-slate-100 rounded-xl bg-slate-50/50 hover:bg-slate-50">
@@ -331,7 +331,7 @@ const RegistrationsManagementPage = () => {
                 ))}
               </div>
 
-              {/* Desktop: Table */}
+              {}
               <div className="hidden sm:block">
                 <table className="min-w-full divide-y divide-slate-100">
                   <thead className="bg-slate-50">
@@ -396,7 +396,7 @@ const RegistrationsManagementPage = () => {
         </div>
       </div>
 
-      {/* Modal - Mobile friendly */}
+      {}
       {showModal && selectedRegistration && (
         <div className="fixed inset-0 bg-slate-900/50 backdrop-blur-sm flex items-center justify-center z-50 p-2">
           <div className="bg-white rounded-2xl w-full max-w-md max-h-[90vh] overflow-y-auto border border-slate-200">
@@ -412,7 +412,7 @@ const RegistrationsManagementPage = () => {
               </div>
 
               <div className="space-y-4 text-xs">
-                {/* Participant */}
+                {}
                 <div>
                   <h4 className="font-medium text-slate-900 mb-2">Participant</h4>
                   <div className="space-y-1.5">
@@ -431,7 +431,7 @@ const RegistrationsManagementPage = () => {
                   </div>
                 </div>
 
-                {/* Registration Info */}
+                {}
                 <div>
                   <h4 className="font-medium text-slate-900 mb-2">Registration</h4>
                   <div className="grid grid-cols-2 gap-2 text-[10px]">
@@ -442,7 +442,7 @@ const RegistrationsManagementPage = () => {
                   </div>
                 </div>
 
-                {/* Payment */}
+                {}
                 <div>
                   <h4 className="font-medium text-slate-900 mb-2">Payment</h4>
                   <div className="space-y-1">

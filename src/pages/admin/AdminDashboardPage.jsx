@@ -79,13 +79,13 @@ const AdminDashboardPage = () => {
       
       <div className="flex-1 overflow-auto">
         <div className="p-4 sm:p-6 lg:p-8">
-          {/* Header */}
+          {}
           <div className="mb-6">
             <h1 className="text-lg sm:text-xl text-slate-900 mb-1">Admin Dashboard</h1>
             <p className="text-xs sm:text-sm text-slate-600">AOACON 2026 Shivamogga Management</p>
           </div>
 
-          {/* Stats Grid - Mobile stacked, Desktop grid */}
+          {}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 mb-6">
             <div className="flex items-center gap-3 p-3 bg-white border border-slate-200 rounded-xl">
               <div className="w-10 h-10 bg-sky-50 rounded-xl flex items-center justify-center">
@@ -129,9 +129,9 @@ const AdminDashboardPage = () => {
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
-            {/* Main Content - Full width on mobile */}
+            {}
             <div className="lg:col-span-2 space-y-4">
-              {/* Registration by Category */}
+              {}
               <div className="bg-white border border-slate-200 rounded-2xl p-4">
                 <div className="flex items-center gap-2 mb-3">
                   <Users className="w-4 h-4 text-sky-600" />
@@ -163,7 +163,7 @@ const AdminDashboardPage = () => {
                 </div>
               </div>
 
-              {/* Recent Payments - Horizontal scroll on mobile */}
+              {}
               <div className="bg-white border border-slate-200 rounded-2xl p-4">
                 <div className="flex items-center gap-2 mb-3">
                   <CreditCard className="w-4 h-4 text-emerald-600" />
@@ -188,9 +188,9 @@ const AdminDashboardPage = () => {
               </div>
             </div>
 
-            {/* Right Sidebar */}
+            {}
             <div className="space-y-4">
-              {/* Revenue Breakdown */}
+              {}
               <div className="bg-white border border-slate-200 rounded-2xl p-4">
                 <div className="flex items-center gap-2 mb-3">
                   <TrendingUp className="w-4 h-4 text-indigo-600" />
@@ -212,7 +212,7 @@ const AdminDashboardPage = () => {
                 </div>
               </div>
 
-              {/* Abstracts */}
+              {}
               <div className="bg-white border border-slate-200 rounded-2xl p-4">
                 <div className="flex items-center gap-2 mb-3">
                   <FileText className="w-4 h-4 text-purple-600" />
@@ -233,7 +233,7 @@ const AdminDashboardPage = () => {
                 </div>
               </div>
 
-              {/* Quick Actions */}
+              {}
               <div className="bg-white border border-slate-200 rounded-2xl p-4">
                 <h3 className="text-sm font-medium text-slate-900 mb-3 flex items-center gap-2">
                   <span>Quick Actions</span>
@@ -254,7 +254,7 @@ const AdminDashboardPage = () => {
                 </div>
               </div>
 
-              {/* Conference Info */}
+              {}
               <div className="bg-gradient-to-r from-sky-50 to-emerald-50 border border-sky-100 rounded-2xl p-4">
                 <h3 className="text-sm font-medium text-slate-900 mb-2">Conference</h3>
                 <div className="space-y-1 text-xs text-slate-700">

@@ -221,7 +221,7 @@ const CommitteePage = () => {
       <Header />
 
       <div className="max-w-6xl mx-auto px-3 sm:px-4 lg:px-6 pb-20">
-        {/* HERO BANNER */}
+        {}
         <div className="relative overflow-hidden rounded-3xl mt-4 mb-6">
           <div className="absolute inset-0 bg-gradient-to-r from-[#005aa9] via-sky-700 to-indigo-700 opacity-90" />
           <div
@@ -264,7 +264,7 @@ const CommitteePage = () => {
           </div>
         </div>
 
-        {/* INTRO */}
+        {}
         <div className="mb-4 text-[12px] text-slate-700">
           <p>
             The conference is supported by dedicated committees overseeing scientific content,
@@ -273,7 +273,7 @@ const CommitteePage = () => {
           </p>
         </div>
 
-        {/* COMMITTEE SECTIONS */}
+        {}
         <div className="space-y-6">
           {committees.map((section) => (
             <section
@@ -300,7 +300,7 @@ const CommitteePage = () => {
                         key={`${roleBlock.role}-${m.name}`}
                         className="flex items-center gap-3 rounded-2xl bg-white/90 border border-white/70 px-3 py-3 shadow-[0_0_0_1px_rgba(15,23,42,0.02)]"
                       >
-                        {/* Avatar */}
+                        {}
                         <div className="w-10 h-10 rounded-2xl overflow-hidden ring-2 ring-slate-100 shadow-sm bg-slate-100 flex-shrink-0">
                           <img
                             src={m.image}
@@ -310,7 +310,7 @@ const CommitteePage = () => {
                           />
                         </div>
 
-                        {/* Text */}
+                        {}
                         <div className="min-w-0">
                           <p className="text-[12px] font-semibold text-slate-900 truncate">
                             {m.name}

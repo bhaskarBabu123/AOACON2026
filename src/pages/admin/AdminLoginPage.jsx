@@ -28,11 +28,11 @@ const AdminLoginPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await authAPI.adminLogin(formData); // Use admin login endpoint
+      const response = await authAPI.adminLogin(formData); 
       const { token, admin } = response.data;
       
-      // Pass admin object to login
-      login(token, null, admin); // user = null, admin = admin data
+      
+      login(token, null, admin); 
       
       navigate('/admin/dashboard');
     } catch (err) {

@@ -182,7 +182,7 @@ const AbstractReviewPage = () => {
       
       <div className="flex-1 overflow-auto">
         <div className="p-4 sm:p-6">
-          {/* Header */}
+          {}
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-5">
             <div>
               <h1 className="text-base sm:text-lg text-slate-900">Abstract Review</h1>
@@ -197,7 +197,7 @@ const AbstractReviewPage = () => {
             </button>
           </div>
 
-          {/* Stats */}
+          {}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 mb-5">
             <div className="flex items-center gap-2.5 p-3 bg-white border border-slate-200 rounded-xl">
               <div className="w-9 h-9 bg-sky-50 rounded-xl flex items-center justify-center">
@@ -240,7 +240,7 @@ const AbstractReviewPage = () => {
             </div>
           </div>
 
-          {/* Filters */}
+          {}
           <div className="bg-white border border-slate-200 rounded-2xl p-4 mb-4">
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
               <div className="relative">
@@ -278,10 +278,10 @@ const AbstractReviewPage = () => {
             </div>
           </div>
 
-          {/* Table - Cards on mobile */}
+          {}
           <div className="bg-white border border-slate-200 rounded-2xl overflow-hidden">
             <div className="overflow-x-auto">
-              {/* Mobile Cards */}
+              {}
               <div className="sm:hidden space-y-2 p-3">
                 {filteredAbstracts.map((abstract) => (
                   <div key={abstract._id} className="p-3 border border-slate-100 rounded-xl bg-slate-50/50 hover:bg-slate-50">
@@ -317,7 +317,7 @@ const AbstractReviewPage = () => {
                 ))}
               </div>
 
-              {/* Desktop Table */}
+              {}
               <div className="hidden sm:block">
                 <table className="min-w-full divide-y divide-slate-100">
                   <thead className="bg-slate-50">
@@ -379,7 +379,7 @@ const AbstractReviewPage = () => {
         </div>
       </div>
 
-      {/* Compact Review Modal */}
+      {}
       {showModal && selectedAbstract && (
         <div className="fixed inset-0 bg-slate-900/50 backdrop-blur-sm flex items-center justify-center z-50 p-2">
           <div className="bg-white rounded-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto border border-slate-200">
@@ -395,7 +395,7 @@ const AbstractReviewPage = () => {
               </div>
 
               <div className="grid grid-cols-1 gap-4 lg:gap-6 text-xs lg:text-sm">
-                {/* Left: Abstract Info */}
+                {}
                 <div className="space-y-4">
                   <div className="p-3 lg:p-4 bg-slate-50 rounded-xl border border-slate-200">
                     <h4 className="font-medium text-slate-900 mb-2 flex items-center gap-2">
@@ -440,7 +440,7 @@ const AbstractReviewPage = () => {
                   </div>
                 </div>
 
-                {/* Right: Content + Review */}
+                {}
                 <div className="space-y-4">
                   <div>
                     <h4 className="font-medium text-slate-900 mb-2">Title</h4>
@@ -464,11 +464,11 @@ const AbstractReviewPage = () => {
                       </div>
                       <p className="text-sky-700 text-[11px] mt-1 truncate">{selectedAbstract.filePath}</p>
 
-                      <Link className='mt-5 block flex-1 flex items-center justify-center gap-2 px-4 py-2.5 text-sm bg-[#005aa9] text-white rounded-xl hover:bg-[#004684]  transition-all font-medium shadow-sm hover:shadow-md' to={`https://aoa-backend.onrender.com/${selectedAbstract.filePath}`}>Check Abstract</Link>
+                      <Link className='mt-5 block flex-1 flex items-center justify-center gap-2 px-4 py-2.5 text-sm bg-[#005aa9] text-white rounded-xl hover:bg-[#004684]  transition-all font-medium shadow-sm hover:shadow-md' to={`http://localhost:5000/${selectedAbstract.filePath}`}>Check Abstract</Link>
                     </div>
                   </div>
 
-                  {/* Review Form */}
+                  {}
                   <div className="p-4 bg-gradient-to-r from-amber-50 to-slate-50 rounded-2xl border border-amber-200">
                     <h4 className="font-medium text-slate-900 mb-3 flex items-center gap-2">
                       <MessageSquare className="w-4 h-4 text-amber-600" />
@@ -527,7 +527,7 @@ const AbstractReviewPage = () => {
                     </div>
                   </div>
 
-                  {/* Previous Review */}
+                  {}
                   {selectedAbstract.reviewComments && (
                     <div className="p-4 bg-gradient-to-r from-yellow-50 to-amber-50 rounded-xl border border-yellow-200">
                       <h4 className="font-medium text-amber-900 mb-2 text-[13px]">Previous Comments</h4>

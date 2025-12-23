@@ -87,7 +87,7 @@ const RegistrationPage = () => {
       return;
     }
 
-    // Check if selected package has price > 0
+    
     if (pricing?.pricing?.[formData.registrationType]?.totalAmount <= 0) {
       setError('This package is not available in the current booking phase');
       return;
@@ -168,7 +168,7 @@ const RegistrationPage = () => {
       <Header />
 
       <div className="max-w-6xl mx-auto px-3 sm:px-4 lg:px-6 py-4 sm:py-6 space-y-4 pb-20">
-        {/* Header */}
+        {}
         <div className="text-center mb-6 p-4 border border-slate-200 rounded-xl bg-slate-50/50">
           <h1 className="text-lg font-medium text-slate-900 mb-1">Conference Registration</h1>
           <p className="text-[13px] text-slate-600 mb-2">AOACON 2026 Shivamogga</p>
@@ -178,7 +178,7 @@ const RegistrationPage = () => {
           </div>
         </div>
 
-        {/* Phase Badge */}
+        {}
         {pricing && (
           <div className={`inline-flex px-4 py-2 rounded-full mx-auto block max-w-max ${getBookingPhaseColor(pricing.bookingPhase)} mb-6`}>
             <Clock className="w-4 h-4 mr-2" />
@@ -186,7 +186,7 @@ const RegistrationPage = () => {
           </div>
         )}
 
-        {/* Error Message */}
+        {}
         {error && (
           <div className="p-4 border border-red-200 text-red-700 text-[12px] rounded-xl bg-red-50 flex items-center gap-2">
             <XCircle className="w-4 h-4" />
@@ -195,9 +195,9 @@ const RegistrationPage = () => {
         )}
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 lg:gap-6">
-          {/* Main Form */}
+          {}
           <section className="lg:col-span-2 space-y-4">
-            {/* User Info */}
+            {}
             <div className="border border-slate-200 rounded-xl p-4 lg:p-6 bg-slate-50/50">
               <h3 className="text-sm font-medium text-slate-900 mb-4 flex items-center">
                 <User className="w-4 h-4 mr-2 text-slate-500" />
@@ -237,7 +237,7 @@ const RegistrationPage = () => {
               </div>
             </div>
 
-            {/* PGS College Letter */}
+            {}
             {user?.role === 'PGS' && (
               <div className="border border-slate-200 rounded-xl p-6 bg-slate-50/30">
                 <h4 className="text-sm font-medium text-slate-900 mb-4 flex items-center">
@@ -273,7 +273,7 @@ const RegistrationPage = () => {
               </div>
             )}
 
-            {/* Package Selection */}
+            {}
             <form onSubmit={handleSubmit} className="space-y-4">
               <div className="space-y-3">
                 {pricing ? (
@@ -384,8 +384,8 @@ const RegistrationPage = () => {
             </form>
           </section>
 
-          {/* Summary Sidebar - FIXED */}
-         {/* Summary Card */}
+          {}
+         {}
 <div className="border border-slate-200 rounded-xl p-5 lg:p-6 bg-slate-50/50 sticky top-4">
   <h3 className="text-sm font-medium text-slate-900 mb-4 flex items-center">
     <CreditCard className="w-4 h-4 mr-2 text-[#005aa9]" />
@@ -401,13 +401,13 @@ const RegistrationPage = () => {
       </div>
 
       <div className="space-y-2">
-        {/* Package Price (excl. GST) */}
+        {}
         <div className="flex justify-between text-[12px] font-medium">
           <span className="text-slate-600">Package Price (excl. GST)</span>
           <span>₹{pricing.pricing[formData.registrationType].totalWithoutGST.toLocaleString()}</span>
         </div>
 
-        {/* Breakdown (if applicable) */}
+        {}
         {pricing.pricing[formData.registrationType].basePrice > 0 && (
           <div className="flex justify-between text-[11px] text-slate-600">
             <span className="text-slate-600">Base Price</span>
@@ -429,14 +429,14 @@ const RegistrationPage = () => {
           </div>
         )}
 
-        {/* GST */}
+        {}
         <div className="flex justify-between text-[12px]">
           <span className="text-slate-600">GST (18%)</span>
           <span>₹{pricing.pricing[formData.registrationType].gst.toLocaleString()}</span>
         </div>
       </div>
 
-      {/* Total Amount */}
+      {}
       <div className="pt-3 border-t border-slate-200 mt-4">
         <div className="flex justify-between text-sm font-medium">
           <span className="text-slate-900">Total Amount (incl. GST)</span>

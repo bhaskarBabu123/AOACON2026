@@ -37,11 +37,11 @@ const Sidebar = () => {
 
   const isActive = (path) => location.pathname === path;
 
-  const sidebarWidth = isCollapsed ? 'w-18 lg:w-18' : 'w-64 lg:w-64'; // custom, needs .w-18 if using plugin or replace with w-[72px]
+  const sidebarWidth = isCollapsed ? 'w-18 lg:w-18' : 'w-64 lg:w-64'; 
 
   return (
     <>
-      {/* Mobile Menu Button */}
+      {}
       <button
         onClick={() => setIsMobileOpen(true)}
         className="lg:hidden fixed top-4 left-4 z-50 p-2.5 bg-[#005aa9] text-white rounded-xl shadow-lg"
@@ -49,7 +49,7 @@ const Sidebar = () => {
         <Menu className="w-5 h-5" />
       </button>
 
-      {/* Mobile Overlay */}
+      {}
       {isMobileOpen && (
         <div
           className="lg:hidden fixed inset-0 bg-slate-900/50 backdrop-blur-sm z-40"
@@ -57,7 +57,7 @@ const Sidebar = () => {
         />
       )}
 
-      {/* Sidebar */}
+      {}
       <div
         className={`
           fixed lg:static inset-y-0 left-0 z-50 transform
@@ -67,21 +67,14 @@ const Sidebar = () => {
           bg-slate-950 text-slate-100 flex flex-col shadow-xl lg:shadow-none
         `}
       >
-        {/* Header */}
+        {}
         <div className="flex items-center justify-between px-4 py-4 border-b border-slate-800">
           <div className="flex items-center gap-3">
            <img src={logo} width={100} alt="" />
-            {/* {!isCollapsed && (
-              <div className="leading-tight">
-                <p className="text-sm font-semibold tracking-tight">AOACON Admin</p>
-                <p className="text-[11px] text-slate-400 uppercase tracking-[0.16em]">
-                  Control Panel
-                </p>
-              </div>
-            )} */}
+            {}
           </div>
 
-          {/* Desktop collapse toggle */}
+          {}
           <button
             onClick={() => setIsCollapsed((v) => !v)}
             className="hidden lg:inline-flex items-center justify-center p-2 rounded-xl hover:bg-slate-800 transition-colors"
@@ -89,7 +82,7 @@ const Sidebar = () => {
             <Menu className="w-4 h-4 text-slate-300" />
           </button>
 
-          {/* Mobile close */}
+          {}
           <button
             onClick={() => setIsMobileOpen(false)}
             className="inline-flex lg:hidden items-center justify-center p-2 rounded-xl hover:bg-slate-800 transition-colors"
@@ -98,7 +91,7 @@ const Sidebar = () => {
           </button>
         </div>
 
-        {/* Navigation */}
+        {}
         <nav className="flex-1 px-2.5 py-4 space-y-1 overflow-y-auto">
           {menuItems.map((item) => {
             const Icon = item.icon;
@@ -147,7 +140,7 @@ const Sidebar = () => {
           })}
         </nav>
 
-        {/* User Section */}
+        {}
         <div className="border-t border-slate-800 px-3 py-4">
           {!isCollapsed && (
             <div className="mb-3 px-1">

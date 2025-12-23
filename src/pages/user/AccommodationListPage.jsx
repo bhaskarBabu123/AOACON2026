@@ -87,7 +87,7 @@ const AccommodationListPage = () => {
       <Header />
       
       <div className="px-3 sm:px-4 lg:px-6 py-4 sm:py-6 space-y-4 pb-20 sm:pb-8 max-w-7xl mx-auto">
-        {/* Header */}
+        {}
         <div className="flex items-center mb-6">
           <button
             onClick={() => navigate('/dashboard')}
@@ -101,9 +101,9 @@ const AccommodationListPage = () => {
           </div>
         </div>
 
-        {/* Search & Filter */}
+        {}
         <div className="space-y-3">
-          {/* Mobile Search */}
+          {}
           <div className="lg:hidden relative">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
             <input
@@ -115,7 +115,7 @@ const AccommodationListPage = () => {
             />
           </div>
 
-          {/* Filter */}
+          {}
           <div className="flex items-center bg-slate-50/50 border border-slate-200 rounded-lg p-2">
             <Filter className="w-4 h-4 text-slate-500 mr-2 flex-shrink-0" />
             <select
@@ -136,14 +136,14 @@ const AccommodationListPage = () => {
           </div>
         )}
 
-        {/* Hotels Grid */}
+        {}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
           {filteredAndSortedAccommodations.map((accommodation) => (
             <div 
               key={accommodation._id} 
               className="border border-slate-200 rounded-xl overflow-hidden bg-white hover:shadow-sm transition-all hover:border-[#005aa9]/30"
             >
-              {/* Image */}
+              {}
               <div className="relative h-40 sm:h-44 lg:h-48 bg-slate-100">
                 <img
                   src={accommodation.images?.[0] || '/placeholder-hotel.jpg'}
@@ -163,9 +163,9 @@ const AccommodationListPage = () => {
                 )}
               </div>
 
-              {/* Content */}
+              {}
               <div className="p-4 space-y-3">
-                {/* Name & Location */}
+                {}
                 <div>
                   <h3 className="font-medium text-slate-900 text-sm leading-tight line-clamp-2">{accommodation.name}</h3>
                   <div className="flex items-center text-[12px] text-slate-600 mt-1">
@@ -174,7 +174,7 @@ const AccommodationListPage = () => {
                   </div>
                 </div>
 
-                {/* Amenities */}
+                {}
                 <div className="flex flex-wrap gap-1.5">
                   {accommodation.amenities.slice(0, 3).map((amenity) => {
                     const IconComponent = getAmenityIcon(amenity);
@@ -192,7 +192,7 @@ const AccommodationListPage = () => {
                   )}
                 </div>
 
-                {/* Price & Button */}
+                {}
                 <div className="flex items-center justify-between pt-2 border-t border-slate-200 pb-2">
                   <div>
                     <div className="flex items-baseline">
@@ -211,7 +211,7 @@ const AccommodationListPage = () => {
                   </button>
                 </div>
 
-                {/* Availability */}
+                {}
                 {accommodation.availableRooms < accommodation.totalRooms && (
                   <div className="pt-1">
                     <div className="flex items-center justify-between text-[11px]">
@@ -240,7 +240,7 @@ const AccommodationListPage = () => {
           </div>
         )}
 
-        {/* Venue Info */}
+        {}
         <div className="border border-slate-200 rounded-xl p-4 bg-slate-50/50 mt-6 lg:col-span-4">
           <div className="flex items-center text-[12px] text-slate-700">
             <MapPin className="w-4 h-4 mr-2 text-[#005aa9]" />

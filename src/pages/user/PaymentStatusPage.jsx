@@ -1,4 +1,4 @@
-// src/pages/PaymentStatusPage.jsx
+
 import { useState, useEffect } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { 
@@ -31,10 +31,10 @@ const PaymentStatusPage = () => {
   const { user } = useAuth();
 
   const status = searchParams.get('status') || 'failed';
-  const type = searchParams.get('type') || 'registration'; // defaults to registration
+  const type = searchParams.get('type') || 'registration'; 
   const isSuccess = status === 'success';
 
-  const [data, setData] = useState(null); // either registration or booking object
+  const [data, setData] = useState(null); 
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
 
@@ -42,7 +42,7 @@ const PaymentStatusPage = () => {
     const fetchData = async () => {
       try {
         if (type === 'accommodation') {
-          const res = await accommodationAPI.getMyBooking(); // latest booking
+          const res = await accommodationAPI.getMyBooking(); 
           setData(res.data);
         } else {
           const res = await registrationAPI.getMyRegistration();
@@ -69,21 +69,21 @@ const PaymentStatusPage = () => {
 
   const doc = new jsPDF();
 
-  // Register the autoTable plugin correctly
+  
   import('jspdf-autotable').then(({ default: autoTable }) => {
-    // This ensures the plugin is loaded before use
+    
     autoTable(doc);
 
-    // Now proceed with PDF creation
+    
     doc.setFontSize(20);
-    doc.setTextColor(0, 90, 169); // #005aa9
+    doc.setTextColor(0, 90, 169); 
     doc.text('AOA 19th Conference Shivamogga 2026', 105, 20, { align: 'center' });
 
     doc.setFontSize(14);
     doc.setTextColor(0, 0, 0);
     doc.text('Invoice', 105, 32, { align: 'center' });
 
-    // Invoice Details
+    
     doc.setFontSize(10);
     const invoiceNumber = data.registrationNumber || data.bookingNumber || data._id?.slice(-8) || 'N/A';
     doc.text(`Invoice Number: ${invoiceNumber}`, 20, 50);
@@ -94,7 +94,7 @@ const PaymentStatusPage = () => {
       doc.text(`Phone: ${user?.phone}`, 20, 82);
     }
 
-    // Event Details
+    
     doc.setFontSize(12);
     doc.text('Event Details', 20, 100);
     doc.setFontSize(10);
@@ -102,7 +102,7 @@ const PaymentStatusPage = () => {
     doc.text('Dates: October 30 - November 1, 2026', 20, 118);
     doc.text('Venue: Hotel Royal Orchid, Shivamogga', 20, 126);
 
-    // Type-specific Details
+    
     let detailsY = 144;
     if (type === 'registration') {
       doc.setFontSize(12);
@@ -152,7 +152,7 @@ const PaymentStatusPage = () => {
       }
     }
 
-    // Payment Breakdown Table
+    
     const baseAmount = data.basePrice || (data.totalAmount / 1.18) || 0;
     const workshopPrice = data.workshopPrice || 0;
     const comboDiscount = data.comboDiscount || 0;
@@ -162,7 +162,7 @@ const PaymentStatusPage = () => {
     doc.setFontSize(12);
     doc.text('Payment Breakdown', 20, detailsY + 10);
 
-    // Use the plugin
+    
     doc.autoTable({
       startY: detailsY + 20,
       head: [['Description', 'Amount (₹)']],
@@ -178,7 +178,7 @@ const PaymentStatusPage = () => {
       styles: { fontSize: 10 },
     });
 
-    // Footer
+    
     const footerY = doc.lastAutoTable.finalY + 20;
     doc.setFontSize(10);
     doc.setTextColor(100);
@@ -215,7 +215,7 @@ const PaymentStatusPage = () => {
     );
   }
 
-  // Dynamic variables based on type
+  
   const isRegistration = type === 'registration';
   const title = isRegistration ? 'Registration' : 'Accommodation Booking';
   const number = isRegistration ? data.registrationNumber : data.bookingNumber || data._id.slice(-8);
@@ -227,7 +227,7 @@ const PaymentStatusPage = () => {
       <Header />
 
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-6 lg:py-12 pb-20 lg:pb-8">
-        {/* Back Button */}
+        {}
         <button
           onClick={() => navigate('/dashboard')}
           className="flex items-center text-slate-600 hover:text-slate-900 mb-6"
@@ -237,7 +237,7 @@ const PaymentStatusPage = () => {
         </button>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          {/* Main Status Card */}
+          {}
           <div className="lg:col-span-1 lg:row-span-2">
             <div className="bg-white border border-slate-200 rounded-2xl p-6 lg:p-8 text-center shadow-sm">
               <div className={`w-20 h-20 lg:w-24 lg:h-24 mx-auto mb-6 rounded-2xl flex items-center justify-center border-4 ${
@@ -260,7 +260,7 @@ const PaymentStatusPage = () => {
                   : 'The payment was not successful. Please try again.'}
               </p>
 
-              {/* Amount Display */}
+              {}
               <div className="inline-block bg-gradient-to-r from-[#005aa9]/5 to-[#009688]/5 border border-[#005aa9]/20 rounded-xl px-8 py-4 mb-8">
                 <p className="text-3xl font-bold text-[#005aa9]">
                   {currency}{amount.toLocaleString('en-IN')}
@@ -271,13 +271,7 @@ const PaymentStatusPage = () => {
               <div className="space-y-4">
                 {isSuccess ? (
                   <>
-                    {/* <button
-                      onClick={handleDownloadInvoice}
-                      className="w-full flex items-center justify-center gap-2 px-4 py-3 text-sm border border-slate-200 rounded-xl bg-white hover:bg-slate-50 text-slate-700 font-medium transition-colors"
-                    >
-                      <Download className="w-4 h-4" />
-                      Download Invoice
-                    </button> */}
+                    {}
                     <button
                       onClick={() => navigate('/dashboard')}
                       className="w-full flex items-center justify-center gap-2 px-4 py-3 text-sm rounded-xl bg-gradient-to-r from-[#005aa9] to-[#009688] text-white font-medium hover:brightness-110 transition-all"
@@ -307,7 +301,7 @@ const PaymentStatusPage = () => {
             </div>
           </div>
 
-          {/* Details Card */}
+          {}
           <div className="bg-white border border-slate-200 rounded-2xl p-6 space-y-5 shadow-sm">
             <h3 className="text-lg font-semibold text-slate-900 flex items-center gap-3">
               {isRegistration ? (
@@ -350,7 +344,7 @@ const PaymentStatusPage = () => {
                 </>
               ) : (
                 <>
-                  {/* Accommodation Details */}
+                  {}
                   <div className="flex items-center gap-4">
                     <img
                       src={data.hotel?.images?.[0] || '/placeholder-hotel.jpg'}
@@ -391,7 +385,7 @@ const PaymentStatusPage = () => {
             </div>
           </div>
 
-          {/* Next Steps (Success only) */}
+          {}
           {isSuccess && (
             <div className="bg-gradient-to-br from-emerald-50 to-sky-50 border border-emerald-200 rounded-2xl p-6">
               <h4 className="text-lg font-semibold text-slate-900 mb-4 flex items-center gap-2">

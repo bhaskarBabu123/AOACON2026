@@ -142,7 +142,7 @@ const AccommodationCheckoutPage = () => {
       <Header />
 
       <div className="max-w-6xl mx-auto px-3 sm:px-4 lg:px-6 py-4 sm:py-6 space-y-4 pb-20">
-        {/* Header */}
+        {}
         <div className="flex items-center mb-6 p-4 border border-slate-200 rounded-xl bg-slate-50/50">
           <button
             onClick={() => navigate(`/accommodation/${accommodation._id}`)}
@@ -163,9 +163,9 @@ const AccommodationCheckoutPage = () => {
         )}
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 lg:gap-6">
-          {/* Booking Details */}
+          {}
           <section className="lg:col-span-2 space-y-4">
-            {/* Guest Info */}
+            {}
             <div className="border border-slate-200 rounded-xl p-4 lg:p-6 bg-slate-50/50">
               <div className="flex items-center justify-between mb-4">
                 <h2 className="text-sm font-medium text-slate-900 flex items-center">
@@ -191,7 +191,7 @@ const AccommodationCheckoutPage = () => {
               </div>
             </div>
 
-            {/* Hotel Summary */}
+            {}
             <div className="border border-slate-200 rounded-xl p-4 lg:p-6">
               <h2 className="text-sm font-medium text-slate-900 mb-4 flex items-center">
                 <MapPin className="w-4 h-4 mr-2 text-[#005aa9]" />
@@ -220,7 +220,7 @@ const AccommodationCheckoutPage = () => {
               </div>
             </div>
 
-            {/* Stay Details */}
+            {}
             <div className="border border-slate-200 rounded-xl p-4 lg:p-6 bg-slate-50/50">
               <h3 className="text-sm font-medium text-slate-900 mb-4 flex items-center">
                 <Calendar className="w-4 h-4 mr-2 text-[#005aa9]" />
@@ -259,7 +259,7 @@ const AccommodationCheckoutPage = () => {
               </div>
             </div>
 
-            {/* Benefits */}
+            {}
             <div className="border border-slate-200 rounded-xl p-4 lg:p-6 bg-slate-50/50">
               <h3 className="text-sm font-medium text-slate-900 mb-4 flex items-center">
                 <CheckCircle className="w-4 h-4 mr-2 text-[#005aa9]" />
@@ -280,7 +280,7 @@ const AccommodationCheckoutPage = () => {
               </ul>
             </div>
 
-            {/* Special Requests */}
+            {}
             <div className="border border-slate-200 rounded-xl p-4 lg:p-6">
               <h3 className="text-sm font-medium text-slate-900 mb-4 flex items-center">
                 <Clock className="w-4 h-4 mr-2 text-[#005aa9]" />
@@ -300,7 +300,7 @@ const AccommodationCheckoutPage = () => {
             </div>
           </section>
 
-          {/* Payment Summary */}
+          {}
           <section className="lg:col-span-1 space-y-4 lg:sticky lg:top-4">
             <div className="border border-slate-200 rounded-xl p-5 lg:p-6 bg-slate-50/50">
               <h3 className="text-sm font-medium text-slate-900 mb-4 flex items-center">
@@ -308,7 +308,7 @@ const AccommodationCheckoutPage = () => {
                 Booking Summary (₹{bookingInfo.totalAmount?.toLocaleString()})
               </h3>
 
-              {/* Breakdown */}
+              {}
               <div className="space-y-2 text-[12px] mb-5">
                 <div className="flex justify-between py-1">
                   <span className="text-slate-600">Base Rate</span>
@@ -324,13 +324,13 @@ const AccommodationCheckoutPage = () => {
                 </div>
               </div>
 
-              {/* Booking Times */}
+              {}
               <div className="flex items-center justify-between mb-6 p-3 bg-slate-50 rounded-xl text-[12px]">
                 <span className="text-slate-600 font-medium">Check-in/out</span>
                 <span className="font-medium">{accommodation.checkInTime} - {accommodation.checkOutTime}</span>
               </div>
 
-              {/* Payment Button */}
+              {}
               <button
                 onClick={handleBooking}
                 disabled={processing}
@@ -346,7 +346,7 @@ const AccommodationCheckoutPage = () => {
                 )}
               </button>
 
-              {/* Security */}
+              {}
               <div className="space-y-3 pt-4 border-t border-slate-200 mt-6">
                 <div className="flex items-center justify-center text-[11px] text-[#005aa9]">
                   <CheckCircle className="w-4 h-4 mr-2" />

@@ -1,17 +1,13 @@
 // src/utils/api.js
 import axios from 'axios';
 
-const API_URL = 'https://aoa-backend.onrender.com/api';
-
-// Create a single axios instance
+const API_URL = 'http://localhost:5000/api';
 const api = axios.create({
   baseURL: API_URL,
   headers: {
     'Content-Type': 'application/json',
   },
 });
-
-// Request interceptor to attach JWT token
 api.interceptors.request.use(
   (config) => {
     const token = localStorage.getItem('token'); // or sessionStorage, or your auth context
@@ -22,31 +18,23 @@ api.interceptors.request.use(
   },
   (error) => Promise.reject(error)
 );
-
-// Response interceptor (optional - for handling common errors like 401)
 api.interceptors.response.use(
   (response) => response,
   (error) => {
-    // Handle 401 Unauthorized - e.g., redirect to login
     if (error.response?.status === 401) {
       localStorage.removeItem('token');
-      window.location.href = '/login'; // or use navigate in component
+      window.location.href = '/login'; 
     }
     return Promise.reject(error);
   }
 );
-
-// Auth API calls
 export const authAPI = {
   login: (credentials) => api.post('/auth/login', credentials),
   register: (userData) => api.post('/auth/register', userData),
   adminLogin: (credentials) => api.post('/auth/admin/login', credentials),
 };
-
-// Registration API calls
 export const registrationAPI = {
   create: (data) => {
-    // Debug FormData contents
     console.log('FormData being sent:');
     for (let [key, value] of data.entries()) {
       console.log(`${key}:`, value);
@@ -61,7 +49,6 @@ export const registrationAPI = {
   getPricing: () => api.get('/registration/pricing'),
 };
 
-// Payment API calls
 export const paymentAPI = {
   createOrderRegistration: () => api.post('/payment/create-order/registration'),
   createOrderAccommodation: (bookingId) =>
@@ -70,7 +57,6 @@ export const paymentAPI = {
   paymentFailed: (data) => api.post('/payment/failed', data),
 };
 
-// Accommodation API calls
 export const accommodationAPI = {
   getAll: () => api.get('/accommodation'),
   getById: (id) => api.get(`/accommodation/${id}`),
@@ -78,7 +64,6 @@ export const accommodationAPI = {
   getMyBookings: () => api.get('/accommodation/my-bookings'),
 };
 
-// Abstract API calls
 export const abstractAPI = {
   submit: (formData) => api.post('/abstract/submit', formData, {
     headers: { 'Content-Type': 'multipart/form-data' },
@@ -88,7 +73,6 @@ export const abstractAPI = {
   review: (id, data) => api.put(`/abstract/review/${id}`, data),
 };
 
-// Feedback API calls
 export const feedbackAPI = {
   submit: (data) => api.post('/feedback/submit', data),
   getMyFeedback: () => api.get('/feedback/my-feedback'),
@@ -96,7 +80,6 @@ export const feedbackAPI = {
   getAnalytics: () => api.get('/feedback/analytics'),
 };
 
-// Admin API calls
 export const adminAPI = {
   getDashboard: () => api.get('/admin/dashboard'),
   getRegistrations: (params) => api.get('/admin/registrations', { params }),
@@ -107,5 +90,4 @@ export const adminAPI = {
   getAccommodationBookings: (params) => api.get('/admin/accommodation-bookings', { params }),
 };
 
-// Export the axios instance if needed elsewhere
 export default api;

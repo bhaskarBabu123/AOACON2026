@@ -9,7 +9,7 @@ const RegistrationFeesPage = () => {
       <Header />
 
       <div className="max-w-6xl mx-auto px-3 sm:px-4 lg:px-6 py-4 sm:py-6 space-y-6 pb-20">
-        {/* Page Header */}
+        {}
         <div className="flex flex-col gap-3 p-4 border border-slate-200 rounded-xl bg-slate-50/60">
           <div className="flex items-center gap-2">
             <CreditCard className="w-4 h-4 text-[#005aa9]" />
@@ -33,7 +33,7 @@ const RegistrationFeesPage = () => {
           </p>
         </div>
 
-        {/* EARLY BIRD TABLE */}
+        {}
         <section className="space-y-2">
           <div className="flex items-center justify-between">
             <h2 className="text-sm font-semibold text-slate-900 flex items-center gap-2">
@@ -94,7 +94,7 @@ const RegistrationFeesPage = () => {
           </div>
         </section>
 
-        {/* REGULAR TABLE */}
+        {}
         <section className="space-y-2">
           <div className="flex items-center justify-between">
             <h2 className="text-sm font-semibold text-slate-900 flex items-center gap-2">
@@ -157,7 +157,7 @@ const RegistrationFeesPage = () => {
           </div>
         </section>
 
-        {/* SPOT TABLE */}
+        {}
         <section className="space-y-2">
           <div className="flex items-center justify-between">
             <h2 className="text-sm font-semibold text-slate-900 flex items-center gap-2">
@@ -216,7 +216,7 @@ const RegistrationFeesPage = () => {
           </div>
         </section>
 
-        {/* GST NOTE */}
+        {}
         <section className="p-4 border border-emerald-200 rounded-xl bg-emerald-50/80 flex gap-2">
           <Info className="w-4 h-4 text-emerald-700 mt-0.5 flex-shrink-0" />
           <p className="text-[12px] text-emerald-900">
@@ -224,7 +224,7 @@ const RegistrationFeesPage = () => {
           </p>
         </section>
 
-        {/* TERMS & CONDITIONS */}
+        {}
         <section className="p-5 border border-slate-200 rounded-xl bg-slate-50/70 space-y-4">
           <h2 className="text-sm font-semibold text-slate-900 flex items-center gap-2">
             <Info className="w-4 h-4 text-[#005aa9]" />
@@ -263,7 +263,7 @@ const RegistrationFeesPage = () => {
           </div>
         </section>
 
-        {/* CANCELLATION POLICY */}
+        {}
         <section className="p-5 border border-slate-200 rounded-xl bg-white space-y-4">
           <h2 className="text-sm font-semibold text-slate-900 flex items-center gap-2">
             <Calendar className="w-4 h-4 text-[#005aa9]" />
@@ -303,7 +303,7 @@ const RegistrationFeesPage = () => {
           </div>
         </section>
 
-        {/* CONTACT */}
+        {}
         <section className="p-5 border border-slate-200 rounded-xl bg-slate-50/80 space-y-3">
           <h2 className="text-sm font-semibold text-slate-900 flex items-center gap-2">
             <Phone className="w-4 h-4 text-[#005aa9]" />
@@ -328,7 +328,7 @@ const RegistrationFeesPage = () => {
           </div>
         </section>
         <center>
-          {/* // */}
+          {}
           <Link
           to="/registration"
              className="w-full px-6 py-3.5 rounded-xl border border-slate-200 bg-[#005aa9] text-white text-sm font-medium hover:from-[#00695c] hover:to-[#005aa9] disabled:opacity-50 disabled:cursor-not-allowed transition-colors flex items-center justify-center gap-2"

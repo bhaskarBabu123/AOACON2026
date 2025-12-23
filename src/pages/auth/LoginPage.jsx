@@ -50,7 +50,7 @@ const LoginPage = () => {
     <Header/>
      <div className=" flex items-center justify-center px-4 py-5">
       <div className="w-full max-w-sm">
-        {/* Tiny, simple heading */}
+        {}
       <div className="flex justify-center mb-5">
           <img src={logo} alt="" width="200px" />
       </div>
@@ -58,7 +58,7 @@ const LoginPage = () => {
           AOACON 2026 Login
         </h1>
 
-        {/* Compact form only */}
+        {}
         <form onSubmit={handleSubmit} className="mt-6 space-y-4">
           {error && (
             <div className="text-xs text-red-600">
@@ -66,7 +66,7 @@ const LoginPage = () => {
             </div>
           )}
 
-          {/* Email */}
+          {}
           <div>
             <label
               htmlFor="email"
@@ -100,7 +100,7 @@ const LoginPage = () => {
             </div>
           </div>
 
-          {/* Password */}
+          {}
           <div>
             <label
               htmlFor="password"
@@ -145,7 +145,7 @@ const LoginPage = () => {
             </div>
           </div>
 
-          {/* Submit */}
+          {}
           <button
             type="submit"
             disabled={loading}
@@ -173,7 +173,7 @@ const LoginPage = () => {
             )}
           </button>
 
-          {/* Small link row */}
+          {}
           <div className="flex items-center justify-between mt-1">
             <Link
             to="/admin/login"

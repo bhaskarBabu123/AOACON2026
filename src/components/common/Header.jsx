@@ -99,10 +99,10 @@ const Header = () => {
      <header className="bg-[#005aa9]  border-b border-slate-200 shadow-sm sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="flex justify-between items-center h-14 lg:h-16">
-          {/* Logo */}
+          {}
           
 
-          {/* Desktop Navigation */}
+          {}
           <nav className="hidden lg:flex items-center gap-0.5">
              <Link
              to="/"
@@ -131,7 +131,7 @@ const Header = () => {
                   <ChevronDown className={`w-4 h-4 ml-1 text-white transition-transform duration-200 ${activeDropdown === index ? 'rotate-180' : ''}`} />
                 </button>
 
-                {/* Dropdown */}
+                {}
                 {activeDropdown === index && (
                   <div className="absolute top-full left-0 mt-0 w-72 bg-white border border-slate-200 shadow-md rounded-b-lg z-50">
                     <div className="">
@@ -146,7 +146,7 @@ const Header = () => {
                             }}
                             className="flex items-center gap-3 w-full px-5 py-3.5 text-sm text-slate-700 hover:bg-[#005aa9] hover:text-white hover:border-l-[#005aa9]/30 border-l-4 border-transparent transition-all duration-200 group hover:shadow-sm"
                           >
-                            {/* <IconComponent className="w-4 h-4 text-slate-500 group-hover:text-[#005aa9] flex-shrink-0" /> */}
+                            {}
                             <span className="font-medium">{subItem.label}</span>
                           </button>
                         );
@@ -184,10 +184,10 @@ const Header = () => {
                 </Link>
           </nav>
 
-          {/* Auth Section */}
+          {}
           <div className="flex items-center gap-2">
             {isAuthenticated ? (
-              /* Profile */
+              
               <div className="relative lg:ml-4">
                 <button
                   onClick={() => setShowDropdown(!showDropdown)}
@@ -228,7 +228,7 @@ const Header = () => {
                 )}
               </div>
             ) : (
-              /* Login Button */
+              
               <button
                 onClick={() => navigate('/login')}
                 className="px-3 py-2 text-sm font-semibold text-[#005aa9] bg-white hover:from-[#00695c] hover:to-[#005aa9] rounded-lg hover:shadow-md  transition-all duration-200 whitespace-nowrap"
@@ -239,7 +239,7 @@ const Header = () => {
           </div>
         </div>
 
-        {/* Mobile Navigation */}
+        {}
         {showMobileMenu && (
           <div className="lg:hidden border-t border-slate-200 bg-white">
             <div className="max-w-7xl mx-auto px-4 py-6 space-y-2">

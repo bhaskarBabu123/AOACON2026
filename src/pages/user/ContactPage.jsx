@@ -8,7 +8,7 @@ const ContactPage = () => {
       <Header />
 
       <div className="max-w-6xl mx-auto px-3 sm:px-4 lg:px-6 pb-20">
-        {/* HERO WITH BANNER IMAGE */}
+        {}
         <section className="mt-4 mb-6 rounded-3xl overflow-hidden border border-slate-200 bg-white shadow-sm">
           <div className="relative">
             <div
@@ -41,7 +41,7 @@ const ContactPage = () => {
                   </div>
                 </div>
 
-                {/* Small highlight card */}
+                {}
                 <div className="shrink-0 rounded-2xl bg-white/10 border border-white/30 px-4 py-3 text-xs sm:text-sm text-slate-100 shadow-md">
                   <p className="font-semibold mb-1">Quick Links</p>
                   <p>Secretariat: SIMS, SHIVAMOGGA , Karnataka</p>
@@ -55,9 +55,9 @@ const ContactPage = () => {
           </div>
         </section>
 
-        {/* MAIN TWO-COLUMN BLOCK */}
+        {}
         <section className="grid grid-cols-1 lg:grid-cols-2 gap-5 mb-6">
-          {/* LEFT: SECRETARIAT */}
+          {}
           <div className="rounded-2xl border border-emerald-200 bg-emerald-50/80 px-4 sm:px-5 py-5 space-y-4 shadow-sm">
             <div className="flex items-center justify-between gap-2">
               <h2 className="text-base font-semibold text-slate-900 flex items-center gap-2">
@@ -69,7 +69,7 @@ const ContactPage = () => {
               </span>
             </div>
 
-            {/* Address */}
+            {}
             <div className="text-sm text-slate-800 space-y-1">
               <p className="font-semibold text-slate-900">Office Address</p>
               <p>
@@ -81,7 +81,7 @@ const ContactPage = () => {
               </p>
             </div>
 
-            {/* Contacts grid */}
+            {}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm text-slate-800">
               <div className="rounded-xl bg-white/90 border border-emerald-100 px-3 py-3 space-y-2">
                 <div>
@@ -122,7 +122,7 @@ const ContactPage = () => {
               </div>
             </div>
 
-            {/* Treasurer + email */}
+            {}
             <div className="grid grid-cols-1 sm:grid-cols-[1.4fr_1fr] gap-3 text-sm text-slate-800">
               <div className="rounded-xl bg-white/90 border border-emerald-100 px-3 py-3">
                 <p className="font-semibold text-slate-900">Dr. Sritam Swarup Jena</p>
@@ -147,7 +147,7 @@ const ContactPage = () => {
             </div>
           </div>
 
-          {/* RIGHT: PCO */}
+          {}
           <div className="rounded-2xl border border-amber-200 bg-amber-50/80 px-4 sm:px-5 py-5 space-y-4 shadow-sm">
             <div className="flex items-center justify-between gap-2">
               <h2 className="text-base font-semibold text-slate-900 flex items-center gap-2">
@@ -159,7 +159,7 @@ const ContactPage = () => {
               </span>
             </div>
 
-            {/* Address */}
+            {}
             <div className="text-sm text-slate-800 space-y-1">
               <p className="font-semibold text-slate-900">Office Address</p>
               <p>
@@ -169,7 +169,7 @@ const ContactPage = () => {
               </p>
             </div>
 
-            {/* Project Manager */}
+            {}
             <div className="rounded-xl bg-white/90 border border-amber-100 px-3 py-3 text-sm text-slate-800">
               <p className="font-semibold text-slate-900">Project Manager</p>
               <p className="text-slate-900">Ms. Pooja Sharma</p>
@@ -198,7 +198,7 @@ const ContactPage = () => {
               </p>
             </div>
 
-            {/* Registration / Accommodation */}
+            {}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm text-slate-800">
               <div className="rounded-xl bg-white/90 border border-amber-100 px-3 py-3">
                 <p className="font-semibold text-[13px] text-slate-900">Registration Incharge</p>
@@ -218,12 +218,12 @@ const ContactPage = () => {
           </div>
         </section>
 
-        {/* MAPS ROW */}
+        {}
         <section className="grid grid-cols-1 lg:grid-cols-1 gap-5">
-          {/* SIMS, SHIVAMOGGA  map card */}
+          {}
         
 
-          {/* Millennium Plaza map card */}
+          {}
           <div className="rounded-2xl border border-indigo-200 bg-indigo-50/80 px-4 sm:px-5 py-5 shadow-sm">
             <h3 className="text-sm font-semibold text-slate-900 mb-2 flex items-center gap-2">
               <Navigation2 className="w-4 h-4 text-indigo-700" />
