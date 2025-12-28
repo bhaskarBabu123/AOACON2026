@@ -7,11 +7,10 @@ import {
   Stethoscope,
   HeartPulse,
   Building2,
-  Image as ImageIcon,
 } from 'lucide-react';
 import Header from '../../components/common/Header';
-import MobileNav from '../../components/common/MobileNav';
-import logo from '../../images/main-logo.jpg'
+import logo from '../../images/main-logo.png';
+
 const targetDate = new Date('2026-10-30T09:00:00+05:30');
 
 const HomePage = () => {
@@ -28,7 +27,12 @@ const HomePage = () => {
       const diff = targetDate.getTime() - now;
 
       if (diff <= 0) {
-        setCountdown({ days: '00', hours: '00', minutes: '00', seconds: '00' });
+        setCountdown({
+          days: '00',
+          hours: '00',
+          minutes: '00',
+          seconds: '00',
+        });
         return;
       }
 
@@ -51,63 +55,53 @@ const HomePage = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-slate-50 text-slate-900">
+    <div className="min-h-screen bg-slate-100 text-slate-900">
       <Header />
 
       {}
-      <section className="relative border-b border-slate-200 bg-slate-900 text-white">
-        {}
-        <div
-          className="absolute inset-0 opacity-70"
-          style={{
-            backgroundImage:
-              'url(https://secureadmissions.in/wp-content/uploads/2025/06/10980_index_20.gif)',
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-          }}
-        />
-        {}
-        <div className="absolute inset-0 bg-gradient-to-r from-slate-900/95 via-sky-800/90 to-[#00796b]/90" />
+      <section className="relative border-b border-slate-300 bg-[#0d47a1] text-white">
+        <div className="absolute inset-0 opacity-30 bg-[url('https://secureadmissions.in/wp-content/uploads/2025/06/10980_index_20.gif')] bg-cover bg-center" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#0d47a1] via-[#1976d2] to-[#00838f] opacity-95" />
 
-        <div className="relative max-w-6xl mx-auto px-4 lg:px-6 py-10 lg:py-14">
-          <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-8">
+        <div className="relative max-w-6xl mx-auto px-4 lg:px-6 py-12 lg:py-16">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
             {}
-            <div className="max-w-xl space-y-4">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 border border-white/30 text-xs font-medium">
-                <Users className="w-4 h-4" />
+            <div className="lg:col-span-2 space-y-5">
+              <div className="inline-flex items-center gap-2 px-5 py-2 bg-[#1976d2] border border-sky-300 text-[18px] font-semibold">
+                <Users className="w-5 h-5" />
                 19th Annual Conference • AOA
               </div>
-              <div>
-                <p className="text-xs tracking-[0.14em] uppercase text-sky-100 mb-1">
-                  AOACON 2026 • Shivamogga
-                </p>
-                <h1 className="text-2xl sm:text-3xl lg:text-4xl font-semibold leading-tight">
-                  Association of Obstetric Anaesthesiologists Conference
-                </h1>
-              </div>
-              <p className="text-sm sm:text-base text-slate-100/90">
-                Hosted by the Department of Anaesthesiology, Shimoga Institute of Medical Sciences
-                (SIMS) and ISA City Chapter, Shivamogga – at the gateway to the Western Ghats.
+
+              <p className="text-[13px] sm:text-[14px] tracking-[0.3em] uppercase text-sky-100">
+                AOACON 2026 • Shivamogga
+              </p>
+              <h1 className="text-[30px] sm:text-[32px] lg:text-[34px] font-bold leading-snug">
+                Association of Obstetric Anaesthesiologists Conference
+              </h1>
+
+              <p className="text-[18px] text-slate-100 leading-relaxed">
+                Hosted by the Department of Anaesthesiology, Shimoga Institute of Medical
+                Sciences (SIMS) and ISA City Chapter, Shivamogga – at the gateway to the
+                Western Ghats.
               </p>
 
-              <div className="flex flex-wrap gap-3 text-xs sm:text-sm">
-                <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-white/10 border border-white/25">
-                  <Calendar className="w-4 h-4 text-emerald-200" />
+              <div className="flex flex-wrap gap-3 text-[15px]">
+                <span className="inline-flex items-center gap-2 px-4 py-2 bg-[#0b3c7d] border border-sky-300">
+                  <Calendar className="w-5 h-5" />
                   30 Oct – 1 Nov 2026
                 </span>
-                <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-white/10 border border-white/25">
-                  <MapPin className="w-4 h-4 text-sky-100" />
+                <span className="inline-flex items-center gap-2 px-4 py-2 bg-[#0b3c7d] border border-sky-300">
+                  <MapPin className="w-5 h-5" />
                   Shimoga Institute of Medical Sciences, Shivamogga
                 </span>
               </div>
             </div>
 
             {}
-            <div className="flex flex-col gap-4 w-full lg:w-auto">
-              {}
-              <div className="rounded-2xl bg-slate-950/40 border border-sky-200/60 px-4 py-4 shadow-xl backdrop-blur text-slate-50">
-                <div className="flex items-center gap-2 mb-3 text-xs text-sky-50">
-                  <Clock className="w-4 h-4 text-emerald-200" />
+            <div className="space-y-5">
+              <div className="bg-[#0b3c7d] border border-sky-300 px-5 py-5">
+                <div className="flex items-center gap-2 mb-3 text-[18px] font-semibold">
+                  <Clock className="w-5 h-5" />
                   <span>Conference starts in</span>
                 </div>
                 <div className="grid grid-cols-4 gap-2">
@@ -119,12 +113,12 @@ const HomePage = () => {
                   ].map((item) => (
                     <div
                       key={item.label}
-                      className="flex flex-col items-center justify-center rounded-xl bg-slate-900/70 border border-sky-200/60 px-3 py-2"
+                      className="flex flex-col items-center justify-center bg-[#0d47a1] border border-sky-300 px-3 py-2 text-center"
                     >
-                      <span className="text-lg font-semibold leading-none">
+                      <span className="text-[20px] font-bold leading-none">
                         {item.value}
                       </span>
-                      <span className="text-[10px] uppercase tracking-wide text-sky-100 mt-1">
+                      <span className="text-[12px] uppercase tracking-wide">
                         {item.label}
                       </span>
                     </div>
@@ -132,12 +126,11 @@ const HomePage = () => {
                 </div>
               </div>
 
-              {}
-              <div className="hidden sm:block rounded-2xl overflow-hidden border border-sky-200/70 bg-slate-900/60">
+              <div className="hidden sm:block bg-white border border-slate-300">
                 <img
                   src={logo}
-                  alt="Conference auditorium"
-                  className="w-full h-56 lg:h-50 object-cover"
+                  alt="AOACON 2026 Shivamogga"
+                  className="w-full h-56 object-contain"
                 />
               </div>
             </div>
@@ -146,198 +139,207 @@ const HomePage = () => {
       </section>
 
       {}
-      <section className="border-b border-slate-200 bg-slate-100/80">
-        <div className="max-w-6xl mx-auto px-4 lg:px-6 py-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+      <section className="border-b border-slate-300 bg-[#f9a825] text-white">
+        <div className="max-w-6xl mx-auto px-4 lg:px-6 py-7 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
           <div className="flex items-center gap-3">
-            <div className="inline-flex items-center justify-center w-9 h-9 rounded-2xl bg-white border border-slate-200">
-              <Building2 className="w-5 h-5 text-[#00796b]" />
+            <div className="w-11 h-11 flex items-center justify-center bg-[#0b7d5f] border border-emerald-200">
+              <Building2 className="w-6 h-6" />
             </div>
             <div>
-              <p className="text-xs font-semibold tracking-[0.16em] uppercase text-slate-600">
-                Official Venue
+              <p className="text-[12px] font-semibold tracking-[0.25em] uppercase">
+                Official venue
               </p>
-              <p className="text-sm font-semibold text-slate-900">
+              <p className="text-[18px] font-semibold">
                 Shimoga Institute of Medical Sciences (SIMS), Shivamogga, Karnataka
               </p>
             </div>
           </div>
-          <p className="text-xs sm:text-sm text-slate-600">
-            Operation theatre complex and academic blocks provide dedicated spaces for plenaries,
-            workshops and hands‑on training.
+          <p className="text-[15px]">
+            OT complex and academic blocks provide spaces for plenaries, workshops and
+            hands‑on training.
           </p>
         </div>
       </section>
 
       {}
-      <section className="border-b border-slate-200 bg-slate-50">
-        <div className="max-w-6xl mx-auto px-4 lg:px-6 py-8 lg:py-10 grid grid-cols-1 lg:grid-cols-3 gap-8">
-          <div className="lg:col-span-2 space-y-4">
-            <h2 className="text-xl font-semibold text-slate-900">
-              Welcome to the 19th Annual Conference of Association of Obstetric Anaesthesiologists
+      <section className="border-b border-slate-300 bg-white py-12 lg:py-14">
+        <div className="max-w-6xl mx-auto px-4 lg:px-6 grid grid-cols-1 lg:grid-cols-3 gap-10">
+          <div className="lg:col-span-2 space-y-5">
+            <h2 className="text-[26px] lg:text-[28px] font-bold text-slate-900 leading-snug">
+              Welcome to the 19th Annual Conference of Association of Obstetric
+              Anaesthesiologists
             </h2>
-            <div className="space-y-3 text-sm text-slate-700 leading-relaxed">
+            <div className="space-y-4 text-[18px] text-slate-800 leading-relaxed">
               <p>
                 It gives great pleasure to welcome you to the 19th Annual Conference of Obstetric
                 Anaesthesiologists, hosted by the Department of Anaesthesiology, SIMS, and the ISA
-                City Chapter, Shivamogga. The conference will be held at Shimoga Institute of
-                Medical Sciences in the culturally rich city that forms the gateway to the Western
-                Ghats.
+                City Chapter, Shivamogga.
               </p>
               <p>
-                Despite advances, gaps persist between urban and rural perioperative maternal care,
-                contributing significantly to maternal mortality in India. The meeting focuses on
-                delivering equitable, evidence‑based, and safe obstetric anaesthesia across all
-                levels of healthcare.
+                Despite advances, gaps persist between urban and rural perioperative maternal
+                care. The meeting focuses on equitable, evidence‑based, and safe obstetric
+                anaesthesia across all levels of healthcare.
               </p>
               <p>
                 AOACON 2026 brings together experts, practitioners, and learners to share
                 knowledge, discuss advances, and explore innovations that shape safe motherhood in
-                both resource‑rich and resource‑limited environments. Expect distinguished
-                speakers, interactive discussions, skills labs, and meaningful networking.
+                different practice settings.
               </p>
               <p>
-                Amidst the lush landscapes of Karnataka, Shivamogga offers a balance of academic
+                Amidst the landscapes of Karnataka, Shivamogga offers a balance of academic
                 intensity and natural rejuvenation. Join the effort to narrow the urban–rural gap
                 and support safe motherhood everywhere.
               </p>
-              <p className="font-semibold text-slate-900">
+              <p className="font-semibold">
                 We look forward to your participation.
-                <br />
-                <span className="font-normal text-slate-700">
+                <span className="block mt-2 text-[15px] font-normal">
                   Organising Committee, AOACON 2026
                 </span>
               </p>
             </div>
           </div>
 
-          <div className="rounded-2xl bg-gradient-to-br from-emerald-50 via-sky-50 to-rose-50 border border-emerald-200 px-4 py-4 space-y-3">
-            <div className="flex items-center gap-2">
-              <div className="inline-flex items-center justify-center w-9 h-9 rounded-2xl bg-white border border-emerald-200">
-                <HeartPulse className="w-5 h-5 text-emerald-600" />
+          <div className="bg-[#7cb342] border border-slate-300 px-6 py-6 space-y-4 text-white">
+            <div className="flex items-center gap-3">
+              <div className="w-11 h-11 flex items-center justify-center bg-white border border-rose-300">
+                <HeartPulse className="w-6 h-6 text-rose-600" />
               </div>
               <div>
-                <p className="text-xs font-semibold tracking-[0.16em] uppercase text-emerald-700">
+                <p className="text-[12px] font-semibold tracking-[0.25em] uppercase text-rose-100">
                   Theme 2026
                 </p>
-                <p className="text-sm font-semibold text-slate-900">
+                <p className="text-[18px] font-semibold">
                   Bridging the Urban–Rural Gap in Obstetric Anaesthesia
                 </p>
               </div>
             </div>
-            <p className="text-xs text-slate-700">
+            <p className="text-[15px] text-slate-100 leading-relaxed">
               Emphasis on equitable access, critical care readiness, and context‑appropriate
               protocols for every mother, everywhere.
             </p>
-
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQxvHBBYogt3GOpiDFNm90puXa7oo2DlPP2Qg&s" alt="" className='w-full rounded-md' />
+            <img
+              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQxvHBBYogt3GOpiDFNm90puXa7oo2DlPP2Qg&s"
+              alt="Theme"
+              className="w-full h-44 object-cover border border-rose-200"
+            />
           </div>
         </div>
       </section>
 
       {}
-      <section className="border-b border-teal-100 bg-teal-50/70">
-        <div className="max-w-6xl mx-auto px-4 lg:px-6 py-8 lg:py-10 grid grid-cols-1 lg:grid-cols-1 gap-8">
-          <div className="lg:col-span-2">
-            <div className="flex  items-center gap-2 mb-4">
-              <Stethoscope className="w-5 h-5 text-teal-700" />
-              <h2 className="text-lg font-semibold text-slate-900">
-                Focus Tracks & Hands‑On Workshops
-              </h2>
-            </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
-              <div className="rounded-xl bg-white border border-emerald-200 px-4 py-3">
-                <p className="font-semibold text-emerald-800 mb-1">
-                  Obstetric Critical Care & Resuscitation
-                </p>
-                <p className="text-slate-700">
-                  Protocol‑driven management of haemorrhage, sepsis, shock, and peri‑arrest
-                  scenarios with simulation‑supported learning.
-                </p>
-              </div>
-              <div className="rounded-xl bg-white border border-sky-200 px-4 py-3">
-                <p className="font-semibold text-sky-800 mb-1">Obstetric RA & POCUS</p>
-                <p className="text-slate-700">
-                  Neuraxial techniques, peripheral nerve blocks, and bedside ultrasound for
-                  optimised obstetric anaesthesia and critical care.
-                </p>
-              </div>
-              <div className="rounded-xl bg-white border border-amber-200 px-4 py-3">
-                <p className="font-semibold text-amber-800 mb-1">Labour Analgesia</p>
-                <p className="text-slate-700">
-                  Practical epidural strategies, combined techniques, and labour analgesia pathways
-                  tailored to different practice settings.
-                </p>
-              </div>
-              <div className="rounded-xl bg-white border border-rose-200 px-4 py-3">
-                <p className="font-semibold text-rose-800 mb-1">
-                  Critical Incidences, Simulation & Nursing Track
-                </p>
-                <p className="text-slate-700">
-                  High‑impact scenarios, crisis resource management, and essential obstetric
-                  emergencies for nurses and allied staff.
-                </p>
-              </div>
-            </div>
+      <section className="border-b border-slate-300 bg-[#880e4f] py-12 lg:py-14">
+        <div className="max-w-6xl mx-auto px-4 lg:px-6">
+          <div className="flex items-center gap-3 mb-7">
+            <Stethoscope className="w-6 h-6 text-rose-100" />
+            <h2 className="text-[24px] font-bold text-white">
+              Focus Tracks & Hands‑On Workshops
+            </h2>
           </div>
 
-        
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 text-[18px]">
+            <div className="bg-[#e3fcec] border border-emerald-400 px-5 py-5">
+              <p className="font-semibold text-[17px] text-emerald-900 mb-2">
+                Obstetric Critical Care & Resuscitation
+              </p>
+              <p className="text-slate-800">
+                Protocol‑driven management of haemorrhage, sepsis, shock and peri‑arrest
+                scenarios with simulation‑supported learning.
+              </p>
+            </div>
+            <div className="bg-[#e0f2ff] border border-sky-400 px-5 py-5">
+              <p className="font-semibold text-[17px] text-sky-900 mb-2">
+                Obstetric RA & POCUS
+              </p>
+              <p className="text-slate-800">
+                Neuraxial techniques, peripheral nerve blocks, and bedside ultrasound for
+                optimised obstetric anaesthesia and critical care.
+              </p>
+            </div>
+            <div className="bg-[#fff3cd] border border-amber-400 px-5 py-5">
+              <p className="font-semibold text-[17px] text-amber-900 mb-2">
+                Labour Analgesia
+              </p>
+              <p className="text-slate-800">
+                Practical epidural strategies, combined techniques, and labour analgesia
+                pathways tailored to different practice settings.
+              </p>
+            </div>
+            <div className="bg-[#fde4f2] border border-rose-400 px-5 py-5">
+              <p className="font-semibold text-[17px] text-rose-900 mb-2">
+                Critical Incidences, Simulation & Nursing Track
+              </p>
+              <p className="text-slate-800">
+                High‑impact scenarios, crisis resource management, and obstetric emergencies
+                for nurses and allied staff.
+              </p>
+            </div>
+          </div>
         </div>
       </section>
 
       {}
-      <section className="border-b border-indigo-100 bg-indigo-50/70">
-        <div className="max-w-6xl mx-auto px-4 lg:px-6 py-8 lg:py-10 grid grid-cols-1 lg:grid-cols-2 gap-8">
-          <div className="space-y-3">
-            <div className="rounded-2xl overflow-hidden border border-indigo-200 bg-white">
+      <section className="border-b border-slate-300 bg-[#e3f2fd] py-12 lg:py-14">
+        <div className="max-w-6xl mx-auto px-4 lg:px-6 grid grid-cols-1 lg:grid-cols-2 gap-10">
+          <div className="space-y-4">
+            <div className="bg-white border border-slate-300">
               <img
                 src="https://thecollegesphere.com/wp-content/uploads/2025/09/Shimoga-Institute-of-Medical-Sciences.gif"
-                alt="Shivamogga landscape"
-                className="w-full h-56 lg:h-64 object-cover"
+                alt="Shivamogga campus"
+                className="w-full h-60 lg:h-64 object-cover"
                 loading="lazy"
               />
             </div>
-            <div className="rounded-2xl overflow-hidden border border-indigo-200 bg-white">
+            <div className="bg-white border border-slate-300">
               <iframe
                 title="SIMS Shivamogga Map"
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3872.4355478976645!2d75.56427190859682!3d13.932652586421902!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bbba8d0bb6c8adf%3A0xc7be084ea62ac67d!2sSHIVAMOGGA%20INSTITUTE%20OF%20MEDICAL%20SCIENCES!5e0!3m2!1sen!2sin!4v1766322471387!5m2!1sen!2sin"
                 width="100%"
-                height="220"
+                height="260"
                 style={{ border: 0 }}
                 allowFullScreen
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
-              ></iframe>
+              />
             </div>
           </div>
 
-          <div className="space-y-4">
-            <div className="flex items-center gap-2">
-              <MapPin className="w-5 h-5 text-indigo-700" />
-              <h2 className="text-lg font-semibold text-slate-900">
+          <div className="space-y-5">
+            <div className="flex items-center gap-3">
+              <MapPin className="w-6 h-6 text-[#0b60a8]" />
+              <h2 className="text-[24px] font-bold text-slate-900">
                 Shivamogga & Shimoga Institute of Medical Sciences
               </h2>
             </div>
-            <p className="text-sm text-slate-700 leading-relaxed">
-              Shivamogga, known as the gateway to the Western Ghats, offers rivers, waterfalls, and
-              dense greenery along with a vibrant educational ecosystem. The city provides a calm yet
-              energetic setting for high‑quality academic engagement.
+            <p className="text-[18px] text-slate-800 leading-relaxed">
+              Shivamogga, known as the gateway to the Western Ghats, offers rivers, waterfalls
+              and dense greenery along with a vibrant educational ecosystem.
             </p>
-            <p className="text-sm text-slate-700 leading-relaxed">
+            <p className="text-[18px] text-slate-800 leading-relaxed">
               Shimoga Institute of Medical Sciences (SIMS) is a government medical college with a
-              busy tertiary‑care hospital and well‑equipped operation theatre complex. The campus
-              supports large‑volume clinical work, teaching, and simulation‑based training – an
-              ideal hub for an obstetric anaesthesia conference.
+              busy tertiary‑care hospital and well‑equipped operation theatre complex – an ideal
+              hub for an obstetric anaesthesia conference.
             </p>
 
-            <div className="rounded-2xl bg-white border border-indigo-200 px-4 py-3 text-sm">
-              <div className="flex items-center gap-2 mb-1">
-                <Building2 className="w-4 h-4 text-[#00796b]" />
-                <p className="font-semibold text-slate-900">Venue Snapshot</p>
+            <div className="bg-white border border-lime-400 px-5 py-5 text-[15px]">
+              <div className="flex items-center gap-3 mb-3">
+                <Building2 className="w-5 h-5 text-lime-700" />
+                <p className="font-semibold text-slate-900 text-[17px]">
+                  Venue snapshot
+                </p>
               </div>
-              <ul className="text-slate-700 text-sm space-y-1">
-                <li>• Plenary halls, seminar rooms, and skills‑lab spaces</li>
-                <li>• Proximity to district hospital and critical care areas</li>
-                <li>• Easy access from bus stand and railway station</li>
+              <ul className="text-slate-800 space-y-1.5">
+                <li className="flex items-start gap-2">
+                  <span className="text-emerald-600 font-semibold mt-[3px]">•</span>
+                  Plenary halls, seminar rooms and skills‑lab spaces
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-emerald-600 font-semibold mt-[3px]">•</span>
+                  Proximity to district hospital and critical care areas
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-emerald-600 font-semibold mt-[3px]">•</span>
+                  Easy access from bus stand and railway station
+                </li>
               </ul>
             </div>
           </div>
@@ -345,39 +347,45 @@ const HomePage = () => {
       </section>
 
       {}
-      <section className="bg-slate-100 border-t border-slate-200">
-        <div className="max-w-6xl mx-auto px-4 lg:px-6 py-8 lg:py-10">
-          <div className="flex items-center gap-2 mb-4">
-            <Users className="w-5 h-5 text-[#00796b]" />
-            <h2 className="text-lg font-semibold text-slate-900">Organising Team Highlights</h2>
+      <section className="bg-slate-200 border-t border-slate-300 py-12 lg:py-14">
+        <div className="max-w-6xl mx-auto px-4 lg:px-6">
+          <div className="flex items-center gap-3 mb-8">
+            <Users className="w-6 h-6 text-[#0b60a8]" />
+            <h2 className="text-[24px] font-bold text-slate-900">
+              Organising team highlights
+            </h2>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
-            <div className="rounded-2xl bg-white border border-slate-200 px-4 py-4">
-              <p className="font-semibold text-slate-900 mb-1">Core Committee</p>
-              <p className="text-slate-700">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5 text-[18px]">
+            <div className="bg-white border border-slate-300 px-5 py-5">
+              <p className="font-semibold text-[17px] mb-3 text-slate-900">
+                Core committee
+              </p>
+              <p className="text-slate-800 leading-relaxed">
                 Organising Chairperson, Secretary, Treasurer and senior SIMS faculty overseeing
-                academic content, logistics, and delegate experience.
+                academic content, logistics and delegate experience.
               </p>
             </div>
-            <div className="rounded-2xl bg-white border border-slate-200 px-4 py-4">
-              <p className="font-semibold text-slate-900 mb-1">Scientific & Workshop Committee</p>
-              <p className="text-slate-700">
-                Multi‑disciplinary team curating symposia, panel discussions, simulation tracks and
-                hands‑on workshops across critical themes.
+            <div className="bg-white border border-slate-300 px-5 py-5">
+              <p className="font-semibold text-[17px] mb-3 text-slate-900">
+                Scientific & workshop committee
+              </p>
+              <p className="text-slate-800 leading-relaxed">
+                Team curating symposia, panels, simulation tracks and hands‑on workshops across
+                key themes.
               </p>
             </div>
-            <div className="rounded-2xl bg-white border border-slate-200 px-4 py-4">
-              <p className="font-semibold text-slate-900 mb-1">Hospitality & Cultural</p>
-              <p className="text-slate-700">
-                Reception, travel, food and cultural teams ensuring smooth registrations, stay,
-                social events and a memorable cultural flavour of Shivamogga.
+            <div className="bg-white border border-slate-300 px-5 py-5">
+              <p className="font-semibold text-[17px] mb-3 text-slate-900">
+                Hospitality & cultural
+              </p>
+              <p className="text-slate-800 leading-relaxed">
+                Reception, travel, food and cultural teams ensuring smooth registrations, stay
+                and a memorable flavour of Shivamogga.
               </p>
             </div>
           </div>
         </div>
       </section>
-
-      <MobileNav />
     </div>
   );
 };

@@ -15,7 +15,7 @@ import {
 } from 'lucide-react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
-import logo from '../../images/main-logo.jpg'
+import logo from '../../images/main-logo.png'
 
 const MobileNav = () => {
   const [showDrawer, setShowDrawer] = useState(false);

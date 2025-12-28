@@ -1,14 +1,12 @@
 import { Users, Calendar, MapPin, Star } from 'lucide-react';
 import Header from '../../components/common/Header';
-import MobileNav from '../../components/common/MobileNav';
 
 const PLACEHOLDER_IMAGE =
   'https://thumbs.dreamstime.com/b/profile-placeholder-image-gray-silhouette-no-photo-person-avatar-default-pic-used-web-design-173998594.jpg';
 
 const committees = [
   {
-    sectionTitle: 'Core Organizing Committee',
-    accent: 'from-emerald-500/10 to-emerald-500/0',
+    sectionTitle: 'Core Organizing Team',
     roles: [
       {
         role: 'Organizing Chairperson',
@@ -43,8 +41,7 @@ const committees = [
     ],
   },
   {
-    sectionTitle: 'Scientific Committee',
-    accent: 'from-sky-500/10 to-sky-500/0',
+    sectionTitle: 'Scientific Team',
     roles: [
       {
         role: 'Scientific Chairpersons',
@@ -62,11 +59,11 @@ const committees = [
         ],
       },
       {
-        role: 'Co‑Chairperson',
+        role: 'Co-Chairperson',
         members: [
           {
             name: 'Dr Kumara A B',
-            designation: 'Scientific Co‑Chairperson',
+            designation: 'Scientific Co-Chairperson',
             image: PLACEHOLDER_IMAGE,
           },
         ],
@@ -85,8 +82,7 @@ const committees = [
     ],
   },
   {
-    sectionTitle: 'Reception & Registration Committee',
-    accent: 'from-amber-500/10 to-amber-500/0',
+    sectionTitle: 'Reception & Registration Team',
     roles: [
       {
         role: 'Members',
@@ -102,8 +98,7 @@ const committees = [
     ],
   },
   {
-    sectionTitle: 'Travel & Accommodation Committee',
-    accent: 'from-violet-500/10 to-violet-500/0',
+    sectionTitle: 'Travel & Accommodation Team',
     roles: [
       {
         role: 'Members',
@@ -117,8 +112,7 @@ const committees = [
     ],
   },
   {
-    sectionTitle: 'Venue Detailing Committee',
-    accent: 'from-teal-500/10 to-teal-500/0',
+    sectionTitle: 'Venue Detailing Team',
     roles: [
       {
         role: 'Members',
@@ -130,11 +124,10 @@ const committees = [
     ],
   },
   {
-    sectionTitle: 'Workshop & Courses Committee',
-    accent: 'from-rose-500/10 to-rose-500/0',
+    sectionTitle: 'Workshops & Courses',
     roles: [
       {
-        role: 'Workshop Committee Members',
+        role: 'Workshop Team Members',
         members: [
           { name: 'Dr Yashoda V', designation: 'Workshop Coordinator', image: PLACEHOLDER_IMAGE },
           { name: 'Dr Sandhya', designation: 'Workshop Coordinator', image: PLACEHOLDER_IMAGE },
@@ -170,8 +163,7 @@ const committees = [
     ],
   },
   {
-    sectionTitle: 'Food & Banquet Committee',
-    accent: 'from-amber-500/10 to-amber-500/0',
+    sectionTitle: 'Food & Banquet Team',
     roles: [
       {
         role: 'Members',
@@ -185,8 +177,7 @@ const committees = [
     ],
   },
   {
-    sectionTitle: 'Cultural Committee',
-    accent: 'from-indigo-500/10 to-indigo-500/0',
+    sectionTitle: 'Cultural Team',
     roles: [
       {
         role: 'Members',
@@ -200,8 +191,7 @@ const committees = [
     ],
   },
   {
-    sectionTitle: 'Memento & Kits Committee',
-    accent: 'from-fuchsia-500/10 to-fuchsia-500/0',
+    sectionTitle: 'Memento & Kits Team',
     roles: [
       {
         role: 'Members',
@@ -217,12 +207,12 @@ const committees = [
 
 const CommitteePage = () => {
   return (
-    <div className="min-h-screen bg-slate-50">
+    <div className="min-h-screen bg-white">
       <Header />
 
-      <div className="max-w-6xl mx-auto px-3 sm:px-4 lg:px-6 pb-20">
+      <div className="max-w-6xl mx-auto px-4 lg:px-6 pb-20">
         {}
-        <div className="relative overflow-hidden rounded-3xl mt-4 mb-6">
+        <div className="relative overflow-hidden rounded-2xl mt-6 mb-8 border border-slate-200">
           <div className="absolute inset-0 bg-gradient-to-r from-[#005aa9] via-sky-700 to-indigo-700 opacity-90" />
           <div
             className="absolute inset-0 mix-blend-soft-light opacity-40"
@@ -233,31 +223,31 @@ const CommitteePage = () => {
               backgroundPosition: 'center',
             }}
           />
-          <div className="relative px-5 sm:px-8 py-8 sm:py-10 text-white">
-            <div className="flex flex-wrap items-center gap-3 mb-4">
-              <div className="inline-flex items-center justify-center w-9 h-9 rounded-2xl bg-white/15 backdrop-blur">
-                <Users className="w-4 h-4" />
+          <div className="relative px-6 lg:px-8 py-10 lg:py-12 text-white">
+            <div className="flex flex-col sm:flex-row sm:items-center gap-4 mb-6 lg:mb-8">
+              <div className="inline-flex items-center justify-center w-12 h-12 lg:w-14 lg:h-14 rounded-2xl bg-white/20 backdrop-blur flex-shrink-0">
+                <Users className="w-6 h-6 lg:w-7 lg:h-7" />
               </div>
-              <div>
-                <h1 className="text-xl sm:text-2xl font-semibold tracking-tight">
-                  AOACON 2026 • Committees
+              <div className="flex-1 min-w-0">
+                <h1 className="text-2xl lg:text-3xl font-semibold leading-tight">
+                  AOACON 2026 Committee
                 </h1>
-                <p className="text-[12px] sm:text-[13px] text-slate-100/90">
-                  Organizing teams behind AOA Shivamogga 2026 – structure, roles and responsibilities.
+                <p className="text-base lg:text-lg text-slate-100/90 mt-2 leading-relaxed">
+                  Organizing teams behind AOA Shivamogga 2026 – structure, roles and responsibilities
                 </p>
               </div>
             </div>
-            <div className="flex flex-wrap gap-3 text-[11px] sm:text-[12px]">
-              <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-white/10 border border-white/20">
-                <Calendar className="w-3.5 h-3.5" />
+            <div className="flex flex-wrap gap-3 text-sm lg:text-base">
+              <span className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-white/15 border border-white/25 font-medium">
+                <Calendar className="w-5 h-5 lg:w-6 lg:h-6 flex-shrink-0" />
                 30 Oct – 1 Nov 2026
               </span>
-              <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-white/10 border border-white/20">
-                <MapPin className="w-3.5 h-3.5" />
+              <span className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-white/15 border border-white/25 font-medium">
+                <MapPin className="w-5 h-5 lg:w-6 lg:h-6 flex-shrink-0" />
                 Shivamogga, Karnataka
               </span>
-              <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-white/10 border border-white/20">
-                <Star className="w-3.5 h-3.5" />
+              <span className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-white/15 border border-white/25 font-medium">
+                <Star className="w-5 h-5 lg:w-6 lg:h-6 flex-shrink-0" />
                 National Conference • AOA
               </span>
             </div>
@@ -265,69 +255,53 @@ const CommitteePage = () => {
         </div>
 
         {}
-        <div className="mb-4 text-[12px] text-slate-700">
+        <div className="mb-8 text-base lg:text-lg text-slate-700 leading-relaxed">
           <p>
-            The conference is supported by dedicated committees overseeing scientific content,
-            hospitality, workshops, cultural events, logistics, and delegate experience. Each section
-            lists the key office bearers and committee members with their designated roles.
+            The conference is supported by dedicated teams overseeing scientific content, hospitality,
+            workshops, cultural events, logistics, and delegate experience. Each section lists the key
+            office bearers and team members with their designated roles.
           </p>
         </div>
 
         {}
-        <div className="space-y-6">
+        <div className="space-y-10 lg:space-y-12">
           {committees.map((section) => (
             <section
               key={section.sectionTitle}
-              className={`rounded-2xl border border-slate-200 bg-gradient-to-br ${section.accent} px-4 py-4 sm:px-5 sm:py-5`}
+              className="px-2 sm:px-4"
             >
-              <div className="flex items-center justify-between gap-2 mb-3">
-                <h2 className="text-sm font-semibold text-slate-900 flex items-center gap-2">
-                  <span className="inline-flex w-6 h-6 rounded-xl bg-white/70 text-[#005aa9] items-center justify-center text-[11px]">
-                    <Users className="w-3.5 h-3.5" />
-                  </span>
-                  {section.sectionTitle}
-                </h2>
-              </div>
+              <h2 className="text-xl sm:text-2xl lg:text-3xl font-semibold text-[#0b5f73] text-center mb-8">
+                - {section.sectionTitle} -
+              </h2>
 
-              {section.roles.map((roleBlock) => (
-                <div key={roleBlock.role} className="mb-4 last:mb-0">
-                  <p className="text-[11px] font-semibold text-slate-800 mb-2 uppercase tracking-wide">
-                    {roleBlock.role}
-                  </p>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
-                    {roleBlock.members.map((m) => (
-                      <div
-                        key={`${roleBlock.role}-${m.name}`}
-                        className="flex items-center gap-3 rounded-2xl bg-white/90 border border-white/70 px-3 py-3 shadow-[0_0_0_1px_rgba(15,23,42,0.02)]"
-                      >
-                        {}
-                        <div className="w-10 h-10 rounded-2xl overflow-hidden ring-2 ring-slate-100 shadow-sm bg-slate-100 flex-shrink-0">
-                          <img
-                            src={m.image}
-                            alt={m.name}
-                            className="w-full h-full object-cover"
-                            loading="lazy"
-                          />
-                        </div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
+                {section.roles.flatMap((roleBlock) => roleBlock.members).map((m, index) => (
+                  <div
+                    key={`${section.sectionTitle}-${m.name}-${index}`}
+                    className="bg-white rounded-[18px] border border-slate-200 shadow-md px-6 py-6 text-center"
+                  >
+                    <div className="mx-auto w-28 h-28 rounded-full border-[2px] border-dotted border-[#8d3c6d] p-1">
+                      <img
+                        src={m.image}
+                        alt={m.name}
+                        className="w-full h-full rounded-full object-cover"
+                        loading="lazy"
+                      />
+                    </div>
 
-                        {}
-                        <div className="min-w-0">
-                          <p className="text-[12px] font-semibold text-slate-900 truncate">
-                            {m.name}
-                          </p>
-                          <p className="text-[11px] text-slate-600 truncate">{m.designation}</p>
-                        </div>
-                      </div>
-                    ))}
+                    <p className="mt-4 text-sm sm:text-lg font-semibold text-[#e11d74]">
+                      {m.name}
+                    </p>
+                    <p className="text-xs sm:text-base font-semibold text-[#3a3a8a]">
+                      {m.designation}
+                    </p>
                   </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </section>
           ))}
         </div>
       </div>
-
-      <MobileNav />
     </div>
   );
 };

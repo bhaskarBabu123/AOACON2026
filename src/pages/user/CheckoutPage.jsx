@@ -5,7 +5,6 @@ import {
   User,
   Mail,
   Award,
-  Edit,
   CheckCircle,
   Clock,
   ArrowLeft,
@@ -13,12 +12,12 @@ import {
   Users,
   Calendar,
   FileText,
+  XCircle,
 } from 'lucide-react';
 import { useAuth } from '../../contexts/AuthContext';
 import { useApp } from '../../contexts/AppContext';
-import { registrationAPI, paymentAPI } from '../../utils/api';
+import { registrationAPI, paymentAPI, attendanceAPI } from '../../utils/api';
 import Header from '../../components/common/Header';
-import MobileNav from '../../components/common/MobileNav';
 import LoadingSpinner from '../../components/common/LoadingSpinner';
 
 const CheckoutPage = () => {
@@ -39,9 +38,8 @@ const CheckoutPage = () => {
     try {
       const response = await registrationAPI.getMyRegistration();
       setRegistration(response.data);
-      console.log(response.data);
       setAppRegistration(response.data);
-    } catch (error) {
+    } catch (err) {
       setError('Registration not found. Please complete registration first.');
       setTimeout(() => navigate('/registration'), 2000);
     } finally {
@@ -51,6 +49,10 @@ const CheckoutPage = () => {
 
   const loadRazorpayScript = () => {
     return new Promise((resolve) => {
+      if (window.Razorpay) {
+        resolve(true);
+        return;
+      }
       const script = document.createElement('script');
       script.src = 'https://checkout.razorpay.com/v1/checkout.js';
       script.onload = () => resolve(true);
@@ -89,9 +91,16 @@ const CheckoutPage = () => {
               razorpay_payment_id: response.razorpay_payment_id,
               razorpay_signature: response.razorpay_signature,
             });
-            navigate('/payment-status?status=success');
+
+            try {
+              await attendanceAPI.generateQr(registration._id);
+            } catch (qrErr) {
+              console.error('QR generation failed, continuing to success page:', qrErr);
+            }
+
+            navigate('/payment-status?status=success&type=registration');
           } catch (error) {
-            navigate('/payment-status?status=failed');
+            navigate('/payment-status?status=failed&type=registration');
           }
         },
         prefill: {
@@ -100,7 +109,7 @@ const CheckoutPage = () => {
           contact: user?.phone || '',
         },
         theme: {
-          color: '#005aa9',
+          color: '#9c3253',
         },
         modal: {
           ondismiss: () => setProcessing(false),
@@ -110,7 +119,9 @@ const CheckoutPage = () => {
       const razorpay = new window.Razorpay(options);
       razorpay.open();
     } catch (err) {
-      setError(err.response?.data?.message || 'Payment failed. Please try again.');
+      setError(
+        err.response?.data?.message || 'Payment failed. Please try again.'
+      );
       setProcessing(false);
     }
   };
@@ -133,99 +144,135 @@ const CheckoutPage = () => {
     return texts[type] || type;
   };
 
+  const getBookingPhaseText = (phase) => {
+    const texts = {
+      EARLY_BIRD: 'Early Bird',
+      REGULAR: 'Regular',
+      SPOT: 'Spot Booking',
+    };
+    return texts[phase] || phase;
+  };
+
+  const getBookingPhaseBadge = (phase) => {
+    const map = {
+      EARLY_BIRD: 'bg-[#9c3253]/10 text-[#9c3253] border-[#9c3253]/30',
+      REGULAR: 'bg-[#ff8a1f]/10 text-[#ff8a1f] border-[#ff8a1f]/30',
+      SPOT: 'bg-[#7cb342]/10 text-[#7cb342] border-[#7cb342]/30',
+    };
+    return map[phase] || 'bg-slate-50 text-slate-700 border-slate-200';
+  };
+
   if (loading) {
     return (
-      <div className="min-h-screen bg-white flex items-center justify-center">
-        <LoadingSpinner size="sm" text="Loading checkout..." />
+      <div className="min-h-screen bg-slate-50 flex items-center justify-center">
+        <LoadingSpinner size="md" text="Loading checkout..." />
       </div>
     );
   }
 
   if (!registration) {
     return (
-      <div className="min-h-screen bg-white">
+      <div className="min-h-screen  bg-cover bg-center bg-no-repeat relative"
+       style={{
+        backgroundImage: "url('https://www.justmbbs.com/img/college/karnataka/shimoga-institute-of-medical-sciences-shimoga-banner.jpg')"
+      }}
+    >
+      {}
+      <div className="absolute inset-0 bg-white/70 pt-20 sm:pt-24" />
         <Header />
         <div className="max-w-md mx-auto px-4 py-12 text-center">
-          <h1 className="text-lg font-medium text-slate-900 mb-2">No Registration</h1>
-          <p className="text-[13px] text-slate-600 mb-6">Complete registration first</p>
+          <h1 className="text-lg font-semibold text-slate-900 mb-2">
+            No registration found
+          </h1>
+          <p className="text-sm text-slate-600 mb-6">
+            Please complete your registration before proceeding to payment.
+          </p>
           <button
             onClick={() => navigate('/registration')}
-            className="w-full px-4 py-2.5 border border-[#005aa9] text-[#005aa9] hover:bg-[#005aa9]/5 rounded-xl text-sm font-medium transition-colors"
+            className="w-full inline-flex items-center justify-center border border-[#9c3253] px-4 py-3 text-sm font-medium text-[#9c3253] hover:bg-[#9c3253]/5 transition-colors"
           >
-            Go to Registration
+            Go to registration
           </button>
         </div>
-        <MobileNav />
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen  bg-cover bg-center bg-no-repeat relative"
+       style={{
+        backgroundImage: "url('https://www.justmbbs.com/img/college/karnataka/shimoga-institute-of-medical-sciences-shimoga-banner.jpg')"
+      }}
+    >
+      {}
+      <div className="absolute inset-0 bg-white/70 pt-20 sm:pt-24" />
       <Header />
 
-      <div className="max-w-6xl mx-auto px-3 sm:px-4 lg:px-6 py-4 sm:py-6 space-y-4 pb-20">
+     <div className="relative z-10 container mx-auto px-4 lg:px-6 py-6 lg:py-10 space-y-6 pb-20 max-w-6xl">
         {}
-        <div className="flex items-center mb-6 p-4 border border-slate-200 rounded-xl bg-slate-50/50">
+        <div className="flex items-center gap-3 bg-white border border-slate-200 px-4 py-3">
           <button
             onClick={() => navigate('/registration')}
-            className="p-2 text-slate-600 hover:text-[#005aa9] rounded-lg hover:bg-slate-100 transition-colors -m-2"
+            className="inline-flex h-8 w-8 items-center justify-center text-slate-600 hover:text-[#9c3253] hover:bg-slate-100 rounded-lg transition-colors"
           >
-            <ArrowLeft className="w-5 h-5" />
+            <ArrowLeft className="w-4 h-4" />
           </button>
-          <div className="ml-3">
-            <h1 className="text-lg font-medium text-slate-900">Secure Checkout</h1>
-            <p className="text-[13px] text-slate-600">Review your registration & pay securely</p>
+          <div>
+            <h1 className="text-base font-semibold text-slate-900">
+              Checkout
+            </h1>
+            <p className="text-xs text-slate-600">
+              Review your registration details and complete the payment.
+            </p>
           </div>
         </div>
 
         {error && (
-          <div className="p-4 border border-red-200 text-red-700 text-[12px] rounded-xl bg-red-50">
-            {error}
+          <div className="flex items-start gap-2 border border-red-200 bg-red-50 px-3 py-2 text-xs text-red-700">
+            <XCircle className="w-4 h-4 mt-0.5 flex-shrink-0" />
+            <span>{error}</span>
           </div>
         )}
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 lg:gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 lg:gap-6">
           {}
-          <section className="lg:col-span-2 space-y-4">
+          <section className="lg:col-span-2 space-y-5">
             {}
-            <div className="border border-slate-200 rounded-xl p-4 lg:p-6 bg-slate-50/50">
-              <div className="flex items-center justify-between mb-4">
-                <h2 className="text-sm font-medium text-slate-900 flex items-center">
-                  <User className="w-4 h-4 mr-2 text-slate-500" />
-                  Personal Information
-                </h2>
-              </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-[12px]">
-                <div className="flex items-center gap-3 p-3 border border-slate-200 rounded-lg bg-white">
-                  <Mail className="w-4 h-4 text-slate-500 flex-shrink-0" />
+            <div className="bg-white border border-slate-200 px-4 py-4">
+              <h2 className="text-sm font-semibold text-slate-900 mb-3 flex items-center gap-2">
+                <User className="w-4 h-4 text-[#9c3253]" />
+                Personal information
+              </h2>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+                <div className="flex items-center gap-3 border border-slate-200 bg-[#9c3253]/5 px-3 py-2 rounded">
+                  <Mail className="w-4 h-4 text-[#9c3253] flex-shrink-0" />
                   <div>
-                    <p className="text-xs text-slate-500 uppercase tracking-wide">Email</p>
-                    <p className="text-sm font-medium text-slate-900 truncate">{user?.email || 'N/A'}</p>
+                    <p className="text-[10px] uppercase tracking-wide text-slate-500">Email</p>
+                    <p className="font-medium text-slate-900 truncate">{user?.email || 'N/A'}</p>
                   </div>
                 </div>
-                <div className="flex items-center gap-3 p-3 border border-slate-200 rounded-lg bg-white">
-                  <Award className="w-4 h-4 text-[#005aa9] flex-shrink-0" />
+                <div className="flex items-center gap-3 border border-slate-200 bg-[#ff8a1f]/5 px-3 py-2 rounded">
+                  <Award className="w-4 h-4 text-[#ff8a1f] flex-shrink-0" />
                   <div>
-                    <p className="text-xs text-slate-500 uppercase tracking-wide">Category</p>
-                    <p className="text-sm font-medium text-slate-900">{getRoleText(user?.role)}</p>
+                    <p className="text-[10px] uppercase tracking-wide text-slate-500">Category</p>
+                    <p className="font-medium text-slate-900">{getRoleText(user?.role)}</p>
                   </div>
                 </div>
                 {user?.membershipId && (
-                  <div className="flex items-center gap-3 p-3 border border-slate-200 rounded-lg bg-white">
-                    <CreditCard className="w-4 h-4 text-[#009688] flex-shrink-0" />
+                  <div className="flex items-center gap-3 border border-slate-200 bg-[#7cb342]/5 px-3 py-2 rounded">
+                    <CreditCard className="w-4 h-4 text-[#7cb342] flex-shrink-0" />
                     <div>
-                      <p className="text-xs text-slate-500 uppercase tracking-wide">Membership ID</p>
-                      <p className="text-sm font-medium text-slate-900">{user.membershipId}</p>
+                      <p className="text-[10px] uppercase tracking-wide text-slate-500">Membership ID</p>
+                      <p className="font-medium text-slate-900">{user.membershipId}</p>
                     </div>
                   </div>
                 )}
                 {registration?.collegeLetter && (
-                  <div className="flex items-center gap-3 p-3 border border-slate-200 rounded-lg bg-white">
-                    <FileText className="w-4 h-4 text-[#005aa9] flex-shrink-0" />
+                  <div className="flex items-center gap-3 border border-slate-200 bg-[#9c3253]/5 px-3 py-2 rounded">
+                    <FileText className="w-4 h-4 text-[#9c3253] flex-shrink-0" />
                     <div>
-                      <p className="text-xs text-slate-500 uppercase tracking-wide">College Letter</p>
-                      <p className="text-sm font-medium text-slate-900 text-[12px]">✓ Uploaded</p>
+                      <p className="text-[10px] uppercase tracking-wide text-slate-500">College letter</p>
+                      <p className="font-medium text-slate-900">Uploaded</p>
                     </div>
                   </div>
                 )}
@@ -233,154 +280,173 @@ const CheckoutPage = () => {
             </div>
 
             {}
-            <div className="border border-slate-200 rounded-xl p-4 lg:p-6">
-              <h2 className="text-sm font-medium text-slate-900 mb-4 flex items-center">
-                <CreditCard className="w-4 h-4 mr-2 text-[#005aa9]" />
-                Registration #{registration.registrationNumber}
+            <div className="bg-white border border-slate-200 px-4 py-4">
+              <h2 className="text-sm font-semibold text-slate-900 mb-3 flex items-center gap-2">
+                <CreditCard className="w-4 h-4 text-[#9c3253]" />
+                Registration details
               </h2>
-              <div className="space-y-3 text-[12px]">
-                <p className="text-slate-600 font-medium">{getRegistrationTypeText(registration.registrationType)}</p>
-                <div className={`inline-flex items-center px-3 py-1.5 rounded-full text-[11px] font-medium ${getBookingPhaseColor(registration.bookingPhase)}`}>
-                  <Clock className="w-3.5 h-3.5 mr-1.5" />
-                  {registration.bookingPhase}
-                </div>
-              </div>
-
-              {registration.lifetimeMembershipId && (
-                <div className="mt-4 p-4 bg-[#005aa9]/10 border border-[#005aa9]/20 rounded-xl text-[12px]">
-                  <div className="flex items-center">
-                    <Award className="w-4 h-4 text-[#005aa9] mr-2 flex-shrink-0" />
-                    <span className="font-medium">Lifetime Membership: {registration.lifetimeMembershipId}</span>
+              <div className="space-y-3 text-xs">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <p className="text-[11px] text-slate-500">Registration no.</p>
+                    <p className="font-medium text-slate-900">{registration.registrationNumber}</p>
+                  </div>
+                  <div
+                    className={`inline-flex items-center gap-1 border px-2.5 py-1 text-[11px] font-medium rounded-full ${getBookingPhaseBadge(
+                      registration.bookingPhase
+                    )}`}
+                  >
+                    <Clock className="w-3 h-3" />
+                    <span>{getBookingPhaseText(registration.bookingPhase)}</span>
                   </div>
                 </div>
-              )}
+                <div>
+                  <p className="text-[11px] text-slate-500">Package</p>
+                  <p className="font-medium text-slate-900">
+                    {getRegistrationTypeText(registration.registrationType)}
+                  </p>
+                </div>
+                {registration.lifetimeMembershipId && (
+                  <div className="border border-[#ff8a1f]/20 bg-[#ff8a1f]/5 px-3 py-2 flex items-center gap-2 rounded">
+                    <Award className="w-4 h-4 text-[#ff8a1f]" />
+                    <div>
+                      <p className="text-[11px] text-slate-600">Lifetime membership ID</p>
+                      <p className="text-sm font-semibold text-slate-900">
+                        {registration.lifetimeMembershipId}
+                      </p>
+                    </div>
+                  </div>
+                )}
+              </div>
             </div>
 
             {}
-            <div className="border border-slate-200 rounded-xl p-4 lg:p-6 bg-slate-50/50">
-              <h3 className="text-sm font-medium text-slate-900 mb-4 flex items-center">
-                <CheckCircle className="w-4 h-4 mr-2 text-[#005aa9]" />
-                What's Included
+            <div className="bg-white border border-slate-200 px-4 py-4">
+              <h3 className="text-sm font-semibold text-slate-900 mb-3 flex items-center gap-2">
+                <CheckCircle className="w-4 h-4 text-[#7cb342]" />
+                What is included
               </h3>
-              <ul className="space-y-2 text-[11px] text-slate-600">
-                <li className="flex items-center">
-                  <CheckCircle className="w-3.5 h-3.5 text-[#005aa9] mr-2 flex-shrink-0" />
+              <ul className="space-y-2 text-xs text-slate-700">
+                <li className="flex items-center gap-2">
+                  <CheckCircle className="w-4 h-4 text-[#9c3253] flex-shrink-0" />
                   All conference sessions (3 days)
                 </li>
-                <li className="flex items-center">
-                  <CheckCircle className="w-3.5 h-3.5 text-[#005aa9] mr-2 flex-shrink-0" />
-                  Conference kit & materials
+                <li className="flex items-center gap-2">
+                  <CheckCircle className="w-4 h-4 text-[#ff8a1f] flex-shrink-0" />
+                  Conference kit and materials
                 </li>
-                <li className="flex items-center">
-                  <CheckCircle className="w-3.5 h-3.5 text-[#005aa9] mr-2 flex-shrink-0" />
+                <li className="flex items-center gap-2">
+                  <CheckCircle className="w-4 h-4 text-[#7cb342] flex-shrink-0" />
                   Certificate of participation
                 </li>
-                <li className="flex items-center">
-                  <CheckCircle className="w-3.5 h-3.5 text-[#005aa9] mr-2 flex-shrink-0" />
-                  Lunch & tea breaks (3 days)
+                <li className="flex items-center gap-2">
+                  <CheckCircle className="w-4 h-4 text-[#9c3253] flex-shrink-0" />
+                  Lunch and tea breaks
                 </li>
+                {registration.registrationType !== 'CONFERENCE_ONLY' && (
+                  <li className="flex items-center gap-2">
+                    <CheckCircle className="w-4 h-4 text-[#ff8a1f] flex-shrink-0" />
+                    Workshop access as per selection
+                  </li>
+                )}
                 {registration.registrationType === 'COMBO' && (
-                  <>
-                    <li className="flex items-center">
-                      <CheckCircle className="w-3.5 h-3.5 text-[#005aa9] mr-2 flex-shrink-0" />
-                      Lifetime AOA membership
-                    </li>
-                    <li className="flex items-center">
-                      <CheckCircle className="w-3.5 h-3.5 text-[#005aa9] mr-2 flex-shrink-0" />
-                      All workshop sessions
-                    </li>
-                  </>
+                  <li className="flex items-center gap-2">
+                    <CheckCircle className="w-4 h-4 text-[#7cb342] flex-shrink-0" />
+                    Lifetime AOA membership
+                  </li>
                 )}
               </ul>
             </div>
 
             {}
-            <div className="border border-slate-200 rounded-xl p-4 lg:p-6 bg-slate-50/30">
-              <h3 className="text-sm font-medium text-slate-900 mb-4">Event Details</h3>
-              <div className="space-y-3 text-[11px] text-slate-600">
-                <div className="flex items-center">
-                  <Calendar className="w-3.5 h-3.5 mr-2 text-[#005aa9]" />
-                  Oct 30 - Nov 1, 2026
+            <div className="bg-white border border-slate-200 px-4 py-4">
+              <h3 className="text-sm font-semibold text-slate-900 mb-3">
+                Event details
+              </h3>
+              <div className="space-y-2 text-xs text-slate-700">
+                <div className="flex items-center gap-2">
+                  <Calendar className="w-4 h-4 text-[#9c3253]" />
+                  <span>Oct 30 – Nov 1, 2026</span>
                 </div>
-                <div className="flex items-center">
-                  <Hotel className="w-3.5 h-3.5 mr-2 text-[#009688]" />
-                  Hotel Royal Orchid, Shivamogga
+                <div className="flex items-center gap-2">
+                  <Hotel className="w-4 h-4 text-[#ff8a1f]" />
+                  <span>Hotel Royal Orchid, Shivamogga</span>
                 </div>
-                <div className="flex items-center">
-                  <Users className="w-3.5 h-3.5 mr-2 text-[#005aa9]" />
-                  5000+ Delegates Expected
+                <div className="flex items-center gap-2">
+                  <Users className="w-4 h-4 text-[#7cb342]" />
+                  <span>5000+ delegates expected</span>
                 </div>
               </div>
             </div>
           </section>
 
           {}
-          <section className="lg:col-span-1 space-y-4 lg:sticky lg:top-4">
-            <div className="border border-slate-200 rounded-xl p-5 lg:p-6 bg-slate-50/50">
-              <h3 className="text-sm font-medium text-slate-900 mb-4 flex items-center">
-                <CreditCard className="w-4 h-4 mr-2 text-[#005aa9]" />
-                Payment Summary
+          <section className="lg:col-span-1 space-y-4 lg:sticky lg:top-24">
+            <div className="bg-white border border-slate-200 px-4 py-4 text-xs">
+              <h3 className="text-sm font-semibold text-slate-900 mb-3 flex items-center gap-2">
+                <CreditCard className="w-4 h-4 text-[#9c3253]" />
+                Payment summary
               </h3>
 
               {}
-              <div className="text-center mb-6 p-4 bg-gradient-to-r from-[#005aa9]/5 to-[#009688]/5 border border-[#005aa9]/20 rounded-xl">
-                <p className="text-3xl font-semibold text-[#005aa9]">
+              <div className="border border-[#9c3253]/20 bg-[#9c3253]/5 px-3 py-3 text-center mb-4">
+                <p className="text-xs text-slate-500 mb-1">Total amount</p>
+                <p className="text-lg font-semibold text-[#9c3253]">
                   ₹{registration.totalAmount?.toLocaleString()}
                 </p>
-                <p className="text-[11px] text-slate-600 mt-1">Total Amount (Incl. GST)</p>
+                <p className="text-[10px] text-[#ff8a1f] font-medium">Inclusive of 18% GST</p>
               </div>
 
               {}
-              <div className="space-y-2 text-[12px] mb-5">
-                {}
-               <div className="flex justify-between py-1">
-  <span className="text-slate-600">Package Price (excl. GST)</span>
-  <span>
-    ₹{(registration.totalAmount - registration.gst)?.toLocaleString() || 'N/A'}
-  </span>
-</div>
+              <div className="space-y-2 mb-4 text-xs">
+                <div className="flex justify-between">
+                  <span className="text-slate-600">Package (excl. GST)</span>
+                  <span className="font-medium text-slate-900">
+                    ₹{(registration.totalAmount - registration.gst)?.toLocaleString() || 'N/A'}
+                  </span>
+                </div>
 
-                {}
                 {registration.basePrice > 0 && (
-                  <div className="flex justify-between py-1 text-[11px] text-slate-600">
-                    <span>Base Price</span>
+                  <div className="flex justify-between text-[#9c3253] font-medium">
+                    <span>Conference fee</span>
                     <span>₹{registration.basePrice.toLocaleString()}</span>
                   </div>
                 )}
 
                 {registration.workshopPrice > 0 && (
-                  <div className="flex justify-between py-1 text-[11px] text-slate-600">
-                    <span>Workshop Fee</span>
+                  <div className="flex justify-between text-[#ff8a1f] font-medium">
+                    <span>Workshop fee</span>
                     <span>₹{registration.workshopPrice.toLocaleString()}</span>
                   </div>
                 )}
 
                 {registration.comboDiscount > 0 && (
-                  <div className="flex justify-between text-[#005aa9] py-1 font-medium">
-                    <span>Combo Discount</span>
+                  <div className="flex justify-between text-[#7cb342] font-medium">
+                    <span>Combo discount</span>
                     <span>-₹{registration.comboDiscount.toLocaleString()}</span>
                   </div>
                 )}
 
-                {}
-                <div className="flex justify-between py-1">
+                <div className="flex justify-between pt-2 border-t border-slate-200">
                   <span className="text-slate-600 font-medium">GST (18%)</span>
-                  <span className="font-medium">₹{registration.gst?.toLocaleString()}</span>
+                  <span className="font-bold text-[#9c3253]">₹{registration.gst?.toLocaleString()}</span>
                 </div>
               </div>
 
               {}
-              <div className="flex items-center justify-between mb-6 p-3 bg-slate-50 rounded-xl text-[12px]">
-                <span className="text-slate-600 font-medium">Payment Status</span>
-                <span className={`inline-flex items-center px-2.5 py-1 rounded-full text-[11px] font-medium ${
-                  registration.paymentStatus === 'PAID'
-                    ? 'bg-[#005aa9]/20 text-[#005aa9] border border-[#005aa9]/30' 
-                    : 'bg-amber-100 text-amber-700 border border-amber-200'
-                }`}>
+              <div className="flex items-center justify-between border border-slate-200 bg-[#ff8a1f]/5 px-3 py-2 mb-4 rounded">
+                <span className="font-medium text-slate-700 text-xs">Payment status</span>
+                <span
+                  className={`inline-flex items-center gap-1 border px-2 py-1 text-[11px] font-medium rounded-full ${
+                    registration.paymentStatus === 'PAID'
+                      ? 'border-[#7cb342]/30 bg-[#7cb342]/10 text-[#7cb342]'
+                      : 'border-[#ff8a1f]/30 bg-[#ff8a1f]/10 text-[#ff8a1f]'
+                  }`}
+                >
                   {registration.paymentStatus === 'PAID' ? (
-                    <CheckCircle className="w-3.5 h-3.5 mr-1.5" />
+                    <CheckCircle className="w-3 h-3" />
                   ) : (
-                    <Clock className="w-3.5 h-3.5 mr-1.5" />
+                    <Clock className="w-3 h-3" />
                   )}
                   {registration.paymentStatus}
                 </span>
@@ -390,18 +456,18 @@ const CheckoutPage = () => {
               <button
                 onClick={handlePayment}
                 disabled={processing || registration.paymentStatus === 'PAID'}
-                className="w-full px-6 py-4 rounded-xl border border-slate-200 bg-[#005aa9] text-white text-sm font-medium hover:from-[#00695c] hover:to-[#005aa9] disabled:opacity-50 disabled:cursor-not-allowed transition-all flex items-center justify-center gap-2 mb-4 text-base"
+                className="w-full inline-flex items-center justify-center gap-2 border border-[#9c3253] bg-[#9c3253] px-4 py-3 text-sm font-semibold text-white hover:bg-[#8a2b47] disabled:opacity-60 disabled:cursor-not-allowed mb-3 transition-all duration-200"
               >
                 {processing ? (
                   <LoadingSpinner size="sm" />
                 ) : registration.paymentStatus === 'PAID' ? (
                   <>
-                    <CheckCircle className="w-5 h-5" />
-                    Payment Complete
+                    <CheckCircle className="w-4 h-4" />
+                    Payment complete
                   </>
                 ) : (
                   <>
-                    <CreditCard className="w-5 h-5" />
+                    <CreditCard className="w-4 h-4" />
                     Pay ₹{registration.totalAmount?.toLocaleString()}
                   </>
                 )}
@@ -410,41 +476,30 @@ const CheckoutPage = () => {
               {registration.paymentStatus === 'PAID' && (
                 <button
                   onClick={() => navigate('/dashboard')}
-                  className="w-full px-6 py-3 border border-[#005aa9] text-[#005aa9] hover:bg-[#005aa9]/5 rounded-xl text-sm font-medium transition-colors"
+                  className="w-full inline-flex items-center justify-center border border-[#7cb342]/50 bg-[#7cb342]/5 px-4 py-2.5 text-xs font-semibold text-[#7cb342] hover:bg-[#7cb342]/10 transition-colors"
                 >
-                  Go to Dashboard
+                  Go to dashboard
                 </button>
               )}
 
               {}
-              <div className="space-y-3 pt-4 border-t border-slate-200 mt-6">
-                <div className="flex items-center justify-center text-[11px] text-[#005aa9]">
-                  <CheckCircle className="w-4 h-4 mr-2" />
-                  <span>Secured by Razorpay</span>
+              <div className="mt-5 border-t border-slate-200 pt-3 space-y-2">
+                <div className="flex items-center justify-center gap-1 text-[11px] text-slate-600">
+                  <CheckCircle className="w-3.5 h-3.5 text-[#7cb342]" />
+                  <span>Payments secured by Razorpay</span>
                 </div>
-                <div className="grid grid-cols-3 gap-2 text-[10px] text-slate-500 text-center">
-                  <div>UPI</div>
-                  <div>Cards</div>
-                  <div>Netbanking</div>
+                <div className="grid grid-cols-3 gap-2 text-[11px] text-slate-500 text-center">
+                  <span>UPI</span>
+                  <span>Cards</span>
+                  <span>Netbanking</span>
                 </div>
               </div>
             </div>
           </section>
         </div>
       </div>
-
-      <MobileNav />
     </div>
   );
-};
-
-const getBookingPhaseColor = (phase) => {
-  const colors = {
-    EARLY_BIRD: 'bg-[#005aa9] text-white',
-    REGULAR: 'bg-[#009688] text-white',
-    SPOT: 'bg-amber-500 text-white',
-  };
-  return colors[phase] || 'bg-slate-500 text-white';
 };
 
 export default CheckoutPage;

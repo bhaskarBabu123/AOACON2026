@@ -29,6 +29,9 @@ import AbstractReviewPage from './pages/admin/AbstractReviewPage';
 import FeedbackViewerPage from './pages/admin/FeedbackViewerPage';
 import { useEffect } from 'react';
 import LoadingSpinner from './components/common/LoadingSpinner';
+import QrScanner from './pages/admin/QrScanner';
+import AttendanceManagementPage from './pages/admin/AttendanceManagement';
+import OfficeBearersPage from './pages/user/OfficeBearersPage';
 
 const ProtectedRoute = ({ children }) => {
   const { isAuthenticated, loading } = useAuth();
@@ -124,6 +127,9 @@ function App() {
               <Route path="/contact" element={
                   <ContactPage />
               } />
+               <Route path="/office-bearers" element={
+                  <OfficeBearersPage />
+              } />
               
               <Route path="/download" element={
                   <BrochurePage />
@@ -203,6 +209,16 @@ function App() {
               <Route path="/admin/registrations" element={
                 <AdminRoute>
                   <RegistrationsManagementPage />
+                </AdminRoute>
+              } />
+              <Route path="/admin/scanner" element={
+                <AdminRoute>
+                  <QrScanner />
+                </AdminRoute>
+              } />
+              <Route path="/admin/check/attendance" element={
+                <AdminRoute>
+                  <AttendanceManagementPage />
                 </AdminRoute>
               } />
               <Route path="/admin/accommodations" element={

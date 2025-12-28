@@ -159,7 +159,6 @@ const AbstractReviewPage = () => {
     window.URL.revokeObjectURL(url);
   };
 
-  // Calculate stats
   const totalAbstracts = abstracts.length;
   const pendingAbstracts = abstracts.filter(a => a.status === 'PENDING').length;
   const approvedAbstracts = abstracts.filter(a => a.status === 'APPROVED').length;

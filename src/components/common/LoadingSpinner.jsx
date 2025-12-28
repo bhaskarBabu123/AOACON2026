@@ -7,7 +7,7 @@ const LoadingSpinner = ({ size = 'md', text = '' }) => {
 
   return (
     <div className="flex flex-col items-center justify-center">
-      <img src="https://dallasclinic.co.nz/resources/assets/images/loaders/heart-loading2.gif" alt="loading" className="w-20"/>
+      <img src="https://cdn.pixabay.com/animation/2023/05/02/04/29/04-29-06-428_512.gif" alt="loading" className="w-20"/>
       {text && (
         <p className="mt-2 text-sm text-gray-600">{text}</p>
       )}

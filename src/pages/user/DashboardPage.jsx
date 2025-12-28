@@ -1,25 +1,30 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { 
-  User, 
-  Calendar, 
-  CreditCard, 
-  FileText, 
-  MessageSquare, 
-  CheckCircle, 
-  Clock, 
-  Download,
-  Building2,
+import {
+  CreditCard,
+  User,
+  Mail,
   Award,
-  ArrowRight,
-  MapPin,
+  CheckCircle,
+  Clock,
+  ArrowLeft,
+  Hotel,
   Users,
-  ChevronRight,
-  Hotel
+  Calendar,
+  FileText,
+  MessageSquare,
+  MapPin,
+  Download,
+  Star
 } from 'lucide-react';
 import { useAuth } from '../../contexts/AuthContext';
 import { useApp } from '../../contexts/AppContext';
-import { registrationAPI, accommodationAPI, abstractAPI, feedbackAPI } from '../../utils/api';
+import {
+  registrationAPI,
+  accommodationAPI,
+  abstractAPI,
+  feedbackAPI,
+} from '../../utils/api';
 import Header from '../../components/common/Header';
 import MobileNav from '../../components/common/MobileNav';
 import LoadingSpinner from '../../components/common/LoadingSpinner';
@@ -30,19 +35,25 @@ const DashboardPage = () => {
     registration: null,
     accommodations: [],
     abstract: null,
-    feedback: null
+    feedback: null,
   });
-  
+
   const { user } = useAuth();
-  const { stepperProgress, setRegistration, setAccommodationBookings, setAbstract, setFeedback } = useApp();
+  const {
+    stepperProgress,
+    setRegistration,
+    setAccommodationBookings,
+    setAbstract,
+    setFeedback,
+  } = useApp();
   const navigate = useNavigate();
 
   const steps = [
-    { key: 'registration', label: 'Register', short: 'Reg' },
-    { key: 'accommodation', label: 'Stay', short: 'Stay' },
-    { key: 'conferenceDays', label: 'Days', short: 'Days' },
+    { key: 'registration', label: 'Registration', short: 'Reg' },
+    { key: 'accommodation', label: 'Accommodation', short: 'Stay' },
+    { key: 'conferenceDays', label: 'Conference Days', short: 'Days' },
     { key: 'abstractUpload', label: 'Abstract', short: 'Abs' },
-    { key: 'feedback', label: 'Feedback', short: 'Fdbk' }
+    { key: 'feedback', label: 'Feedback', short: 'Fb' },
   ];
 
   const getRoleText = (role) => {
@@ -64,20 +75,43 @@ const DashboardPage = () => {
   };
 
   const getStatusBadge = (status) => {
-    const badges = {
-      PAID: { color: 'bg-[#005aa9]/20 text-[#005aa9]', icon: CheckCircle },
-      PENDING: { color: 'bg-amber-100 text-amber-700', icon: Clock },
-      FAILED: { color: 'bg-red-100 text-red-700', icon: Clock },
-      CONFIRMED: { color: 'bg-[#005aa9]/20 text-[#005aa9]', icon: CheckCircle },
-      APPROVED: { color: 'bg-[#005aa9]/20 text-[#005aa9]', icon: CheckCircle },
-      REJECTED: { color: 'bg-red-100 text-red-700', icon: Clock }
+    const map = {
+      PAID: {
+        color: 'bg-[#7cb342]/20 text-[#7cb342] border border-[#7cb342]/30',
+        icon: CheckCircle,
+      },
+      PENDING: {
+        color: 'bg-[#ff8a1f]/20 text-[#ff8a1f] border border-[#ff8a1f]/30',
+        icon: Clock,
+      },
+      FAILED: {
+        color: 'bg-red-500/20 text-red-400 border border-red-400/30',
+        icon: Clock,
+      },
+      CONFIRMED: {
+        color: 'bg-[#9c3253]/20 text-[#9c3253] border border-[#9c3253]/30',
+        icon: CheckCircle,
+      },
+      APPROVED: {
+        color: 'bg-[#7cb342]/20 text-[#7cb342] border border-[#7cb342]/30',
+        icon: CheckCircle,
+      },
+      REJECTED: {
+        color: 'bg-red-500/20 text-red-400 border border-red-400/30',
+        icon: Clock,
+      },
     };
-    
-    const badge = badges[status] || { color: 'bg-slate-100 text-slate-700', icon: Clock };
+    const badge =
+      map[status] || {
+        color: 'bg-slate-500/20 text-slate-500 border border-slate-400/30',
+        icon: Clock,
+      };
     const Icon = badge.icon;
     return (
-      <span className={`inline-flex items-center px-2 py-1 rounded-full text-[11px] font-medium ${badge.color}`}>
-        <Icon className="w-3 h-3 mr-1 flex-shrink-0" />
+      <span
+        className={`inline-flex items-center gap-1.5 rounded-full px-2 py-1 text-[10px] font-medium ${badge.color}`}
+      >
+        <Icon className="w-3 h-3" />
         {status}
       </span>
     );
@@ -98,30 +132,30 @@ const DashboardPage = () => {
   const fetchDashboardData = async () => {
     try {
       setLoading(true);
-      
+
       try {
         const regResponse = await registrationAPI.getMyRegistration();
-        setStats(prev => ({ ...prev, registration: regResponse.data }));
+        setStats((prev) => ({ ...prev, registration: regResponse.data }));
         setRegistration(regResponse.data);
-      } catch (error) {}
+      } catch {}
 
       try {
         const accResponse = await accommodationAPI.getMyBookings();
-        setStats(prev => ({ ...prev, accommodations: accResponse.data }));
+        setStats((prev) => ({ ...prev, accommodations: accResponse.data }));
         setAccommodationBookings(accResponse.data);
-      } catch (error) {}
+      } catch {}
 
       try {
         const abstractResponse = await abstractAPI.getMyAbstract();
-        setStats(prev => ({ ...prev, abstract: abstractResponse.data }));
+        setStats((prev) => ({ ...prev, abstract: abstractResponse.data }));
         setAbstract(abstractResponse.data);
-      } catch (error) {}
+      } catch {}
 
       try {
         const feedbackResponse = await feedbackAPI.getMyFeedback();
-        setStats(prev => ({ ...prev, feedback: feedbackResponse.data }));
+        setStats((prev) => ({ ...prev, feedback: feedbackResponse.data }));
         setFeedback(feedbackResponse.data);
-      } catch (error) {}
+      } catch {}
     } finally {
       setLoading(false);
     }
@@ -129,361 +163,485 @@ const DashboardPage = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-white flex items-center justify-center">
-        <LoadingSpinner size="sm" text="Loading dashboard..." />
+      <div className="min-h-screen bg-cover bg-center bg-no-repeat relative flex items-center justify-center"
+        style={{
+          backgroundImage: "url('https://www.justmbbs.com/img/college/karnataka/shimoga-institute-of-medical-sciences-shimoga-banner.jpg')"
+        }}
+      >
+        <div className="absolute inset-0 bg-black/70" />
+        <LoadingSpinner size="md" text="Loading dashboard..." />
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-white">
+    <div 
+      className="min-h-screen bg-cover bg-center bg-no-repeat relative"
+      style={{
+        backgroundImage: "url('https://www.justmbbs.com/img/college/karnataka/shimoga-institute-of-medical-sciences-shimoga-banner.jpg')"
+      }}
+    >
+      {}
+      <div className="absolute inset-0 bg-white/80 pt-20 sm:pt-24" />
+      
       <Header />
       
-      <div className="max-w-6xl mx-auto px-3 sm:px-4 lg:px-6 py-4 sm:py-6 space-y-4 pb-20">
+      <div className="relative z-10 max-w-6xl mx-auto px-4 lg:px-6 py-6 lg:py-10 space-y-6 pb-20">
         {}
-        <div className="flex items-center gap-3 mb-6 p-4 border border-slate-200 rounded-xl bg-slate-50/50">
-          <div className="w-12 h-12 bg-[#005aa9] rounded-full flex items-center justify-center flex-shrink-0">
-            <User className="w-6 h-6 text-white" />
+        <div className="bg-white/90 backdrop-blur-xl border border-white/40 rounded-2xl px-4 py-3 sm:px-5 sm:py-4 flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            <button
+              onClick={() => navigate(-1)}
+              className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-white/80 text-slate-700 hover:bg-white backdrop-blur-sm"
+            >
+              <ArrowLeft className="w-4 h-4" />
+            </button>
+            <div>
+              <p className="text-[11px] font-medium text-[#9c3253] uppercase tracking-wide">
+                AOACON 2026 dashboard
+              </p>
+              <p className="text-sm sm:text-base font-semibold text-slate-900">
+                Welcome back, {user?.name}
+              </p>
+            </div>
           </div>
-          <div className="min-w-0 flex-1">
-            <p className="text-sm font-medium text-slate-900">{user?.name}</p>
-            <p className="text-[12px] text-slate-600">{getRoleText(user?.role)}</p>
-          </div>
-          <div className="text-right">
-            <p className="text-[11px] text-slate-500">AOACON 2026</p>
-            <p className="text-[10px] text-slate-400">Shivamogga</p>
+          <div className="hidden sm:flex items-center gap-2 text-xs text-slate-600">
+            <Calendar className="w-4 h-4 text-[#ff8a1f]" />
+            <span>Oct 30 – Nov 1, 2026 • Shivamogga</span>
           </div>
         </div>
 
         {}
-        <div className="border border-slate-200 rounded-xl p-4 bg-slate-50/30 mb-6">
-          <div className="flex items-center gap-2 mb-3">
-            <Clock className="w-4 h-4 text-slate-500" />
-            <h2 className="text-sm font-medium text-slate-900">Progress</h2>
-            <span className="ml-auto text-[11px] text-slate-500">{getCurrentStep() + 1}/5</span>
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
+          {}
+          <div className="bg-white/90 backdrop-blur-xl border border-white/40 rounded-2xl px-4 py-4 sm:px-5 sm:py-5 flex items-center gap-3">
+            <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-[#9c3253] to-[#ff8a1f] text-white">
+              <User className="w-6 h-6" />
+            </div>
+            <div className="min-w-0 flex-1">
+              <p className="text-sm sm:text-base font-semibold truncate text-slate-900">
+                {user?.name}
+              </p>
+              <p className="text-xs text-slate-600">
+                {getRoleText(user?.role)}
+              </p>
+              <p className="mt-1 text-[11px] text-slate-500 truncate">
+                {user?.email}
+              </p>
+            </div>
           </div>
-          <div className="flex items-center -space-x-1">
-            {steps.map((step, index) => (
-              <div key={step.key} className="flex flex-col items-center flex-1 min-w-0">
-                <div className={`w-4 h-4 rounded-full transition-all ${
-                  index <= getCurrentStep() 
-                    ? 'bg-[#005aa9]' 
-                    : 'bg-slate-200 hover:bg-slate-300'
-                }`} />
-                <span className={`text-[10px] text-center mt-2 px-1 truncate ${
-                  index <= getCurrentStep() ? 'text-[#005aa9] font-medium' : 'text-slate-500'
-                }`}>
-                  {window.innerWidth < 640 ? step.short : step.label}
-                </span>
+
+          {}
+          <div className="lg:col-span-2 bg-white/90 backdrop-blur-xl border border-white/40 rounded-2xl px-4 py-4 sm:px-5 sm:py-5">
+            <div className="flex items-center justify-between mb-4">
+              <div className="flex items-center gap-2">
+                <Clock className="w-4 h-4 text-[#9c3253]" />
+                <h2 className="text-sm font-semibold text-slate-900">Overall progress</h2>
               </div>
-            ))}
+              <span className="text-xs font-medium text-slate-600">
+                Step {getCurrentStep() + 1} of 5
+              </span>
+            </div>
+            <div className="relative flex items-center -space-x-px">
+              <div className="absolute inset-x-6 inset-y-1/2 -z-10 h-px bg-slate-200" />
+              {steps.map((step, index) => {
+                const active = index <= getCurrentStep();
+                return (
+                  <div
+                    key={step.key}
+                    className="flex flex-1 flex-col items-center min-w-0"
+                  >
+                    <div
+                      className={`flex h-8 w-8 items-center justify-center rounded-full border text-xs font-semibold transition-all ${
+                        active
+                          ? 'bg-[#9c3253] border-[#9c3253] text-white shadow-md' 
+                          : 'bg-slate-100 border-slate-200 text-slate-500'
+                      }`}
+                    >
+                      {index + 1}
+                    </div>
+                    <span
+                      className={`mt-2 text-[11px] text-center font-medium truncate ${
+                        active ? 'text-[#9c3253]' : 'text-slate-500'
+                      }`}
+                    >
+                      {window.innerWidth < 640 ? step.short : step.label}
+                    </span>
+                  </div>
+                );
+              })}
+            </div>
           </div>
         </div>
 
         {}
-        <div className="grid grid-cols-2 sm:hidden gap-3 mb-6">
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
           {!stats.registration && (
             <button
               onClick={() => navigate('/registration')}
-              className="p-3 border border-slate-200 rounded-lg bg-white hover:bg-slate-50 text-[12px] transition-colors"
+              className="group bg-white/90 backdrop-blur-xl border border-[#9c3253]/30 rounded-2xl px-3 py-3 text-center text-xs sm:text-sm hover:border-[#9c3253]/50 transition-all"
             >
-              <CreditCard className="w-5 h-5 mx-auto mb-1 text-slate-600" />
-              <div className="text-center">
-                <p className="font-medium text-slate-900">Register</p>
-                <p className="text-[10px] text-slate-500">Start now</p>
-              </div>
+              <CreditCard className="w-5 h-5 mx-auto mb-2 text-[#9c3253] group-hover:scale-110 transition-transform" />
+              <p className="font-semibold text-slate-900">Register</p>
+              <p className="text-[11px] text-slate-600">Start now</p>
             </button>
           )}
           <button
             onClick={() => navigate('/accommodation')}
-            className="p-3 border border-slate-200 rounded-lg bg-white hover:bg-slate-50 text-[12px] transition-colors"
+            className="group bg-white/90 backdrop-blur-xl border border-[#ff8a1f]/30 rounded-2xl px-3 py-3 text-center text-xs sm:text-sm hover:border-[#ff8a1f]/50 transition-all"
           >
-            <Hotel className="w-5 h-5 mx-auto mb-1 text-slate-600" />
-            <div className="text-center">
-              <p className="font-medium text-slate-900">Stay</p>
-              <p className="text-[10px] text-slate-500">Book hotel</p>
-            </div>
+            <Hotel className="w-5 h-5 mx-auto mb-2 text-[#ff8a1f] group-hover:scale-110 transition-transform" />
+            <p className="font-semibold text-slate-900">Stay</p>
+            <p className="text-[11px] text-slate-600">Book hotel</p>
           </button>
           <button
             onClick={() => navigate('/abstract/rules')}
-            className="p-3 border border-slate-200 rounded-lg bg-white hover:bg-slate-50 text-[12px] transition-colors"
+            className="group bg-white/90 backdrop-blur-xl border border-[#7cb342]/30 rounded-2xl px-3 py-3 text-center text-xs sm:text-sm hover:border-[#7cb342]/50 transition-all"
           >
-            <FileText className="w-5 h-5 mx-auto mb-1 text-slate-600" />
-            <div className="text-center">
-              <p className="font-medium text-slate-900">Abstract</p>
-              <p className="text-[10px] text-slate-500">Submit paper</p>
-            </div>
+            <FileText className="w-5 h-5 mx-auto mb-2 text-[#7cb342] group-hover:scale-110 transition-transform" />
+            <p className="font-semibold text-slate-900">Abstract</p>
+            <p className="text-[11px] text-slate-600">Submit</p>
           </button>
           <button
             onClick={() => navigate('/feedback')}
-            className="p-3 border border-slate-200 rounded-lg bg-white hover:bg-slate-50 text-[12px] transition-colors"
+            className="group bg-white/90 backdrop-blur-xl border border-[#ff8a1f]/30 rounded-2xl px-3 py-3 text-center text-xs sm:text-sm hover:border-[#ff8a1f]/50 transition-all"
           >
-            <MessageSquare className="w-5 h-5 mx-auto mb-1 text-slate-600" />
-            <div className="text-center">
-              <p className="font-medium text-slate-900">Feedback</p>
-              <p className="text-[10px] text-slate-500">Share experience</p>
-            </div>
+            <MessageSquare className="w-5 h-5 mx-auto mb-2 text-[#ff8a1f] group-hover:scale-110 transition-transform" />
+            <p className="font-semibold text-slate-900">Feedback</p>
+            <p className="text-[11px] text-slate-600">After event</p>
           </button>
         </div>
 
-        {}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 lg:gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">
           {}
-          <section className="lg:col-span-2 space-y-4">
-            <div className="border border-slate-200 rounded-xl p-4 lg:p-6">
-              <div className="flex items-center justify-between mb-4 lg:mb-6">
-                <h2 className="text-sm font-medium text-slate-900 flex items-center">
-                  <CreditCard className="w-4 h-4 mr-2 text-slate-500" />
-                  Registration #{stats.registration?.registrationNumber || 'Pending'}
+          <section className="lg:col-span-2 space-y-5">
+            {}
+            <div className="bg-white/90 backdrop-blur-xl border border-white/40 rounded-2xl px-4 py-4 sm:px-5 sm:py-5">
+              <div className="flex items-center justify-between mb-4">
+                <h2 className="text-sm font-semibold flex items-center gap-2 text-slate-900">
+                  <CreditCard className="w-4 h-4 text-[#9c3253]" />
+                  Registration
+                  {stats.registration?.registrationNumber && (
+                    <span className="text-[11px] font-normal text-slate-600/80">
+                      #{stats.registration.registrationNumber}
+                    </span>
+                  )}
                 </h2>
                 {stats.registration && (
-                  <button className="text-[11px] text-[#005aa9] hover:text-[#009688] flex items-center">
-                    <Download className="w-3.5 h-3.5 mr-1" />
+                  <button className="inline-flex items-center gap-1 text-[11px] sm:text-xs font-medium text-[#9c3253] hover:text-[#8a2b47]">
+                    <Download className="w-3.5 h-3.5" />
                     Invoice
                   </button>
                 )}
               </div>
 
               {stats.registration ? (
-                <div className="space-y-4">
-                  <div className="p-4 border border-slate-200 rounded-lg bg-slate-50/50">
-                    <div className="flex items-center justify-between mb-3">
-                      <div>
-                        <p className="font-medium text-sm text-slate-900">{getRegistrationTypeText(stats.registration.registrationType)}</p>
-                        <p className="text-[12px] text-slate-600">#{stats.registration.registrationNumber}</p>
-                      </div>
-                      <div className="text-right">
-                        {getStatusBadge(stats.registration.paymentStatus)}
-                        <p className="text-sm font-medium text-slate-900 mt-1">
-                          ₹{stats.registration.totalAmount?.toLocaleString()}
-                        </p>
-                      </div>
+                <div className="space-y-4 text-xs sm:text-sm">
+                  <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 rounded-xl bg-[#9c3253]/5 px-3 py-3 border border-[#9c3253]/20">
+                    <div>
+                      <p className="font-medium text-slate-900">
+                        {getRegistrationTypeText(
+                          stats.registration.registrationType
+                        )}
+                      </p>
+                      <p className="text-[11px] text-slate-600/80 mt-0.5">
+                        Booking phase: {stats.registration.bookingPhase}
+                      </p>
+                    </div>
+                    <div className="flex flex-col items-end gap-1">
+                      {getStatusBadge(stats.registration.paymentStatus)}
+                      <p className="text-sm font-semibold text-[#9c3253]">
+                        ₹{stats.registration.totalAmount?.toLocaleString()}
+                      </p>
                     </div>
                   </div>
 
                   {stats.registration.lifetimeMembershipId && (
-                    <div className="p-3 bg-[#005aa9]/10 border border-[#005aa9]/20 rounded-lg text-[12px]">
-                      <div className="flex items-center">
-                        <Award className="w-4 h-4 text-[#005aa9] mr-2" />
-                        <span>Lifetime ID: {stats.registration.lifetimeMembershipId}</span>
-                      </div>
+                    <div className="rounded-xl bg-[#7cb342]/10 px-3 py-2 flex items-center gap-2 border border-[#7cb342]/20">
+                      <Award className="w-4 h-4 text-[#7cb342]" />
+                      <span className="text-xs sm:text-sm">
+                        Lifetime ID:{' '}
+                        <span className="font-semibold text-[#7cb342]">
+                          {stats.registration.lifetimeMembershipId}
+                        </span>
+                      </span>
                     </div>
                   )}
 
                   {stats.registration.paymentStatus === 'PENDING' && (
                     <button
                       onClick={() => navigate('/checkout')}
-                      className="w-full px-4 py-3 border border-slate-200 rounded-lg bg-[#005aa9] text-white text-sm font-medium hover:from-[#00695c] hover:to-[#005aa9] transition-colors flex items-center justify-center"
+                      className="mt-2 w-full inline-flex items-center justify-center gap-2 rounded-xl bg-[#9c3253] text-white px-4 py-3 text-xs sm:text-sm font-semibold hover:bg-[#8a2b47] border border-[#9c3253]"
                     >
-                      Pay Now <ArrowRight className="w-4 h-4 ml-1" />
+                      Pay now
                     </button>
                   )}
                 </div>
               ) : (
-                <div className="text-center py-8 border-2 border-dashed border-slate-200 rounded-2xl p-6">
-                  <CreditCard className="w-12 h-12 text-slate-300 mx-auto mb-3" />
-                  <p className="text-[13px] text-slate-600 mb-3">No registration found</p>
-                  <p className="text-[11px] text-slate-500 mb-6">Join 5000+ delegates at AOACON 2026</p>
+                <div className="text-center py-10 rounded-xl bg-slate-50/50 border border-slate-200/50">
+                  <CreditCard className="w-10 h-10 text-[#9c3253]/50 mx-auto mb-3" />
+                  <p className="text-sm text-slate-600 mb-2">
+                    You have not registered yet.
+                  </p>
                   <button
                     onClick={() => navigate('/registration')}
-                    className="w-full px-4 py-2.5 border border-[#005aa9] text-[#005aa9] hover:bg-[#005aa9]/5 rounded-lg text-sm font-medium transition-colors"
+                    className="inline-flex items-center justify-center rounded-xl bg-[#9c3253] text-white px-4 py-2.5 text-xs sm:text-sm font-semibold hover:bg-[#8a2b47]"
                   >
-                    Register Now
+                    Register now
                   </button>
                 </div>
               )}
             </div>
 
             {}
-            <div className="border border-slate-200 rounded-xl p-4 lg:p-6">
-              <div className="flex items-center justify-between mb-4 lg:mb-6">
-                <h2 className="text-sm font-medium text-slate-900 flex items-center">
-                  <Hotel className="w-4 h-4 mr-2 text-slate-500" />
-                  Accommodation ({stats.accommodations.length})
+            <div className="bg-white/90 backdrop-blur-xl border border-white/40 rounded-2xl px-4 py-4 sm:px-5 sm:py-5">
+              <div className="flex items-center justify-between mb-4">
+                <h2 className="text-sm font-semibold flex items-center gap-2 text-slate-900">
+                  <Hotel className="w-4 h-4 text-[#ff8a1f]" />
+                  Accommodation
+                  <span className="text-[11px] font-normal text-slate-600/80">
+                    ({stats.accommodations.length})
+                  </span>
                 </h2>
                 <button
                   onClick={() => navigate('/accommodation')}
-                  className="text-[11px] text-[#009688] hover:text-[#005aa9]"
+                  className="text-[11px] sm:text-xs font-medium text-[#ff8a1f] hover:text-[#e67e22]"
                 >
-                  All
+                  View all
                 </button>
               </div>
 
               {stats.accommodations.length > 0 ? (
-                <div className="space-y-3">
+                <div className="space-y-3 text-xs sm:text-sm">
                   {stats.accommodations.slice(0, 3).map((booking) => (
-                    <div key={booking._id} className="p-4 border border-slate-200 rounded-lg bg-slate-50/50 hover:bg-slate-50 transition-colors">
-                      <div className="flex items-center justify-between mb-2">
-                        <p className="font-medium text-sm text-slate-900 truncate">{booking.accommodationId?.name}</p>
+                    <div
+                      key={booking._id}
+                      className="rounded-xl bg-[#ff8a1f]/5 px-3 py-3 border border-[#ff8a1f]/20"
+                    >
+                      <div className="flex items-center justify-between mb-1.5">
+                        <p className="font-medium text-slate-900 truncate">
+                          {booking.accommodationId?.name}
+                        </p>
                         {getStatusBadge(booking.paymentStatus)}
                       </div>
-                      <p className="text-[12px] text-slate-600 mb-1">
-                        {new Date(booking.checkInDate).toLocaleDateString('short')} - {new Date(booking.checkOutDate).toLocaleDateString('short')}
+                      <p className="text-[11px] text-slate-600/80 mb-1">
+                        {new Date(
+                          booking.checkInDate
+                        ).toLocaleDateString('en-IN')}{' '}
+                        –{' '}
+                        {new Date(
+                          booking.checkOutDate
+                        ).toLocaleDateString('en-IN')}
                       </p>
-                      <div className="flex items-center justify-between text-[11px]">
-                        <span>{booking.guests} guest{booking.guests > 1 ? 's' : ''}</span>
-                        <span className="font-medium text-slate-900">₹{booking.totalAmount?.toLocaleString()}</span>
+                      <div className="flex items-center justify-between text-[11px] text-slate-900">
+                        <span>
+                          {booking.numberOfGuests} guest
+                          {booking.numberOfGuests > 1 ? 's' : ''}
+                        </span>
+                        <span className="font-semibold text-[#ff8a1f]">
+                          ₹{booking.totalAmount?.toLocaleString()}
+                        </span>
                       </div>
-                      <p className="text-[10px] text-slate-500 mt-1">#{booking.bookingNumber}</p>
+                      <p className="mt-1 text-[10px] text-slate-500">
+                        #{booking.bookingNumber}
+                      </p>
                     </div>
                   ))}
                   {stats.accommodations.length > 3 && (
-                    <button className="w-full text-[12px] text-[#009688] py-2 font-medium">
-                      +{stats.accommodations.length - 3} more
-                    </button>
+                    <p className="text-center text-[11px] text-slate-600/80 pt-1">
+                      +{stats.accommodations.length - 3} more bookings
+                    </p>
                   )}
                 </div>
               ) : (
-                <div className="text-center py-8 border-2 border-dashed border-slate-200 rounded-2xl p-6">
-                  <Hotel className="w-12 h-12 text-slate-300 mx-auto mb-3" />
-                  <p className="text-[13px] text-slate-600 mb-3">No accommodation booked</p>
-                  <p className="text-[11px] text-slate-500 mb-6">Multiple hotels available near venue</p>
+                <div className="text-center py-10 rounded-xl bg-[#ff8a1f]/5 border border-[#ff8a1f]/20">
+                  <Hotel className="w-10 h-10 text-[#ff8a1f]/50 mx-auto mb-3" />
+                  <p className="text-sm text-slate-600 mb-2">
+                    No accommodation booked yet.
+                  </p>
                   <button
                     onClick={() => navigate('/accommodation')}
-                    className="w-full px-4 py-2.5 border border-[#009688] text-[#009688] hover:bg-[#009688]/5 rounded-lg text-sm font-medium transition-colors"
+                    className="inline-flex items-center justify-center rounded-xl bg-[#ff8a1f] text-white px-4 py-2.5 text-xs sm:text-sm font-semibold hover:bg-[#e67e22]"
                   >
-                    Book Stay
+                    Book stay
                   </button>
                 </div>
               )}
             </div>
 
             {}
-            <div className="border border-slate-200 rounded-xl p-4 lg:p-6 bg-slate-50/30">
-              <h3 className="text-sm font-medium text-slate-900 mb-4 flex items-center">
-                Recent Activity
+            <div className="bg-white/90 backdrop-blur-xl border border-white/40 rounded-2xl px-4 py-4 sm:px-5 sm:py-5">
+              <h3 className="text-sm font-semibold mb-3 flex items-center gap-2 text-slate-900">
+                <Clock className="w-4 h-4 text-[#9c3253]" />
+                Recent activity
               </h3>
-              <div className="space-y-3 text-[11px]">
+              <div className="space-y-3 text-xs sm:text-sm">
                 {stats.registration && (
-                  <div className="flex items-center p-3 border border-slate-200 rounded-lg bg-white">
-                    <CheckCircle className="w-4 h-4 text-[#005aa9] mr-3 flex-shrink-0" />
-                    <div>
-                      <p className="font-medium text-slate-900 text-[12px]">Registration #{stats.registration.registrationNumber}</p>
-                      <p className="text-slate-600">{stats.registration.paymentStatus} • {new Date().toLocaleDateString()}</p>
+                  <div className="flex items-center rounded-xl bg-[#9c3253]/5 px-3 py-3 border border-[#9c3253]/20">
+                    <CheckCircle className="w-4 h-4 text-[#7cb342] mr-3 flex-shrink-0" />
+                    <div className="min-w-0">
+                      <p className="font-medium text-slate-900 truncate">
+                        Registration #{stats.registration.registrationNumber}
+                      </p>
+                      <p className="text-[11px] text-slate-600/80">
+                        {stats.registration.paymentStatus} •{' '}
+                        {new Date().toLocaleDateString('en-IN')}
+                      </p>
                     </div>
                   </div>
                 )}
                 {stats.accommodations[0] && (
-                  <div className="flex items-center p-3 border border-slate-200 rounded-lg bg-white">
-                    <Hotel className="w-4 h-4 text-[#009688] mr-3 flex-shrink-0" />
-                    <div>
-                      <p className="font-medium text-slate-900 text-[12px] truncate">{stats.accommodations[0].accommodationId?.name}</p>
-                      <p className="text-slate-600">Booked • {new Date().toLocaleDateString()}</p>
+                  <div className="flex items-center rounded-xl bg-[#ff8a1f]/5 px-3 py-3 border border-[#ff8a1f]/20">
+                    <Hotel className="w-4 h-4 text-[#ff8a1f] mr-3 flex-shrink-0" />
+                    <div className="min-w-0">
+                      <p className="font-medium text-slate-900 truncate">
+                        {stats.accommodations[0].accommodationId?.name}
+                      </p>
+                      <p className="text-[11px] text-slate-600/80">
+                        Booking created •{' '}
+                        {new Date().toLocaleDateString('en-IN')}
+                      </p>
                     </div>
                   </div>
                 )}
                 {stats.abstract && (
-                  <div className="flex items-center p-3 border border-slate-200 rounded-lg bg-white">
-                    <FileText className="w-4 h-4 text-[#005aa9] mr-3 flex-shrink-0" />
-                    <div>
-                      <p className="font-medium text-slate-900 text-[12px] truncate">{stats.abstract.title}</p>
-                      <p className="text-slate-600">{stats.abstract.status} • {new Date().toLocaleDateString()}</p>
+                  <div className="flex items-center rounded-xl bg-[#7cb342]/5 px-3 py-3 border border-[#7cb342]/20">
+                    <FileText className="w-4 h-4 text-[#7cb342] mr-3 flex-shrink-0" />
+                    <div className="min-w-0">
+                      <p className="font-medium text-slate-900 truncate">
+                        {stats.abstract.title}
+                      </p>
+                      <p className="text-[11px] text-slate-600/80">
+                        {stats.abstract.status} •{' '}
+                        {new Date().toLocaleDateString('en-IN')}
+                      </p>
                     </div>
                   </div>
                 )}
+                {!stats.registration &&
+                  !stats.accommodations[0] &&
+                  !stats.abstract && (
+                    <p className="text-[11px] text-slate-600/80 text-center py-4">
+                      No recent activity yet.
+                    </p>
+                  )}
               </div>
             </div>
           </section>
 
           {}
-          <section className="lg:col-span-1 space-y-4">
+          <section className="lg:col-span-1 space-y-5 lg:sticky lg:top-24">
             {}
-            <div className="border border-slate-200 rounded-xl p-4">
-              <h3 className="text-sm font-medium text-slate-900 mb-3 flex items-center">
-                <FileText className="w-4 h-4 mr-1.5 text-slate-500" />
+            <div className="bg-white/90 backdrop-blur-xl border border-white/40 rounded-2xl px-4 py-4 sm:px-5 sm:py-5">
+              <h3 className="text-sm font-semibold mb-3 flex items-center gap-2 text-slate-900">
+                <FileText className="w-4 h-4 text-[#7cb342]" />
                 Abstract
               </h3>
-              
+
               {stats.abstract ? (
-                <div className="space-y-3 text-[12px]">
-                  <div className="flex items-center justify-between mb-2">
-                    <span className="text-slate-600">Status</span>
+                <div className="space-y-3 text-xs sm:text-sm">
+                  <div className="flex items-center justify-between">
+                    <span className="text-slate-600/90">Status</span>
                     {getStatusBadge(stats.abstract.status)}
                   </div>
-                  <p className="font-medium text-slate-900 text-sm truncate">{stats.abstract.title}</p>
-                  <p className="text-[11px] text-slate-600">#{stats.abstract.submissionNumber}</p>
+                  <p className="font-medium text-slate-900 truncate">{stats.abstract.title}</p>
+                  <p className="text-[11px] text-slate-600/80">
+                    #{stats.abstract.submissionNumber}
+                  </p>
                   <button
                     onClick={() => navigate('/abstract')}
-                    className="w-full text-[11px] text-[#005aa9] py-2 font-medium hover:text-[#009688]"
+                    className="mt-2 w-full rounded-xl bg-[#7cb342] text-white px-4 py-2.5 text-xs sm:text-sm font-semibold hover:bg-[#68c239]"
                   >
-                    View Details
+                    View abstract
                   </button>
                 </div>
               ) : (
-                <div className="text-center py-6">
-                  <FileText className="w-10 h-10 text-slate-300 mx-auto mb-3" />
+                <div className="text-center py-8">
+                  <FileText className="w-10 h-10 text-[#7cb342]/60 mx-auto mb-3" />
+                  <p className="text-xs sm:text-sm text-slate-600 mb-2">
+                    No abstract submitted.
+                  </p>
                   <button
                     onClick={() => navigate('/abstract/rules')}
-                    className="text-[#005aa9] hover:text-[#009688] text-[12px] font-medium block mx-auto w-full"
+                    className="w-full rounded-xl bg-[#7cb342] text-white px-4 py-2.5 text-xs sm:text-sm font-semibold hover:bg-[#68c239]"
                   >
-                    Submit Abstract
+                    Submit abstract
                   </button>
-                  <p className="text-[10px] text-slate-500 mt-2">Deadline: Aug 15</p>
                 </div>
               )}
             </div>
 
             {}
-            <div className="border border-slate-200 rounded-xl p-4">
-              <h3 className="text-sm font-medium text-slate-900 mb-3 flex items-center">
-                <MessageSquare className="w-4 h-4 mr-1.5 text-slate-500" />
+            <div className="bg-white/90 backdrop-blur-xl border border-white/40 rounded-2xl px-4 py-4 sm:px-5 sm:py-5">
+              <h3 className="text-sm font-semibold mb-3 flex items-center gap-2 text-slate-900">
+                <MessageSquare className="w-4 h-4 text-[#ff8a1f]" />
                 Feedback
               </h3>
-              
+
               {stats.feedback ? (
-                <div className="text-center py-6">
-                  <CheckCircle className="w-10 h-10 text-[#005aa9] mx-auto mb-2" />
-                  <p className="text-[12px] text-[#005aa9] font-medium">Submitted</p>
-                  <p className="text-[10px] text-slate-500">{new Date(stats.feedback.createdAt).toLocaleDateString()}</p>
+                <div className="text-center py-8 text-xs sm:text-sm">
+                  <CheckCircle className="w-10 h-10 text-[#7cb342] mx-auto mb-3" />
+                  <p className="font-semibold text-slate-900 mb-1">Feedback submitted</p>
+                  <p className="text-[11px] text-slate-600">
+                    {new Date(stats.feedback.createdAt).toLocaleDateString(
+                      'en-IN'
+                    )}
+                  </p>
                 </div>
               ) : (
-                <div className="text-center py-6">
-                  <MessageSquare className="w-10 h-10 text-slate-300 mx-auto mb-3" />
+                <div className="text-center py-8 text-xs sm:text-sm">
+                  <MessageSquare className="w-10 h-10 text-[#ff8a1f]/70 mx-auto mb-3" />
+                  <p className="text-slate-600 mb-2">
+                    Share your experience after the conference.
+                  </p>
                   <button
                     onClick={() => navigate('/feedback')}
-                    className="text-[#005aa9] hover:text-[#009688] text-[12px] font-medium block mx-auto w-full"
+                    className="w-full rounded-xl bg-[#ff8a1f] text-white px-4 py-2.5 text-xs sm:text-sm font-semibold hover:bg-[#e67e22]"
                   >
-                    Submit Feedback
+                    Submit feedback
                   </button>
-                  <p className="text-[10px] text-slate-500 mt-2">After Nov 1</p>
                 </div>
               )}
             </div>
 
             {}
-            <div className="border border-slate-200 rounded-xl p-4 bg-slate-50/30">
-              <h3 className="text-sm font-medium text-slate-900 mb-3">Conference Details</h3>
-              <div className="space-y-3 text-[11px] text-slate-600">
-                <div className="flex items-center">
-                  <Calendar className="w-3.5 h-3.5 mr-2 text-slate-500" />
-                  Oct 30 - Nov 1, 2026
+            <div className="bg-white/90 backdrop-blur-xl border border-white/40 rounded-2xl px-4 py-4 sm:px-5 sm:py-5">
+              <h3 className="text-sm font-semibold mb-3 text-slate-900">Conference details</h3>
+              <div className="space-y-3 text-xs sm:text-sm">
+                <div className="flex items-center gap-2 rounded-xl bg-[#9c3253]/5 px-3 py-2 border border-[#9c3253]/20">
+                  <Calendar className="w-4 h-4 text-[#9c3253]" />
+                  <span>Oct 30 – Nov 1, 2026</span>
                 </div>
-                <div className="flex items-center">
-                  <MapPin className="w-3.5 h-3.5 mr-2 text-slate-500" />
-                  Hotel Royal Orchid, Shivamogga
+                <div className="flex items-center gap-2 rounded-xl bg-[#ff8a1f]/5 px-3 py-2 border border-[#ff8a1f]/20">
+                  <MapPin className="w-4 h-4 text-[#ff8a1f]" />
+                  <span>Hotel Royal Orchid, Shivamogga</span>
                 </div>
-                <div className="flex items-center">
-                  <Users className="w-3.5 h-3.5 mr-2 text-[#005aa9]" />
-                  5000+ Delegates Expected
+                <div className="flex items-center gap-2 rounded-xl bg-[#7cb342]/5 px-3 py-2 border border-[#7cb342]/20">
+                  <Users className="w-4 h-4 text-[#7cb342]" />
+                  <span>5000+ delegates expected</span>
                 </div>
                 <button
                   onClick={() => navigate('/program')}
-                  className="w-full text-[11px] text-[#005aa9] py-2 font-medium hover:text-[#009688] text-left"
+                  className="w-full rounded-xl bg-[#9c3253] text-white px-4 py-2.5 text-xs sm:text-sm font-semibold hover:bg-[#8a2b47]"
                 >
-                  Full Program →
+                  View full program
                 </button>
               </div>
             </div>
 
             {}
-            <div className="border border-slate-200 rounded-xl p-4 grid grid-cols-2 gap-3 text-center">
+            <div className="bg-white/90 backdrop-blur-xl border border-white/40 rounded-2xl px-4 py-4 grid grid-cols-2 gap-3 text-center text-xs sm:text-sm">
               <div>
-                <div className="text-2xl font-semibold text-slate-900">{stats.registration ? 1 : 0}</div>
-                <div className="text-[11px] text-slate-600">Registration</div>
+                <p className="text-lg sm:text-xl font-semibold text-[#9c3253]">
+                  {stats.registration ? 1 : 0}
+                </p>
+                <p className="text-[11px] text-slate-600">Registrations</p>
               </div>
               <div>
-                <div className="text-2xl font-semibold text-slate-900">{stats.accommodations.length}</div>
-                <div className="text-[11px] text-slate-600">Bookings</div>
+                <p className="text-lg sm:text-xl font-semibold text-[#ff8a1f]">
+                  {stats.accommodations.length}
+                </p>
+                <p className="text-[11px] text-slate-600">Stays booked</p>
               </div>
             </div>
           </section>

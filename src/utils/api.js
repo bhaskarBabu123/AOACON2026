@@ -10,7 +10,7 @@ const api = axios.create({
 });
 api.interceptors.request.use(
   (config) => {
-    const token = localStorage.getItem('token'); // or sessionStorage, or your auth context
+    const token = localStorage.getItem('token');
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
     }
@@ -32,6 +32,10 @@ export const authAPI = {
   login: (credentials) => api.post('/auth/login', credentials),
   register: (userData) => api.post('/auth/register', userData),
   adminLogin: (credentials) => api.post('/auth/admin/login', credentials),
+};
+export const attendanceAPI = {
+  getMyQr: () => api.get('/attendance/my-qr'),
+  generateQr: (registrationId) => api.post(`/attendance/generate-qr/${registrationId}`),
 };
 export const registrationAPI = {
   create: (data) => {

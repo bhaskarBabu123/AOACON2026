@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Calendar, Clock, MapPin, Users, CheckCircle, Lock, FileText } from 'lucide-react';
+import { Calendar, Clock, MapPin, Users, CheckCircle, Lock, FileText, Star } from 'lucide-react';
 import { useAuth } from '../../contexts/AuthContext';
 import { useApp } from '../../contexts/AppContext';
 import { registrationAPI } from '../../utils/api';
@@ -8,6 +8,7 @@ import MobileNav from '../../components/common/MobileNav';
 import LoadingSpinner from '../../components/common/LoadingSpinner';
 
 const ConferenceDaysPage = () => {
+  const [activeTab, setActiveTab] = useState(0);
   const [registration, setRegistration] = useState(null);
   const [loading, setLoading] = useState(true);
   const { user } = useAuth();
@@ -83,25 +84,25 @@ const ConferenceDaysPage = () => {
 
   const getSessionTypeColor = (type) => {
     const colors = {
-      registration: 'bg-[#005aa9]/20 text-[#005aa9]',
-      ceremony: 'bg-purple-100 text-purple-800',
-      keynote: 'bg-emerald-100 text-emerald-800',
-      panel: 'bg-amber-100 text-amber-800',
-      workshop: 'bg-[#005aa9]/20 text-[#005aa9]',
-      presentation: 'bg-indigo-100 text-indigo-800',
-      symposium: 'bg-red-100 text-red-800',
-      demonstration: 'bg-pink-100 text-pink-800',
-      discussion: 'bg-yellow-100 text-yellow-800',
-      networking: 'bg-slate-100 text-slate-700',
-      break: 'bg-slate-50 text-slate-500',
-      poster: 'bg-cyan-100 text-cyan-800',
-      social: 'bg-rose-100 text-rose-800',
-      forum: 'bg-lime-100 text-lime-800',
-      research: 'bg-emerald-100 text-emerald-800',
-      awards: 'bg-amber-100 text-amber-800',
-      closing: 'bg-slate-100 text-slate-800'
+      registration: 'bg-[#9c3253]/20 text-[#9c3253]',
+      ceremony: 'bg-[#ff8a1f]/20 text-[#ff8a1f]',
+      keynote: 'bg-[#7cb342]/20 text-[#7cb342]',
+      panel: 'bg-[#9c3253]/20 text-[#9c3253]',
+      workshop: 'bg-[#ff8a1f]/20 text-[#ff8a1f]',
+      presentation: 'bg-[#7cb342]/20 text-[#7cb342]',
+      symposium: 'bg-[#9c3253]/20 text-[#9c3253]',
+      demonstration: 'bg-[#ff8a1f]/20 text-[#ff8a1f]',
+      discussion: 'bg-[#7cb342]/20 text-[#7cb342]',
+      networking: 'bg-slate-100/50 text-slate-600',
+      break: 'bg-slate-100/50 text-slate-500',
+      poster: 'bg-[#9c3253]/20 text-[#9c3253]',
+      social: 'bg-[#ff8a1f]/20 text-[#ff8a1f]',
+      forum: 'bg-[#7cb342]/20 text-[#7cb342]',
+      research: 'bg-[#9c3253]/20 text-[#9c3253]',
+      awards: 'bg-[#ff8a1f]/20 text-[#ff8a1f]',
+      closing: 'bg-[#7cb342]/20 text-[#7cb342]'
     };
-    return colors[type] || 'bg-slate-100 text-slate-700';
+    return colors[type] || 'bg-slate-100/50 text-slate-600';
   };
 
   const isDateAccessible = (dateString) => {
@@ -124,195 +125,164 @@ const ConferenceDaysPage = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-white flex items-center justify-center py-20">
-        <LoadingSpinner size="sm" text="Loading conference schedule..." />
+      <div className="min-h-screen bg-cover bg-center bg-no-repeat relative flex items-center justify-center"
+        style={{
+          backgroundImage: "url('https://www.justmbbs.com/img/college/karnataka/shimoga-institute-of-medical-sciences-shimoga-banner.jpg')"
+        }}
+      >
+        <div className="absolute inset-0 bg-black/70" />
+        <LoadingSpinner size="md" text="Loading conference schedule..." />
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-white">
+    <div 
+      className="min-h-screen bg-cover bg-center bg-no-repeat relative"
+      style={{
+        backgroundImage: "url('https://www.justmbbs.com/img/college/karnataka/shimoga-institute-of-medical-sciences-shimoga-banner.jpg')"
+      }}
+    >
+      <div className="absolute inset-0 bg-white/80 pt-20 sm:pt-24" />
+      
       <Header />
       
-      <div className="max-w-6xl mx-auto px-3 sm:px-4 lg:px-6 py-4 sm:py-6 space-y-6 pb-20">
+      <div className="relative z-10 max-w-5xl mx-auto px-3 sm:px-4 lg:px-6 py-6 lg:py-10 space-y-6 pb-20">
         {}
-        <div className="border border-slate-200 rounded-xl p-6 bg-slate-50/50">
-          <div className="flex items-center mb-4">
-            <Calendar className="w-5 h-5 text-[#005aa9] mr-3" />
-            <h1 className="text-lg font-medium text-slate-900">Conference Schedule</h1>
+        <div className="bg-white/90 backdrop-blur-xl border border-white/40 rounded-xl p-4 lg:p-6">
+          <div className="flex items-center mb-3">
+            <Calendar className="w-5 h-5 text-[#9c3253] mr-3" />
+            <h1 className="text-lg lg:text-xl font-semibold text-slate-900">Conference Schedule</h1>
           </div>
-          <p className="text-[13px] text-slate-600 mb-2">AOA Shivamogga 2026 • 3-Day Program</p>
-          <div className="flex items-center text-[12px] text-slate-600">
-            <MapPin className="w-4 h-4 mr-2" />
+          <p className="text-xs lg:text-sm text-slate-600 mb-2">AOA Shivamogga 2026 • 3-Day Program</p>
+          <div className="flex items-center text-xs lg:text-sm text-slate-600">
+            <MapPin className="w-4 h-4 mr-2 text-[#ff8a1f]" />
             Shivamogga Convention Center, MG Road
           </div>
         </div>
 
         {}
-        <div className="border border-slate-200 rounded-xl p-6">
+        <div className="bg-white/90 backdrop-blur-xl border border-white/40 rounded-xl p-4 lg:p-6">
           {registration && registration.paymentStatus === 'PAID' ? (
-            <div className="flex items-start gap-4 p-4 bg-[#005aa9]/5 border border-[#005aa9]/20 rounded-xl">
-              <CheckCircle className="w-6 h-6 text-[#005aa9] mt-0.5 flex-shrink-0" />
+            <div className="flex items-start gap-3 p-4 bg-[#7cb342]/10 border border-[#7cb342]/30 rounded-xl">
+              <CheckCircle className="w-6 h-6 text-[#7cb342] mt-0.5 flex-shrink-0" />
               <div>
-                <h3 className="text-sm font-semibold text-[#005aa9]">Registration Confirmed</h3>
-                <p className="text-[12px] text-slate-700">Welcome! Full access to all sessions and materials granted.</p>
+                <h3 className="text-sm font-semibold text-[#7cb342]">Registration Confirmed</h3>
+                <p className="text-xs text-slate-700">Full access to all sessions and materials granted.</p>
               </div>
             </div>
           ) : (
-            <div className="flex items-start gap-4 p-4 bg-amber-50 border border-amber-200 rounded-xl">
-              <Lock className="w-6 h-6 text-amber-600 mt-0.5 flex-shrink-0" />
+            <div className="flex items-start gap-3 p-4 bg-[#ff8a1f]/10 border border-[#ff8a1f]/30 rounded-xl">
+              <Lock className="w-6 h-6 text-[#ff8a1f] mt-0.5 flex-shrink-0" />
               <div>
-                <h3 className="text-sm font-semibold text-amber-800">Complete Registration</h3>
-                <p className="text-[12px] text-amber-700">Complete payment to unlock full schedule and conference access.</p>
+                <h3 className="text-sm font-semibold text-[#ff8a1f]">Complete Registration</h3>
+                <p className="text-xs text-slate-700">Complete payment to unlock full schedule access.</p>
               </div>
             </div>
           )}
         </div>
 
         {}
-        <div className="border border-slate-200 rounded-xl p-6">
-          <div className="flex items-center justify-between mb-6 p-4 bg-slate-50 rounded-xl">
-            <div>
-              <div className="flex items-center text-[12px] text-slate-600 mb-1">
-                <Calendar className="w-4 h-4 mr-2" />
-                Thursday, October 30, 2025
-              </div>
-              <h2 className="text-sm font-semibold text-slate-900">Day 1: Opening Ceremony & Keynote Sessions</h2>
-            </div>
-            <span className={`px-3 py-1 rounded-full text-[11px] font-medium ${
-              isPastDate(conferenceDays[0].date) ? 'bg-slate-100 text-slate-600' :
-              isDateAccessible(conferenceDays[0].date) ? 'bg-[#005aa9]/20 text-[#005aa9]' : 'bg-slate-100 text-slate-500'
-            }`}>
-              {isPastDate(conferenceDays[0].date) ? 'Completed' : isDateAccessible(conferenceDays[0].date) ? 'Live' : 'Upcoming'}
-            </span>
-          </div>
-          
-          <div className="space-y-3 text-[12px]">
-            {conferenceDays[0].sessions.map((session, index) => (
-              <div key={index} className="flex items-start gap-4 p-4 border border-slate-200 rounded-lg bg-slate-50/50">
-                <div className="w-14 h-14 bg-[#005aa9]/10 border border-[#005aa9]/20 rounded-lg flex items-center justify-center flex-shrink-0">
-                  <Clock className="w-5 h-5 text-[#005aa9]" />
+        <div className="bg-white/90 backdrop-blur-xl border border-white/40 rounded-xl overflow-hidden">
+          <div className="flex -mb-px">
+            {conferenceDays.map((day, index) => (
+              <button
+                key={day.date}
+                onClick={() => setActiveTab(index)}
+                className={`flex-1 py-3 px-4 text-xs font-medium border-b-2 transition-all ${
+                  activeTab === index
+                    ? 'bg-[#9c3253] text-white border-[#9c3253] shadow-sm'
+                    : 'text-slate-600 bg-gray-100 border-gray-900 border hover:text-slate-900 hover:bg-slate-50 border-transparent'
+                }`}
+              >
+                <div className="flex items-center justify-center gap-2">
+                  <span>{day.day}</span>
+                  <span className={`px-2 py-0.5 rounded-full text-[10px] ${
+                    isPastDate(day.date) 
+                      ? 'bg-slate-200/50 text-slate-500' 
+                      : isDateAccessible(day.date) 
+                      ? 'bg-[#7cb342]/50 text-[#7cb342]' 
+                      : 'bg-[#ff8a1f]/50 text-[#ff8a1f]'
+                  }`}>
+                    {isPastDate(day.date) ? '✓' : isDateAccessible(day.date) ? 'Live' : 'Upcoming'}
+                  </span>
                 </div>
-                <div className="flex-1 min-w-0">
-                  <div className="flex items-start justify-between mb-1">
-                    <h3 className="font-semibold text-slate-900 text-[13px]">{session.title}</h3>
-                    <span className={`px-2.5 py-0.5 rounded-full text-[10px] font-medium ml-3 ${getSessionTypeColor(session.type)}`}>
-                      {session.type.charAt(0).toUpperCase() + session.type.slice(1)}
-                    </span>
-                  </div>
-                  <p className="text-slate-600 text-[11px] mb-1">{session.speaker}</p>
-                  <p className="text-sm font-medium text-slate-900">{session.time}</p>
-                </div>
-              </div>
+              </button>
             ))}
+          </div>
+
+          {}
+          <div className="p-4 lg:p-6">
+            <div className="flex items-center justify-between mb-4 p-3 bg-[#9c3253]/5 rounded-xl border border-[#9c3253]/20">
+              <div>
+                <div className="flex items-center text-xs text-slate-600 mb-1">
+                  <Calendar className="w-3.5 h-3.5 mr-2" />
+                  {new Date(conferenceDays[activeTab].date).toLocaleDateString('en-IN', { 
+                    weekday: 'long', 
+                    year: 'numeric', 
+                    month: 'long', 
+                    day: 'numeric' 
+                  })}
+                </div>
+                <h2 className="text-sm lg:text-base font-semibold text-slate-900">
+                  {conferenceDays[activeTab].title}
+                </h2>
+              </div>
+            </div>
+
+            <div className="space-y-3">
+              {conferenceDays[activeTab].sessions.map((session, index) => (
+                <div key={index} className="flex items-start gap-3 p-3 lg:p-4 border border-slate-200/50 bg-white/50 rounded-lg hover:bg-white backdrop-blur-sm transition-all">
+                  <div className={`w-12 h-12 lg:w-14 lg:h-14 flex items-center justify-center rounded-lg flex-shrink-0 ${
+                    activeTab === 0 ? 'bg-[#9c3253]/10 border border-[#9c3253]/20' :
+                    activeTab === 1 ? 'bg-[#ff8a1f]/10 border border-[#ff8a1f]/20' :
+                    'bg-[#7cb342]/10 border border-[#7cb342]/20'
+                  }`}>
+                    <Clock className="w-4 h-4 lg:w-5 lg:h-5" />
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <div className="flex items-start justify-between mb-1">
+                      <h3 className="font-semibold text-slate-900 text-xs lg:text-sm leading-tight">{session.title}</h3>
+                      <span className={`px-2 py-0.5 rounded-full text-[10px] font-medium ml-2 whitespace-nowrap ${getSessionTypeColor(session.type)}`}>
+                        {session.type.charAt(0).toUpperCase() + session.type.slice(1)}
+                      </span>
+                    </div>
+                    <p className="text-slate-600 text-[10px] mb-1 leading-tight">{session.speaker}</p>
+                    <p className="text-xs lg:text-sm font-medium text-slate-900 font-mono">{session.time}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
 
         {}
-        <div className="border border-slate-200 rounded-xl p-6">
-          <div className="flex items-center justify-between mb-6 p-4 bg-slate-50 rounded-xl">
-            <div>
-              <div className="flex items-center text-[12px] text-slate-600 mb-1">
-                <Calendar className="w-4 h-4 mr-2" />
-                Friday, October 31, 2025
-              </div>
-              <h2 className="text-sm font-semibold text-slate-900">Day 2: Clinical Sessions & Workshops</h2>
-            </div>
-            <span className={`px-3 py-1 rounded-full text-[11px] font-medium ${
-              isPastDate(conferenceDays[1].date) ? 'bg-slate-100 text-slate-600' :
-              isDateAccessible(conferenceDays[1].date) ? 'bg-[#005aa9]/20 text-[#005aa9]' : 'bg-slate-100 text-slate-500'
-            }`}>
-              {isPastDate(conferenceDays[1].date) ? 'Completed' : isDateAccessible(conferenceDays[1].date) ? 'Live' : 'Upcoming'}
-            </span>
-          </div>
-          
-          <div className="space-y-3 text-[12px]">
-            {conferenceDays[1].sessions.map((session, index) => (
-              <div key={index} className="flex items-start gap-4 p-4 border border-slate-200 rounded-lg bg-slate-50/50">
-                <div className="w-14 h-14 bg-[#005aa9]/10 border border-[#005aa9]/20 rounded-lg flex items-center justify-center flex-shrink-0">
-                  <Clock className="w-5 h-5 text-[#005aa9]" />
-                </div>
-                <div className="flex-1 min-w-0">
-                  <div className="flex items-start justify-between mb-1">
-                    <h3 className="font-semibold text-slate-900 text-[13px]">{session.title}</h3>
-                    <span className={`px-2.5 py-0.5 rounded-full text-[10px] font-medium ml-3 ${getSessionTypeColor(session.type)}`}>
-                      {session.type.charAt(0).toUpperCase() + session.type.slice(1)}
-                    </span>
-                  </div>
-                  <p className="text-slate-600 text-[11px] mb-1">{session.speaker}</p>
-                  <p className="text-sm font-medium text-slate-900">{session.time}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {}
-        <div className="border border-slate-200 rounded-xl p-6">
-          <div className="flex items-center justify-between mb-6 p-4 bg-slate-50 rounded-xl">
-            <div>
-              <div className="flex items-center text-[12px] text-slate-600 mb-1">
-                <Calendar className="w-4 h-4 mr-2" />
-                Saturday, November 1, 2025
-              </div>
-              <h2 className="text-sm font-semibold text-slate-900">Day 3: Research Presentations & Closing</h2>
-            </div>
-            <span className={`px-3 py-1 rounded-full text-[11px] font-medium ${
-              isPastDate(conferenceDays[2].date) ? 'bg-slate-100 text-slate-600' :
-              isDateAccessible(conferenceDays[2].date) ? 'bg-[#005aa9]/20 text-[#005aa9]' : 'bg-slate-100 text-slate-500'
-            }`}>
-              {isPastDate(conferenceDays[2].date) ? 'Completed' : isDateAccessible(conferenceDays[2].date) ? 'Live' : 'Upcoming'}
-            </span>
-          </div>
-          
-          <div className="space-y-3 text-[12px]">
-            {conferenceDays[2].sessions.map((session, index) => (
-              <div key={index} className="flex items-start gap-4 p-4 border border-slate-200 rounded-lg bg-slate-50/50">
-                <div className="w-14 h-14 bg-[#005aa9]/10 border border-[#005aa9]/20 rounded-lg flex items-center justify-center flex-shrink-0">
-                  <Clock className="w-5 h-5 text-[#005aa9]" />
-                </div>
-                <div className="flex-1 min-w-0">
-                  <div className="flex items-start justify-between mb-1">
-                    <h3 className="font-semibold text-slate-900 text-[13px]">{session.title}</h3>
-                    <span className={`px-2.5 py-0.5 rounded-full text-[10px] font-medium ml-3 ${getSessionTypeColor(session.type)}`}>
-                      {session.type.charAt(0).toUpperCase() + session.type.slice(1)}
-                    </span>
-                  </div>
-                  <p className="text-slate-600 text-[11px] mb-1">{session.speaker}</p>
-                  <p className="text-sm font-medium text-slate-900">{session.time}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          <div className="border border-slate-200 rounded-xl p-6">
-            <h3 className="text-sm font-semibold text-slate-900 mb-4 flex items-center">
-              <MapPin className="w-4 h-4 mr-2 text-[#005aa9]" />
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-6">
+          <div className="bg-white/90 backdrop-blur-xl border border-white/40 rounded-xl p-4 lg:p-6">
+            <h3 className="text-sm font-semibold text-slate-900 mb-3 flex items-center gap-2">
+              <MapPin className="w-4 h-4 text-[#9c3253]" />
               Venue Details
             </h3>
-            <div className="space-y-3 text-[12px] text-slate-700">
+            <div className="space-y-2 text-xs lg:text-sm text-slate-700">
               <div>Shivamogga Convention Center</div>
-              <div>MG Road, Shivamogga, Karnataka 577201</div>
-              <div className="flex items-center mt-3">
-                <Clock className="w-4 h-4 mr-2 text-[#005aa9]" />
+              <div className="text-[10px]">MG Road, Shivamogga, Karnataka 577201</div>
+              <div className="flex items-center mt-2">
+                <Clock className="w-3.5 h-3.5 mr-2 text-[#ff8a1f]" />
                 <span>Daily: 9:00 AM - 6:00 PM</span>
               </div>
               <div className="flex items-center">
-                <Users className="w-4 h-4 mr-2 text-[#005aa9]" />
+                <Users className="w-3.5 h-3.5 mr-2 text-[#7cb342]" />
                 <span>500+ Medical Professionals</span>
               </div>
             </div>
           </div>
 
-          <div className="border border-slate-200 rounded-xl p-6">
-            <h3 className="text-sm font-semibold text-slate-900 mb-4 flex items-center">
-              <FileText className="w-4 h-4 mr-2 text-amber-500" />
+          <div className="bg-white/90 backdrop-blur-xl border border-white/40 rounded-xl p-4 lg:p-6">
+            <h3 className="text-sm font-semibold text-slate-900 mb-3 flex items-center gap-2">
+              <FileText className="w-4 h-4 text-[#ff8a1f]" />
               Important Notes
             </h3>
-            <div className="space-y-2 text-[12px] text-slate-700">
+            <div className="space-y-1.5 text-xs lg:text-sm text-slate-700">
               <div>• Registration desk opens 8:30 AM Day 1</div>
               <div>• Meals & refreshments included</div>
               <div>• CME credits for all sessions</div>
