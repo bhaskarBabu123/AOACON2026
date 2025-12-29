@@ -21,7 +21,7 @@ const AttendanceManagementPage = () => {
 
   const fetchAttendances = async () => {
     try {
-      const response = await fetch('http://localhost:5000/api/attendance', {
+      const response = await fetch('https://aoa-backend.onrender.com/api/attendance', {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
       });
       const data = await response.json();
@@ -47,7 +47,7 @@ const AttendanceManagementPage = () => {
 
   const downloadQR = async (attendanceId) => {
     const link = document.createElement('a');
-    link.href = `http://localhost:5000/api/attendance/qr-download/${attendanceId}`;
+    link.href = `https://aoa-backend.onrender.com/api/attendance/qr-download/${attendanceId}`;
     link.download = 'QR.png';
     document.body.appendChild(link);
     link.click();
@@ -58,8 +58,8 @@ const AttendanceManagementPage = () => {
     setExporting(type);
     try {
       const endpoint = type === 'attended' 
-        ? 'http://localhost:5000/api/attendance/export-attended' 
-        : 'http://localhost:5000/api/attendance/export-not-attended';
+        ? 'https://aoa-backend.onrender.com/api/attendance/export-attended' 
+        : 'https://aoa-backend.onrender.com/api/attendance/export-not-attended';
       
       const response = await fetch(endpoint, {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
