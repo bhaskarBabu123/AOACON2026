@@ -1,38 +1,49 @@
 import { Users, Calendar, MapPin, Star } from 'lucide-react';
 import Header from '../../components/common/Header';
+import Footer from '../../components/common/Footer';
 
 const PLACEHOLDER_IMAGE =
   'https://thumbs.dreamstime.com/b/profile-placeholder-image-gray-silhouette-no-photo-person-avatar-default-pic-used-web-design-173998594.jpg';
 
 const committees = [
   {
-    sectionTitle: 'Core Organizing Team',
+    sectionTitle: 'Organising Committee',
     roles: [
       {
-        role: 'Organizing Chairperson',
+        role: 'Leadership',
         members: [
           {
-            name: 'Dr Ravindra G L',
-            designation: 'Organizing Chairperson',
+            name: 'Dr Virupakshappa V',
+            designation: 'Chief Patron',
             image: PLACEHOLDER_IMAGE,
           },
-        ],
-      },
-      {
-        role: 'Organizing Secretary',
-        members: [
           {
-            name: 'Dr Champa B V',
-            designation: 'Organizing Secretary',
+            name: 'Dr Nagendra S',
+            designation: 'Patron',
             image: PLACEHOLDER_IMAGE,
           },
-        ],
-      },
-      {
-        role: 'Treasurer',
-        members: [
           {
-            name: 'Dr Ashwini S',
+            name: 'Dr Dhananjaya Sarji',
+            designation: 'Patron',
+            image: PLACEHOLDER_IMAGE,
+          },
+          {
+            name: 'Dr Ajith Shetty',
+            designation: 'Patron',
+            image: PLACEHOLDER_IMAGE,
+          },
+          {
+            name: 'Dr Avinash Benakappa',
+            designation: 'Patron',
+            image: PLACEHOLDER_IMAGE,
+          },
+          {
+            name: 'Dr Champa',
+            designation: 'Organising Secretary',
+            image: PLACEHOLDER_IMAGE,
+          },
+          {
+            name: 'Dr Ashwini',
             designation: 'Treasurer',
             image: PLACEHOLDER_IMAGE,
           },
@@ -41,64 +52,80 @@ const committees = [
     ],
   },
   {
-    sectionTitle: 'Scientific Team',
+    sectionTitle: 'Scientific Committee',
     roles: [
       {
-        role: 'Scientific Chairpersons',
+        role: 'Members',
         members: [
           {
-            name: 'Dr Ravindra G L',
+            name: 'Dr Ravindra GL',
             designation: 'Scientific Chairperson',
             image: PLACEHOLDER_IMAGE,
           },
           {
-            name: 'Dr Shivakumar M C',
+            name: 'Dr Shivkumar M C',
             designation: 'Scientific Chairperson',
             image: PLACEHOLDER_IMAGE,
           },
-        ],
-      },
-      {
-        role: 'Co-Chairperson',
-        members: [
           {
             name: 'Dr Kumara A B',
             designation: 'Scientific Co-Chairperson',
             image: PLACEHOLDER_IMAGE,
           },
-        ],
-      },
-      {
-        role: 'Members',
-        members: [
-          { name: 'Dr Namratha L', designation: 'Member', image: PLACEHOLDER_IMAGE },
+          { name: 'Dr Rakesh M L', designation: 'Member', image: PLACEHOLDER_IMAGE },
           { name: 'Dr Pooja Shah', designation: 'Member', image: PLACEHOLDER_IMAGE },
-          { name: 'Dr Swathi Hegde', designation: 'Member', image: PLACEHOLDER_IMAGE },
-          { name: 'Dr Shashank', designation: 'Member', image: PLACEHOLDER_IMAGE },
-          { name: 'Dr Shreehari', designation: 'Member', image: PLACEHOLDER_IMAGE },
+          { name: 'Dr Shreehari SS', designation: 'Member', image: PLACEHOLDER_IMAGE },
           { name: 'Dr Soumya Rao', designation: 'Member', image: PLACEHOLDER_IMAGE },
         ],
       },
     ],
   },
   {
-    sectionTitle: 'Reception & Registration Team',
+    sectionTitle: 'Abstract Committee',
     roles: [
       {
         role: 'Members',
         members: [
-          { name: 'Dr Shruthi Hiremath', designation: 'Member', image: PLACEHOLDER_IMAGE },
-          { name: 'Dr Vikram', designation: 'Member', image: PLACEHOLDER_IMAGE },
-          { name: 'Dr Manasa S', designation: 'Member', image: PLACEHOLDER_IMAGE },
-          { name: 'Dr Sushma Pattar', designation: 'Member', image: PLACEHOLDER_IMAGE },
-          { name: 'Dr Kavya', designation: 'Member', image: PLACEHOLDER_IMAGE },
-          { name: 'Dr Bindu (NH)', designation: 'Member', image: PLACEHOLDER_IMAGE },
+          { name: 'Dr Swathi Hegde', designation: 'Member', image: PLACEHOLDER_IMAGE },
+          { name: 'Dr Namratha', designation: 'Member', image: PLACEHOLDER_IMAGE },
+          { name: 'Dr Shashank', designation: 'Member', image: PLACEHOLDER_IMAGE },
         ],
       },
     ],
   },
   {
-    sectionTitle: 'Travel & Accommodation Team',
+    sectionTitle: 'Workshop Committee',
+    roles: [
+      {
+        role: 'Members',
+        members: [
+          { name: 'Dr Yashoda V', designation: 'Member', image: PLACEHOLDER_IMAGE },
+          { name: 'Dr Sandhya', designation: 'Member', image: PLACEHOLDER_IMAGE },
+          { name: 'Dr Vikram', designation: 'Other Member', image: PLACEHOLDER_IMAGE },
+          { name: 'Dr Bharath', designation: 'Other Member', image: PLACEHOLDER_IMAGE },
+          { name: 'Dr Praveen Kumar', designation: 'Other Member', image: PLACEHOLDER_IMAGE },
+          { name: 'Dr Vadiraj Kulkarni', designation: 'Other Member', image: PLACEHOLDER_IMAGE },
+        ],
+      },
+    ],
+  },
+  {
+    sectionTitle: 'Reception & Registration Committee',
+    roles: [
+      {
+        role: 'Members',
+        members: [
+          { name: 'Dr Shruthi Hiremath', designation: 'Member', image: PLACEHOLDER_IMAGE },
+          { name: 'Dr Vikram', designation: 'Other Member', image: PLACEHOLDER_IMAGE },
+          { name: 'Dr Sushma Pattar', designation: 'Other Member', image: PLACEHOLDER_IMAGE },
+          { name: 'Dr Kavya', designation: 'Other Member', image: PLACEHOLDER_IMAGE },
+          { name: 'Dr Bindu (NH)', designation: 'Other Member', image: PLACEHOLDER_IMAGE },
+        ],
+      },
+    ],
+  },
+  {
+    sectionTitle: 'Travel & Accommodation',
     roles: [
       {
         role: 'Members',
@@ -112,58 +139,7 @@ const committees = [
     ],
   },
   {
-    sectionTitle: 'Venue Detailing Team',
-    roles: [
-      {
-        role: 'Members',
-        members: [
-          { name: 'Dr Praveen S', designation: 'Member', image: PLACEHOLDER_IMAGE },
-          { name: 'Dr Vandana Hebballi', designation: 'Member', image: PLACEHOLDER_IMAGE },
-        ],
-      },
-    ],
-  },
-  {
-    sectionTitle: 'Workshops & Courses',
-    roles: [
-      {
-        role: 'Workshop Team Members',
-        members: [
-          { name: 'Dr Yashoda V', designation: 'Workshop Coordinator', image: PLACEHOLDER_IMAGE },
-          { name: 'Dr Sandhya', designation: 'Workshop Coordinator', image: PLACEHOLDER_IMAGE },
-          { name: 'Dr Vikram', designation: 'Workshop Coordinator', image: PLACEHOLDER_IMAGE },
-          { name: 'Dr Bharath', designation: 'Workshop Coordinator', image: PLACEHOLDER_IMAGE },
-          { name: 'Dr Praveen Kumar', designation: 'Workshop Coordinator', image: PLACEHOLDER_IMAGE },
-          { name: 'Dr Vadiraj Kulkarni', designation: 'Workshop Coordinator', image: PLACEHOLDER_IMAGE },
-        ],
-      },
-      {
-        role: 'AOA Obstetric Critical Care Certification Course (2 days)',
-        members: [
-          { name: 'Dr Yashoda V', designation: 'Course Lead', image: PLACEHOLDER_IMAGE },
-          { name: 'Dr Rashmi', designation: 'Course Faculty', image: PLACEHOLDER_IMAGE },
-        ],
-      },
-      {
-        role: 'Labour Analgesia (1 day)',
-        members: [{ name: 'Dr Bharath', designation: 'Course Lead', image: PLACEHOLDER_IMAGE }],
-      },
-      {
-        role: 'Critical Incidents in Obstetric Anaesthesia (1 day)',
-        members: [{ name: 'Dr Sandhya', designation: 'Course Lead', image: PLACEHOLDER_IMAGE }],
-      },
-      {
-        role: 'POCUS in Obstetric Anaesthesia (1 day)',
-        members: [{ name: 'Dr Praveen Kumar', designation: 'Course Lead', image: PLACEHOLDER_IMAGE }],
-      },
-      {
-        role: 'Maternal Collapse & Resuscitation / Obstetric RA Blocks (1 day)',
-        members: [{ name: 'Dr Vikram', designation: 'Course Lead', image: PLACEHOLDER_IMAGE }],
-      },
-    ],
-  },
-  {
-    sectionTitle: 'Food & Banquet Team',
+    sectionTitle: 'Hospitality',
     roles: [
       {
         role: 'Members',
@@ -177,7 +153,7 @@ const committees = [
     ],
   },
   {
-    sectionTitle: 'Cultural Team',
+    sectionTitle: 'Cultural',
     roles: [
       {
         role: 'Members',
@@ -191,7 +167,7 @@ const committees = [
     ],
   },
   {
-    sectionTitle: 'Memento & Kits Team',
+    sectionTitle: 'Memento & Kits',
     roles: [
       {
         role: 'Members',
@@ -199,6 +175,18 @@ const committees = [
           { name: 'Dr Rashmi', designation: 'Member', image: PLACEHOLDER_IMAGE },
           { name: 'Dr Bindu', designation: 'Member', image: PLACEHOLDER_IMAGE },
           { name: 'Dr Sowmya Rao', designation: 'Member', image: PLACEHOLDER_IMAGE },
+        ],
+      },
+    ],
+  },
+  {
+    sectionTitle: 'Venue Detailing',
+    roles: [
+      {
+        role: 'Members',
+        members: [
+          { name: 'Dr Praveen S', designation: 'Member', image: PLACEHOLDER_IMAGE },
+          { name: 'Dr Vandana Hebballi', designation: 'Member', image: PLACEHOLDER_IMAGE },
         ],
       },
     ],
@@ -302,6 +290,8 @@ const CommitteePage = () => {
           ))}
         </div>
       </div>
+
+      <Footer />
     </div>
   );
 };
